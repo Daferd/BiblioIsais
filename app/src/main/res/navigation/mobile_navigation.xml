@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_bibliomundo">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.darioArevalo.biblioisais.ui.home.HomeFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_bibliomundo"
+        android:name="com.darioArevalo.biblioisais.ui.bibliomundo.BibliomundoFragment"
+        android:label="BiblioMundo"
+        tools:layout="@layout/fragment_bibliomundo" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.darioArevalo.biblioisais.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_biblioisais"
+        android:name="com.darioArevalo.biblioisais.ui.biblioisais.BiblioisaisFragment"
+        android:label="BiblioIsais"
+        tools:layout="@layout/fragment_biblioisais" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.darioArevalo.biblioisais.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_biblioteca"
+        android:name="com.darioArevalo.biblioisais.ui.bibliotecas.BibliotecasFragment"
+        android:label="Biblioteca"
+        tools:layout="@layout/fragment_bibliotecas" />
 </navigation>

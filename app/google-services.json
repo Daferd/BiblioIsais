@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "273203362770",
+    "firebase_url": "https://biblioisais-default-rtdb.firebaseio.com",
+    "project_id": "biblioisais",
+    "storage_bucket": "biblioisais.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273203362770:android:afdca27dc0158d59fe660b",
+        "android_client_info": {
+          "package_name": "com.darioArevalo.biblioisais"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273203362770-rn24gcof1b7kqq6ppp0tfjifjoqt5hlo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.darioArevalo.biblioisais",
+            "certificate_hash": "f74de9ec0ce3fea2647ab9688a71b2a6c29f398c"
+          }
+        },
+        {
+          "client_id": "273203362770-c5aaluq5cm47en6pt05st61ka959svae.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAwVu5SlEklopdLrMVv5XoRE6ppXpmFcWI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273203362770-c5aaluq5cm47en6pt05st61ka959svae.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
