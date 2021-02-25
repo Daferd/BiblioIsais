@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.bibliotecas
+package com.darioArevalo.biblioisais.ui.bibliomundo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.databinding.BibliotecasItemBinding
 import com.darioArevalo.biblioisais.server.BibliotecaServer
+import com.squareup.picasso.Picasso
 
 class BibliotecaRVAdapter(
         private var bibliotecasList:ArrayList<BibliotecaServer>,
@@ -38,6 +39,7 @@ class BibliotecaRVAdapter(
         fun bindBiblioteca(biblioteca:BibliotecaServer){
             binding.nombreBibliotecaTextView.text=biblioteca.name
             binding.paisBibliotecaTextView.text = biblioteca.country
+            Picasso.get().load(biblioteca.foto).into(binding.bibliotecaImageView)
 
             binding.itemBibliotecaCardView.setOnClickListener {
                 onItemClickListener.onItemClick(biblioteca)

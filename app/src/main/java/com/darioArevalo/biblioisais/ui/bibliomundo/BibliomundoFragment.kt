@@ -5,22 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.databinding.FragmentBibliomundoBinding
+import com.darioArevalo.biblioisais.server.BibliotecaServer
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class BibliomundoFragment : Fragment() {
+class BibliomundoFragment : Fragment(), BibliotecaRVAdapter.OnItemClickListener {
 
     //private lateinit var homeViewModel: HomeViewModel
     private lateinit var binding: FragmentBibliomundoBinding
+    private var bibliotecasList: MutableList<BibliotecaServer> = mutableListOf()
+    private lateinit var bibliotecaRVAdapter : BibliotecaRVAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_bibliomundo,container,false)
     }
@@ -30,24 +35,43 @@ class BibliomundoFragment : Fragment() {
 
         binding = FragmentBibliomundoBinding.bind(view)
 
-        showPrueba()
+        binding.bibliotecasRecyclerView.layoutManager =
+            LinearLayoutManager(context, RecyclerView.VERTICAL,false)
+        binding.bibliotecasRecyclerView.setHasFixedSize(true)
+
+        bibliotecaRVAdapter = BibliotecaRVAdapter(
+            bibliotecasList as ArrayList<BibliotecaServer>, this@BibliomundoFragment
+        )
+
+        binding.bibliotecasRecyclerView.adapter = bibliotecaRVAdapter
+
+        cargarDesdeFirebase()
     }
 
-    private fun showPrueba() {
+    private fun cargarDesdeFirebase() {
         val database = FirebaseDatabase.getInstance()
-        val myDatabaseRef=database.getReference("usuarios").child("nombre")
+        val myBiblioRef = database.getReference("bibliotecas")
+
+        bibliotecasList.clear()
 
         val postListener = object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                val name = snapshot.value
-                binding.textHome.text=name.toString()
+                for (data: DataSnapshot in snapshot.children) {
+                    val bibliotecaServer = data.getValue(BibliotecaServer::class.java)
+                    bibliotecaServer?.let { bibliotecasList.add(it) }
+                }
+                bibliotecaRVAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
                 TODO("Not yet implemented")
             }
-
         }
-        myDatabaseRef.addValueEventListener(postListener)
+        myBiblioRef.addValueEventListener(postListener)
     }
+
+    override fun onItemClick(biblioteca: BibliotecaServer) {
+        TODO("Not yet implemented")
+    }
+
 }
