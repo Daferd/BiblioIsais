@@ -1,5 +1,7 @@
 package com.darioArevalo.biblioisais.ui.bibliomundo
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +23,7 @@ class BibliomundoFragment : Fragment(), BibliotecaRVAdapter.OnItemClickListener 
     private lateinit var binding: FragmentBibliomundoBinding
     private var bibliotecasList: MutableList<BibliotecaServer> = mutableListOf()
     private lateinit var bibliotecaRVAdapter : BibliotecaRVAdapter
+    private val link : String = "https://bibliotecanacional.gov.co/es-co"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +74,10 @@ class BibliomundoFragment : Fragment(), BibliotecaRVAdapter.OnItemClickListener 
     }
 
     override fun onItemClick(biblioteca: BibliotecaServer) {
-        TODO("Not yet implemented")
+        val webIntent : Intent = Uri.parse(biblioteca.url).let { webpage ->
+            Intent(Intent.ACTION_VIEW, webpage)
+        }
+        startActivity(webIntent)
     }
 
 }

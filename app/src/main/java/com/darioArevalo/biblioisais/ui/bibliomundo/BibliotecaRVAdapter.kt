@@ -39,6 +39,7 @@ class BibliotecaRVAdapter(
         fun bindBiblioteca(biblioteca:BibliotecaServer){
             binding.nombreBibliotecaTextView.text=biblioteca.name
             binding.paisBibliotecaTextView.text = biblioteca.country
+            binding.urlTextView.text = biblioteca.url
             Picasso.get().load(biblioteca.foto).into(binding.bibliotecaImageView)
 
             binding.itemBibliotecaCardView.setOnClickListener {
