@@ -8,13 +8,13 @@
     <fragment
         android:id="@+id/navigation_bibliomundo"
         android:name="com.darioArevalo.biblioisais.ui.bibliomundo.BibliomundoFragment"
-        android:label="BiblioMundo"
+        android:label="Bibliotecas del Mundo"
         tools:layout="@layout/fragment_bibliomundo" />
 
     <fragment
         android:id="@+id/navigation_biblioisais"
         android:name="com.darioArevalo.biblioisais.ui.biblioisais.BiblioisaisFragment"
-        android:label="BiblioIsais"
+        android:label="Biblio Isais"
         tools:layout="@layout/fragment_biblioisais" />
 
     <fragment
