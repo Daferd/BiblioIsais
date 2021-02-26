@@ -11,4 +11,12 @@
     <color name="blue_200">#448AFF</color>
     <color name="orange_500">#FF5722</color>
     <color name="orange_700">#E64A19</color>
+
+    <color name="amber_200">#FF9800</color>
+    <color name="orange2_500">#FF9800</color>
+    <color name="orange2_700">#F57C00</color>
+    <color name="blu_500">#1976D2</color>
+    <color name="blu_accent">#B2EBF2</color>
+
+
 </resources>

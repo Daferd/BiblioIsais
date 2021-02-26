@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="bibliomundo">BiblioMundo</string>
+    <string name="biblioisais">BiblioIsais</string>
+    <string name="biblioteca">Biblioteca</string>
 </resources>

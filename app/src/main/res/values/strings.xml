@@ -6,4 +6,7 @@
     <string name="nombre">Nombre</string>
     <string name="pais">País:</string>
     <string name="ciudad">Colombia</string>
+    <string name="bibliomundo">BiblioMundo</string>
+    <string name="biblioisais">BiblioIsais</string>
+    <string name="biblioteca">Biblioteca</string>
 </resources>

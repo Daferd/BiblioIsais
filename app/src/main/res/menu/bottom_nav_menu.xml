@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/navigation_bibliomundo"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="BiblioMundo" />
+        android:icon="@drawable/ic_world"
+        android:title="@string/bibliomundo" />
 
     <item
         android:id="@+id/navigation_biblioisais"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="BiblioIsais" />
+        android:icon="@drawable/ic_naranja"
+        android:title="@string/biblioisais" />
 
     <item
         android:id="@+id/navigation_biblioteca"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="Biblioteca" />
+        android:icon="@drawable/ic_outline_books"
+        android:title="@string/biblioteca" />
 
 </menu>
