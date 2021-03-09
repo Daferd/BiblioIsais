@@ -23,7 +23,6 @@ class BibliomundoFragment : Fragment(), BibliotecaRVAdapter.OnItemClickListener 
     private lateinit var binding: FragmentBibliomundoBinding
     private var bibliotecasList: MutableList<BibliotecaServer> = mutableListOf()
     private lateinit var bibliotecaRVAdapter : BibliotecaRVAdapter
-    private val link : String = "https://bibliotecanacional.gov.co/es-co"
 
     override fun onCreateView(
         inflater: LayoutInflater,
