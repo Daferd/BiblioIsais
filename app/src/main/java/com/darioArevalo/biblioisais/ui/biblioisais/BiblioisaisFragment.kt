@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -25,8 +26,12 @@ class BiblioisaisFragment : Fragment(), CursosRVAdapter.OnItemClickListener {
 
     //private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var binding: FragmentBiblioisaisBinding
-    private var cursosList: MutableList<CursoServer> = mutableListOf()
-    private lateinit var cursosRVAdapter: CursosRVAdapter
+
+    private var cursos1List: MutableList<CursoServer> = mutableListOf()
+    private lateinit var cursos1RVAdapter: CursosRVAdapter
+
+    private var cursos2List: MutableList<CursoServer> = mutableListOf()
+    private lateinit var cursos2RVAdapter: CursosRVAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -40,21 +45,34 @@ class BiblioisaisFragment : Fragment(), CursosRVAdapter.OnItemClickListener {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentBiblioisaisBinding.bind(view)
+
         binding.cursos1RecyclerView.layoutManager=
                 LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
         binding.cursos1RecyclerView.setHasFixedSize(true)
 
-        cursosRVAdapter = CursosRVAdapter(
-                cursosList as ArrayList<CursoServer>, this@BiblioisaisFragment
+        cursos1RVAdapter = CursosRVAdapter(
+                cursos1List as ArrayList<CursoServer>, this@BiblioisaisFragment
         )
 
-        binding.cursos1RecyclerView.adapter = cursosRVAdapter
+        binding.cursos1RecyclerView.adapter = cursos1RVAdapter
 
-        cargarDesdeFirebase()
+        cargarCurso1DesdeFirebase()
+
+        binding.cursos2RecyclerView.layoutManager=
+                LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
+        binding.cursos2RecyclerView.setHasFixedSize(true)
+
+        cursos2RVAdapter = CursosRVAdapter(
+                cursos2List as ArrayList<CursoServer>, this@BiblioisaisFragment
+        )
+
+        binding.cursos2RecyclerView.adapter = cursos2RVAdapter
+
+        cargarCurso2DesdeFirebase()
 
     }
 
-    private fun cargarDesdeFirebase() {
+    private fun cargarCurso2DesdeFirebase() {
         val database = FirebaseDatabase.getInstance()
         val myCursosRef = database.getReference("cursos").child("curso1")
 
@@ -62,9 +80,31 @@ class BiblioisaisFragment : Fragment(), CursosRVAdapter.OnItemClickListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 for(data: DataSnapshot in snapshot.children){
                     val cursoServer = data.getValue(CursoServer::class.java)
-                    cursoServer?.let { cursosList.add(it) }
+                    cursoServer?.let { cursos2List.add(it) }
                 }
-                cursosRVAdapter.notifyDataSetChanged()
+                cursos2RVAdapter.notifyDataSetChanged()
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        myCursosRef.addValueEventListener(postListener)
+    }
+
+
+    private fun cargarCurso1DesdeFirebase() {
+        val database = FirebaseDatabase.getInstance()
+        val myCursosRef = database.getReference("cursos").child("curso1")
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(data: DataSnapshot in snapshot.children){
+                    val cursoServer = data.getValue(CursoServer::class.java)
+                    cursoServer?.let { cursos1List.add(it) }
+                }
+                cursos1RVAdapter.notifyDataSetChanged()
             }
 
             override fun onCancelled(error: DatabaseError) {
