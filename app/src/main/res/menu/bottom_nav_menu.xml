@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_book1"
         android:title="@string/biblioteca" />
 
+    <item
+        android:id="@+id/navigation_lecturaHuerta"
+        android:icon="@drawable/ic_book1"
+        android:title="LecturaHuerta"/>
+
 </menu>

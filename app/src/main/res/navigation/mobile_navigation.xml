@@ -3,23 +3,45 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_bibliomundo">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/navigation_bibliomundo"
-        android:name="com.darioArevalo.biblioisais.ui.bibliomundo.BibliomundoFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.bibliomundo.BibliomundoFragment"
         android:label="Bibliotecas del Mundo"
         tools:layout="@layout/fragment_bibliomundo" />
 
     <fragment
         android:id="@+id/navigation_biblioisais"
-        android:name="com.darioArevalo.biblioisais.ui.biblioisais.BiblioisaisFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.biblioisais.BiblioisaisFragment"
         android:label="Biblio Isais"
         tools:layout="@layout/fragment_biblioisais" />
 
     <fragment
         android:id="@+id/navigation_biblioteca"
-        android:name="com.darioArevalo.biblioisais.ui.bibliotecas.BibliotecasFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.bibliotecas.BibliotecasFragment"
         android:label="Biblioteca"
         tools:layout="@layout/fragment_bibliotecas" />
+    <fragment
+        android:id="@+id/navigation_lecturaHuerta"
+        android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.LecturaHuertaFragment"
+        android:label="fragment_lectura_huerta"
+        tools:layout="@layout/fragment_lectura_huerta" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.darioArevalo.biblioisais.ui.auth.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_navigation_bibliomundo"
+            app:destination="@id/navigation_bibliomundo" />
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.darioArevalo.biblioisais.ui.auth.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" />
 </navigation>

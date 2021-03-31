@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.biblioisais
+package com.darioArevalo.biblioisais.ui.main.biblioisais
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.databinding.CursosItemBinding
-import com.darioArevalo.biblioisais.server.CursoServer
-import com.darioArevalo.biblioisais.ui.bibliomundo.BibliotecaRVAdapter
+import com.darioArevalo.biblioisais.data.model.CursoServer
 import com.squareup.picasso.Picasso
 
 class CursosRVAdapter (
@@ -37,7 +36,7 @@ class CursosRVAdapter (
             private val onItemClickListener: OnItemClickListener
     ):RecyclerView.ViewHolder(itemView){
         val binding = CursosItemBinding.bind(itemView)
-        fun bindCurso(curso:CursoServer){
+        fun bindCurso(curso: CursoServer){
             binding.nombreCapituloTextView.text=curso.nombre
             binding.autorCursoTextView.text=curso.autor
             binding.urlTextView.text=curso.url

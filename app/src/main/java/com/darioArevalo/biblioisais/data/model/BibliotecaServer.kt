@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.server
+package com.darioArevalo.biblioisais.data.model
 
 data class BibliotecaServer (
         val name: String = "",

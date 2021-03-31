@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.bibliomundo
+package com.darioArevalo.biblioisais.ui.main.bibliomundo
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

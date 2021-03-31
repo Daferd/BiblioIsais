@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.bibliomundo
+package com.darioArevalo.biblioisais.ui.main.bibliomundo
 
 import android.content.Intent
 import android.net.Uri
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.databinding.FragmentBibliomundoBinding
-import com.darioArevalo.biblioisais.server.BibliotecaServer
+import com.darioArevalo.biblioisais.data.model.BibliotecaServer
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase

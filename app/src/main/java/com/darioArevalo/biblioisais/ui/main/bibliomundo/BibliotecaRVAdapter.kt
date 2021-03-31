@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.bibliomundo
+package com.darioArevalo.biblioisais.ui.main.bibliomundo
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.databinding.BibliotecasItemBinding
-import com.darioArevalo.biblioisais.server.BibliotecaServer
+import com.darioArevalo.biblioisais.data.model.BibliotecaServer
 import com.squareup.picasso.Picasso
 
 class BibliotecaRVAdapter(
@@ -36,7 +36,7 @@ class BibliotecaRVAdapter(
     ):RecyclerView.ViewHolder(itemView){
         private val binding = BibliotecasItemBinding.bind(itemView)
 
-        fun bindBiblioteca(biblioteca:BibliotecaServer){
+        fun bindBiblioteca(biblioteca: BibliotecaServer){
             binding.nombreBibliotecaTextView.text=biblioteca.name
             binding.paisBibliotecaTextView.text = biblioteca.country
             binding.urlTextView.text = biblioteca.url
