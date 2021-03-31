@@ -7,7 +7,7 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.darioArevalo.biblioisais.R
-import com.darioArevalo.biblioisais.core.Resource
+import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.remote.lecturahuerta.LecturaHuertaDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentLecturaHuertaBinding
 import com.darioArevalo.biblioisais.domain.lecturahuerta.LecturaHuertaRepoImpl
@@ -30,16 +30,16 @@ class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta) {
 
         viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result ->
             when(result){
-                is Resource.Loading -> {
+                is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
                 }
 
-                is Resource.Success -> {
+                is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
                     binding.rvBlog.adapter = LecturaHuertaAdapter(result.data)
                 }
 
-                is Resource.Failure -> {
+                is Result.Failure -> {
                     binding.progressBar.visibility = View.GONE
                     Toast.makeText(
                             requireContext(),

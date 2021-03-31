@@ -9,6 +9,7 @@
     tools:context=".ui.auth.LoginFragment">
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="E-mail"
@@ -19,11 +20,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"/>
-
     </com.google.android.material.textfield.TextInputLayout>
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/text_input_layout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Password"

@@ -3,17 +3,17 @@ package com.darioArevalo.biblioisais.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import com.darioArevalo.biblioisais.core.Resource
+import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.domain.lecturahuerta.LecturaHuertaRepo
 import kotlinx.coroutines.Dispatchers
 
 class LecturaHuertaViewModel(private val repo: LecturaHuertaRepo):ViewModel() {
     fun fetchLatestPosts() = liveData(Dispatchers.IO){
-        emit(Resource.Loading())
+        emit(Result.Loading())
         try {
             emit(repo.getLatestPosts())
         }catch (e: Exception){
-            emit(Resource.Failure(e))
+            emit(Result.Failure(e))
         }
     }
 
