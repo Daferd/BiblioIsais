@@ -8,10 +8,28 @@
     android:padding="8dp"
     android:background="@drawable/fondotexturanaranja">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bibliotecas_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+    <!--<androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bibliotecas_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         tools:layout_editor_absoluteX="8dp"
-        tools:listitem="@layout/bibliotecas_item" />
+        tools:listitem="@layout/bibliotecas_item" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>

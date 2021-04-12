@@ -17,7 +17,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
-class BiblioisaisFragment : Fragment(), CursosRVAdapter.OnItemClickListener {
+class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CursosRVAdapter.OnItemClickListener {
 
     //private lateinit var dashboardViewModel: DashboardViewModel
     private lateinit var binding: FragmentBiblioisaisBinding
@@ -28,13 +28,6 @@ class BiblioisaisFragment : Fragment(), CursosRVAdapter.OnItemClickListener {
     private var cursos2List: MutableList<CursoServer> = mutableListOf()
     private lateinit var cursos2RVAdapter: CursosRVAdapter
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_biblioisais,container,false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,6 +43,7 @@ class BiblioisaisFragment : Fragment(), CursosRVAdapter.OnItemClickListener {
         )
 
         binding.cursos1RecyclerView.adapter = cursos1RVAdapter
+
 
         cargarCurso1DesdeFirebase()
 

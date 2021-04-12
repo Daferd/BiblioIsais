@@ -5,18 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
-import com.darioArevalo.biblioisais.databinding.BibliotecasItemBinding
-import com.darioArevalo.biblioisais.data.model.BibliotecaServer
+import com.darioArevalo.biblioisais.data.model.LibraryServer
+import com.darioArevalo.biblioisais.databinding.LibraryItemBinding
 import com.squareup.picasso.Picasso
 
 class BibliotecaRVAdapter(
-        private var bibliotecasList:ArrayList<BibliotecaServer>,
-        private val onItemClickListener: OnItemClickListener
+    private var bibliotecasList:ArrayList<LibraryServer>,
+    private val onItemClickListener: OnItemClickListener
         ) : RecyclerView.Adapter<BibliotecaRVAdapter.BibliotecaViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BibliotecaViewHolder {
         val itemView =
-                LayoutInflater.from(parent.context).inflate(R.layout.bibliotecas_item,parent,false)
+                LayoutInflater.from(parent.context).inflate(R.layout.library_item,parent,false)
         return BibliotecaViewHolder(itemView,onItemClickListener)
 
     }
@@ -34,21 +34,21 @@ class BibliotecaRVAdapter(
             itemView: View,
             private val onItemClickListener: OnItemClickListener
     ):RecyclerView.ViewHolder(itemView){
-        private val binding = BibliotecasItemBinding.bind(itemView)
+        private val binding = LibraryItemBinding.bind(itemView)
 
-        fun bindBiblioteca(biblioteca: BibliotecaServer){
-            binding.nombreBibliotecaTextView.text=biblioteca.name
-            binding.paisBibliotecaTextView.text = biblioteca.country
-            binding.urlTextView.text = biblioteca.url
-            Picasso.get().load(biblioteca.foto).into(binding.bibliotecaImageView)
+        fun bindBiblioteca(library: LibraryServer){
+            binding.nombreBibliotecaTextView.text=library.name
+            binding.paisBibliotecaTextView.text = library.country
+            binding.urlTextView.text = library.pageUrl
+            Picasso.get().load(library.imageUrl).into(binding.bibliotecaImageView)
 
             binding.itemBibliotecaCardView.setOnClickListener {
-                onItemClickListener.onItemClick(biblioteca)
+                onItemClickListener.onItemClick(library)
             }
         }
     }
 
     interface OnItemClickListener{
-        fun onItemClick(biblioteca: BibliotecaServer)
+        fun onItemClick(library: LibraryServer)
     }
 }

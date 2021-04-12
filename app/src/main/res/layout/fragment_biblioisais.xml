@@ -16,38 +16,38 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/curso1textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Dialogos sobre derecho própio"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            android:textColor="@color/blu_700"/>
+             android:id="@+id/curso1textView"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Dialogos sobre derecho própio"
+             android:textSize="24sp"
+             android:textStyle="bold|italic"
+             android:textColor="@color/blu_700"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cursos1_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="275dp"
-            tools:layout_editor_absoluteX="8dp"
-            tools:listitem="@layout/cursos_item"
-            android:orientation="horizontal"/>
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/cursos1_recycler_view"
+             android:layout_width="match_parent"
+             android:layout_height="275dp"
+             android:orientation="horizontal"
+             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+             tools:listitem="@layout/cursos_item"/>
 
-        <TextView
-            android:id="@+id/curso2textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Curso 2"
-            android:textSize="24sp"
-            android:textStyle="bold|italic"
-            android:textColor="@color/blu_700"
-            android:layout_marginTop="16dp"/>
+         <TextView
+             android:id="@+id/curso2textView"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:text="Curso 2"
+             android:textSize="24sp"
+             android:textStyle="bold|italic"
+             android:textColor="@color/blu_700"
+             android:layout_marginTop="16dp"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/cursos2_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="275dp"
-            tools:layout_editor_absoluteX="8dp"
-            tools:listitem="@layout/cursos_item"
-            android:orientation="horizontal"/>
+         <androidx.recyclerview.widget.RecyclerView
+             android:id="@+id/cursos2_recycler_view"
+             android:layout_width="match_parent"
+             android:layout_height="275dp"
+             android:orientation="horizontal"
+             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+             tools:listitem="@layout/cursos_item" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
