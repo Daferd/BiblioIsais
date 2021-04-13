@@ -13,7 +13,7 @@ class LibrariesDataSource {
     suspend fun getLocalLibraries():Result<List<LibraryServer>>{
         val libraryList = mutableListOf<LibraryServer>()
 
-        val querySnapshot = FirebaseFirestore.getInstance().collection("libraries").get().await()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("localLibraries").get().await()
         for(post in querySnapshot){
             post.toObject(LibraryServer::class.java)?.let { fbLibrary->libraryList.add(fbLibrary) }
         }
