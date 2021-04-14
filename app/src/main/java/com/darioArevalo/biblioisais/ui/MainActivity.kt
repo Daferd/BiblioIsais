@@ -14,6 +14,7 @@ import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.hide
 import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.databinding.ActivityMainBinding
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,18 +31,6 @@ class MainActivity : AppCompatActivity() {
 
         binding.navView.setupWithNavController(navController)
         observeDestinationChange()
-
-
-        /*setContentView(R.layout.activity_main)
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
-
-        val navController = findNavController(R.id.nav_host_fragment)
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        val appBarConfiguration = AppBarConfiguration(setOf(
-                R.id.navigation_bibliomundo, R.id.navigation_biblioisais, R.id.navigation_biblioteca,R.id.navigation_lecturaHuerta))
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)*/
 
     }
 

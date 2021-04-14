@@ -7,6 +7,13 @@
     android:orientation="vertical"
     tools:context=".ui.main.bibliotecas.BibliotecasFragment">
 
+    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:autoPlay="true"
+        app:autoPlayDelay="4000"/>
+
 
 
 </LinearLayout>

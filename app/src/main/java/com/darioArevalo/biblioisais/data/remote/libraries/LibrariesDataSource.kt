@@ -8,7 +8,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class LibrariesDataSource {
-    val libraryListAux = mutableListOf<List<LibraryList>>()
 
     suspend fun getLocalLibraries():Result<List<LibraryServer>>{
         val libraryList = mutableListOf<LibraryServer>()
