@@ -52,4 +52,13 @@
             android:id="@+id/action_registerFragment_to_navigation_bibliomundo"
             app:destination="@id/navigation_bibliomundo" />
     </fragment>
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.darioArevalo.biblioisais.ui.main.profile.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
 </navigation>

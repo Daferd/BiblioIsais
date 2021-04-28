@@ -19,7 +19,7 @@ class LibrariesViewModel(private val repo : LibrariesRepo):ViewModel() {
     }
 
     fun fetchLocalLibraries() = liveData(Dispatchers.IO) {
-        emit(Result.Loading())
+        //emit(Result.Loading())
         try {
             emit(repo.getLocalLibraries())
         } catch (e: Exception) {
@@ -28,7 +28,7 @@ class LibrariesViewModel(private val repo : LibrariesRepo):ViewModel() {
     }
 
     fun fetchNationalLibraries() = liveData(Dispatchers.IO) {
-        emit(Result.Loading())
+        //emit(Result.Loading())
         try {
             emit(repo.getNationalLibraries())
         } catch (e: Exception) {
@@ -37,7 +37,7 @@ class LibrariesViewModel(private val repo : LibrariesRepo):ViewModel() {
     }
 
     fun fetchInternationalLibraries() = liveData(Dispatchers.IO) {
-        emit(Result.Loading())
+        //emit(Result.Loading())
         try {
             emit(repo.getInternationalLibraries())
         } catch (e: Exception) {
