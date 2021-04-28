@@ -19,5 +19,7 @@
     <color name="blu_accent">#B2EBF2</color>
     <color name="blu_700">#1976D2</color>
 
+    <color name="transparent">#0fff</color>
+
 
 </resources>

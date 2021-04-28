@@ -26,7 +26,11 @@
         android:id="@+id/navigation_lecturaHuerta"
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.LecturaHuertaFragment"
         android:label="fragment_lectura_huerta"
-        tools:layout="@layout/fragment_lectura_huerta" />
+        tools:layout="@layout/fragment_lectura_huerta" >
+        <action
+            android:id="@+id/action_navigation_lecturaHuerta_to_agregarTemaFragmentDialog"
+            app:destination="@id/agregarTemaFragmentDialog" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.darioArevalo.biblioisais.ui.auth.LoginFragment"
@@ -52,4 +56,9 @@
             android:id="@+id/action_registerFragment_to_navigation_bibliomundo"
             app:destination="@id/navigation_bibliomundo" />
     </fragment>
+    <dialog
+        android:id="@+id/agregarTemaFragmentDialog"
+        android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.AgregarTemaFragmentDialog"
+        android:label="fragment_agregar_tema_dialog"
+        tools:layout="@layout/fragment_agregar_tema_dialog" />
 </navigation>
