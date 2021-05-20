@@ -44,12 +44,23 @@
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:queryBackground="@color/transparent"
                 android:queryHint="Search Article"
-                android:searchHintIcon="@null"
-                android:searchIcon="@null" />
+                android:searchHintIcon="@drawable/ic_baseline_search_500"
+                android:searchIcon="@drawable/ic_baseline_search_500" />
 
         </com.google.android.material.card.MaterialCardView>
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/progressBarLecturaHuerta"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ProgressBar
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
     <LinearLayout
         android:layout_marginTop="260dp"
         android:layout_width="match_parent"
@@ -62,14 +73,16 @@
 
     </LinearLayout>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_action_button"
-        android:layout_width="169dp"
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab"
+        app:icon="@drawable/ic_baseline_add_500"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="20dp"
         android:layout_gravity="bottom|right"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/ic_baseline_add_500" />
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_baseline_add_500"
+        android:text="Nuevo tema" />
 
 
 </FrameLayout>

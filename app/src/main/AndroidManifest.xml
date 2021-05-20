@@ -4,6 +4,8 @@
     package="com.darioArevalo.biblioisais">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-feature android:name="android.hardware.camera"
             android:required="true"/>
 
@@ -15,8 +17,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BiblioIsais"
         tools:ignore="AllowBackup">
+        
+        <provider
+            android:authorities="com.darioArevalo.biblioisais.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/providerfile"/>
+        </provider>
+
+
+
         <activity
             android:name=".ui.MainActivity"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

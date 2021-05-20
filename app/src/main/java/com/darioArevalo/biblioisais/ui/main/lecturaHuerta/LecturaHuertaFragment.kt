@@ -18,17 +18,19 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.remote.lecturahuerta.LecturaHuertaDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentLecturaHuertaBinding
 import com.darioArevalo.biblioisais.domain.lecturahuerta.LecturaHuertaRepoImpl
 import com.darioArevalo.biblioisais.presentation.LecturaHuertaViewModel
 import com.darioArevalo.biblioisais.presentation.LecturaHuertaViewModelFactory
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.LecturaHuertaAdapter
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.grpc.internal.SharedResourceHolder
 
 
-class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta) {
+class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta), LecturaHuertaAdapter.OnPostClickListener {
 
     private lateinit var binding: FragmentLecturaHuertaBinding
     private val viewModel by viewModels<LecturaHuertaViewModel> { LecturaHuertaViewModelFactory(
@@ -48,13 +50,16 @@ class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta) {
             when(result){
                 is Result.Loading->{
                     Log.d("Livedata","Loading...")
+                    binding.progressBarLecturaHuerta.visibility = View.VISIBLE
                 }
                 is Result.Success->{
+                    binding.progressBarLecturaHuerta.visibility = View.GONE
                     Log.d("Livedata","${result.data}")
-                    binding.rvPostList.adapter = LecturaHuertaAdapter(result.data)
+                    binding.rvPostList.adapter = LecturaHuertaAdapter(result.data,this)
                 }
 
                 is Result.Failure->{
+                    binding.progressBarLecturaHuerta.visibility = View.GONE
                     Log.d("livedata error","{${result.exception}}")
                 }
             }
@@ -62,58 +67,19 @@ class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta) {
         })
 
 
-        val fabButton = view.findViewById<FloatingActionButton>(R.id.floating_action_button)
+        val fabButton = view.findViewById<ExtendedFloatingActionButton>(R.id.extended_fab)
 
         fabButton.setOnClickListener{
-                findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragmentDialog)
+                findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)
         }
 
-       // val floraCardView = view.findViewById<CardView>(R.id.card_view_Lectura_Flora)
-       // val faunaCardViewImg = view.findViewById<ImageButton>(R.id.imgButtonFauna)
-/*
-    floraCardView.setOnClickListener{
-            findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_flora_blog_graph_nav)
-        }
 
-    faunaCardViewImg.setOnClickListener{
-        findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_fauna_blog_graph_nav)
-    }
-*/
-
-        //binding = FragmentLecturaHuertaBinding.bind(view)
-        //binding.imgButtonFauna.setOnClickListener{
-        //    findNavController().navigate(R.id.fauna_blog_navigation)
-
-        //}
-
-
-
-        /*
-        binding = FragmentLecturaHuertaBinding.bind(view)
-
-        viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result ->
-            when(result){
-                is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
-                }
-
-                is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    binding.rvBlog.adapter = LecturaHuertaAdapter(result.data)
-                }
-
-                is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
-                    Toast.makeText(
-                            requireContext(),
-                            "Hubo un error : ${result.exception}",
-                            Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })*/
 
     }
 
-
+    override fun onPostClick(Post: PostServer) {
+        val bundle = Bundle()
+        bundle.putParcelable("post",Post)
+        findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_detallesPostFragment,bundle)
+    }
 }
