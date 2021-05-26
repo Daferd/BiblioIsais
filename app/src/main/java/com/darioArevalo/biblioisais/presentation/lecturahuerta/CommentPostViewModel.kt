@@ -17,6 +17,10 @@ class CommentPostViewModel(private val repo: CommentPostRepo):ViewModel(){
         }
 
     }
+    
+    fun addNewComment(content:String,keyPost:String){
+        repo.addNewComment(content,keyPost)
+    }
 
 }
 

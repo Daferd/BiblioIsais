@@ -86,11 +86,13 @@
                 android:orientation="horizontal">
 
                 <EditText
+                    android:id="@+id/editTxt_content"
                     android:hint="Post New Comment"
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"/>
                 <Button
+                    android:id="@+id/btn_comment"
                     android:text="Post"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

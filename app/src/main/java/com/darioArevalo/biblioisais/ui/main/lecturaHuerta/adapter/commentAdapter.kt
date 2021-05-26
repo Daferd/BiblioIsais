@@ -29,7 +29,7 @@ class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerVie
         val context: Context): BaseViewHolder<CommentPost>(binding.root){
 
         override fun bind(item: CommentPost) {
-            binding.commentUsername.text = item.name
+            binding.commentUsername.text = item.autor
             binding.commentContent.text = item.content
 
         }

@@ -74,6 +74,9 @@ class LecturaHuertaDataSource {
                  }
 
              }
+
+         //querySnapshot.document(post_Id).collection("comentarios_post").document()
+
          /*querySnapshot.add(postHashMap).addOnCompleteListener {
 
              if (it.isSuccessful){

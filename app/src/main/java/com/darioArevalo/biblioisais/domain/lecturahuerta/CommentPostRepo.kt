@@ -5,4 +5,5 @@ import com.darioArevalo.biblioisais.data.model.CommentPost
 
 interface CommentPostRepo {
     suspend fun getLatestComments(keyPost:String): Result<List<CommentPost>>
+    fun addNewComment(content:String,keyPost: String)
 }

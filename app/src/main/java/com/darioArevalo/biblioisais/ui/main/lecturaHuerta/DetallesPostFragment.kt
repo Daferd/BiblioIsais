@@ -72,7 +72,7 @@ class DetallesPostFragment : Fragment() {
                 }
                 is Result.Success->{
                     //binding.progressBarLecturaHuerta.visibility = View.GONE
-                    Log.d("Livedata","${result.data}")
+                    Log.d("Livedata_comment","${result.data}")
                     binding.rvPostDetalles.adapter = commentAdapter(result.data)
                     //binding.rvPostList.adapter = LecturaHuertaAdapter(result.data)
                 }
@@ -84,6 +84,12 @@ class DetallesPostFragment : Fragment() {
             }
 
         })
+
+        binding.btnComment.setOnClickListener {
+            val commentPost = binding.editTxtContent.text
+            val keyPost = post.post_Id
+            viewModel.addNewComment(commentPost.toString(),keyPost)
+        }
 
 
     }
