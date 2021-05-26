@@ -1,12 +1,27 @@
 package com.darioArevalo.biblioisais.data.remote.products
 
+import android.util.Log
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.ImageServer
+import com.darioArevalo.biblioisais.data.model.PdfServer
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
+import kotlin.math.log
 
 class ProductsDataSource {
+
+
+    suspend fun getPDFs(): Result<List<PdfServer>>{
+        val pdfsList = mutableListOf<PdfServer>()
+
+        val querySnapshot = FirebaseFirestore.getInstance().collection("pdfCourses").get().await()
+        for (pdf in querySnapshot){
+            pdf.toObject(PdfServer::class.java)?.let { fbPdf-> pdfsList.add(fbPdf) }
+        }
+        return Result.Success(pdfsList)
+    }
+
     suspend fun getIsaisImages(): Result<List<ImageServer>>{
         val imageList = mutableListOf<ImageServer>()
 

@@ -43,6 +43,12 @@ class MainActivity : AppCompatActivity() {
                 R.id.registerFragment ->{
                     binding.navView.hide()
                 }
+                R.id.FormFragment -> {
+                    binding.navView.hide()
+                }
+                R.id.navigation_biblioteca -> {
+                    binding.navView.hide()
+                }
                 else -> {
                     binding.navView.show()
                 }

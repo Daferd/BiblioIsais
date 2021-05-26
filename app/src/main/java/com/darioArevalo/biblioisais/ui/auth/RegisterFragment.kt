@@ -1,11 +1,8 @@
 package com.darioArevalo.biblioisais.ui.auth
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -43,15 +40,16 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             val password = binding.editTextPassword.text.toString().trim()
             val confirmPassword = binding.editTextConfirmPassword.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
+            val form = false
 
             if (validateUserData(username,email,password,confirmPassword)) return@setOnClickListener
 
-            createUser(email,password,username)
+            createUser(email,password,username,form)
         }
     }
 
-    private fun createUser(email: String, password: String, username: String) {
-        viewModel.signUp(email,password,username).observe(viewLifecycleOwner, Observer { result ->
+    private fun createUser(email: String, password: String, username: String, form: Boolean) {
+        viewModel.signUp(email,password,username,form).observe(viewLifecycleOwner, Observer { result ->
             when(result){
                 is Result.Loading ->{
                     binding.progressBar.visibility = View.VISIBLE
@@ -59,7 +57,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    findNavController().navigate(R.id.action_registerFragment_to_navigation_bibliomundo)
+                    Toast.makeText(context,"Actualiza tu foto de perfil",Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_registerFragment_to_navigation_profile)
                 }
                 is Result.Failure -> {
                     binding.progressBar.visibility = View.GONE

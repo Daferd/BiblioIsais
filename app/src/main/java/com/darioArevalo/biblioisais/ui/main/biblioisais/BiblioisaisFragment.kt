@@ -3,111 +3,104 @@ package com.darioArevalo.biblioisais.ui.main.biblioisais
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.darioArevalo.biblioisais.R
+import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.databinding.FragmentBiblioisaisBinding
-import com.darioArevalo.biblioisais.data.model.CursoServer
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.darioArevalo.biblioisais.data.model.CourseServer
+import com.darioArevalo.biblioisais.data.remote.courses.CoursesDataSource
+import com.darioArevalo.biblioisais.domain.courses.CoursesRepoImpl
+import com.darioArevalo.biblioisais.presentation.courses.CoursesViewModel
+import com.darioArevalo.biblioisais.presentation.courses.CoursesViewModelFactory
+import com.darioArevalo.biblioisais.ui.main.biblioisais.adapters.CoursesAdapter
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
-class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CursosRVAdapter.OnItemClickListener {
+class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CoursesAdapter.OnEpisodesClickListener{
 
-    //private lateinit var dashboardViewModel: DashboardViewModel
+
     private lateinit var binding: FragmentBiblioisaisBinding
-
-    private var cursos1List: MutableList<CursoServer> = mutableListOf()
-    private lateinit var cursos1RVAdapter: CursosRVAdapter
-
-    private var cursos2List: MutableList<CursoServer> = mutableListOf()
-    private lateinit var cursos2RVAdapter: CursosRVAdapter
-
+    private val viewModel by viewModels<CoursesViewModel>{ CoursesViewModelFactory(
+            CoursesRepoImpl(
+                    CoursesDataSource()
+            )
+    ) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentBiblioisaisBinding.bind(view)
 
-        binding.cursos1RecyclerView.layoutManager=
-                LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
-        binding.cursos1RecyclerView.setHasFixedSize(true)
+        viewModel.fetchEpisodesCourse0().observe(viewLifecycleOwner,{ courseResult->
+            when(courseResult){
+                is Result.Loading -> {
 
-        cursos1RVAdapter = CursosRVAdapter(
-                cursos1List as ArrayList<CursoServer>, this@BiblioisaisFragment
-        )
-
-        binding.cursos1RecyclerView.adapter = cursos1RVAdapter
-
-
-        cargarCurso1DesdeFirebase()
-
-        binding.cursos2RecyclerView.layoutManager=
-                LinearLayoutManager(context,RecyclerView.HORIZONTAL,false)
-        binding.cursos2RecyclerView.setHasFixedSize(true)
-
-        cursos2RVAdapter = CursosRVAdapter(
-                cursos2List as ArrayList<CursoServer>, this@BiblioisaisFragment
-        )
-
-        binding.cursos2RecyclerView.adapter = cursos2RVAdapter
-
-        cargarCurso2DesdeFirebase()
-
-    }
-
-    private fun cargarCurso2DesdeFirebase() {
-        val database = FirebaseDatabase.getInstance()
-        val myCursosRef = database.getReference("cursos").child("curso1")
-
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for(data: DataSnapshot in snapshot.children){
-                    val cursoServer = data.getValue(CursoServer::class.java)
-                    cursoServer?.let { cursos2List.add(it) }
                 }
-                cursos2RVAdapter.notifyDataSetChanged()
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
-            }
-
-        }
-        myCursosRef.addValueEventListener(postListener)
-    }
-
-
-    private fun cargarCurso1DesdeFirebase() {
-        val database = FirebaseDatabase.getInstance()
-        val myCursosRef = database.getReference("cursos").child("curso1")
-
-        val postListener = object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                for(data: DataSnapshot in snapshot.children){
-                    val cursoServer = data.getValue(CursoServer::class.java)
-                    cursoServer?.let { cursos1List.add(it) }
+                is Result.Success -> {
+                    binding.cursos1RecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
-                cursos1RVAdapter.notifyDataSetChanged()
-            }
 
-            override fun onCancelled(error: DatabaseError) {
-                TODO("Not yet implemented")
+                is Result.Failure -> {
+                    Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                }
             }
+        })
 
-        }
-        myCursosRef.addValueEventListener(postListener)
+      viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
+            when(courseResult){
+                is Result.Loading -> {
+
+                }
+
+                is Result.Success -> {
+                    binding.cursos2RecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
+                }
+
+                is Result.Failure -> {
+                    Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+
+
+
     }
 
-    override fun onItemClik(curso: CursoServer) {
-        val webIntent : Intent = Uri.parse(curso.url).let { webpage ->
-            Intent(Intent.ACTION_VIEW, webpage)
+    override fun onEpisodesClick(episode: CourseServer) {
+        if(episode.name=="Justicia Especial Indígena"){
+            val user = FirebaseAuth.getInstance().currentUser
+            user?.let {
+                val db = FirebaseFirestore.getInstance()
+                db.collection("users").document(user.uid).get().addOnSuccessListener{ document ->
+                    document.let {
+                        val form = document.getBoolean("form")
+                        if(form==false){
+                            val action = BiblioisaisFragmentDirections.actionNavigationBiblioisaisToSurveyFragment(episode)
+                            findNavController().navigate(action)
+                        } else {
+                            val webIntent : Intent = Uri.parse(episode.courseUrl).let { webpage ->
+                                Intent(Intent.ACTION_VIEW,webpage)
+                            }
+                            startActivity(webIntent)
+                        }
+                    }
+                }
+            }
+
+        } else {
+            val webIntent : Intent = Uri.parse(episode.courseUrl).let { webpage ->
+                Intent(Intent.ACTION_VIEW,webpage)
+            }
+            startActivity(webIntent)
         }
-        startActivity(webIntent)
+
     }
+
+
 }

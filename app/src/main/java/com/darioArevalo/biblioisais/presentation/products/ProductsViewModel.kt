@@ -8,6 +8,16 @@ import com.darioArevalo.biblioisais.domain.products.ProductsRepo
 import kotlinx.coroutines.Dispatchers
 
 class ProductsViewModel(private val repo: ProductsRepo): ViewModel() {
+
+    fun fetchPdf() = liveData(Dispatchers.IO){
+        emit(Result.Loading())
+
+        try{
+            emit(repo.getPDFs())
+        }catch (e: Exception){
+            emit(Result.Failure(e))
+        }
+    }
     fun fetchIsaisImages() = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {

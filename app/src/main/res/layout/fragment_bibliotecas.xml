@@ -14,6 +14,22 @@
         app:autoPlay="true"
         app:autoPlayDelay="4000"/>
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/pdf_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/pdf_item"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
+
+    <Button
+        android:id="@+id/pdf_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:text="PDF"
+        />
 
 </LinearLayout>

@@ -3,12 +3,11 @@ package com.darioArevalo.biblioisais.ui.main.bibliomundo
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
@@ -18,12 +17,8 @@ import com.darioArevalo.biblioisais.data.remote.libraries.LibrariesDataSource
 import com.darioArevalo.biblioisais.domain.Libraries.LibrariesRepoImpl
 import com.darioArevalo.biblioisais.presentation.libraries.LibrariesViewModel
 import com.darioArevalo.biblioisais.presentation.libraries.LibrariesViewModelFactory
-import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.LibrariesAdapter
 import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.LibrariesAdapterAux
-import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.concat.InternationalConcatAdapter
-import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.concat.LocalConcatAdapter
-import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.concat.NationalConcatAdapter
-import kotlin.math.log
+
 
 class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAdapterAux.OnLibraryClickListener {
 
@@ -120,10 +115,16 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
     }
 
     override fun onLibraryClick(library: LibraryServer) {
-        val webIntent : Intent = Uri.parse(library.pageUrl).let { webpage ->
-            Intent(Intent.ACTION_VIEW, webpage)
+        val libraryName = library.name
+        if(libraryName=="Biblioteca ISAIS"){
+            findNavController().navigate(R.id.action_navigation_bibliomundo_to_navigation_biblioteca)
+        }else{
+            val webIntent : Intent = Uri.parse(library.pageUrl).let { webpage ->
+                Intent(Intent.ACTION_VIEW, webpage)
+            }
+            startActivity(webIntent)
         }
-        startActivity(webIntent)
+
     }
 
 }

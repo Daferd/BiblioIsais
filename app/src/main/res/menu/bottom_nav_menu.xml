@@ -12,9 +12,9 @@
         android:title="@string/biblioisais" />
 
     <item
-        android:id="@+id/navigation_biblioteca"
+        android:id="@+id/navigation_therapy"
         android:icon="@drawable/ic_book1"
-        android:title="@string/biblioteca" />
+        android:title="Terapia" />
 
     <item
         android:id="@+id/navigation_lecturaHuerta"

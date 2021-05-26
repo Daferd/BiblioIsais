@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
-import com.darioArevalo.biblioisais.databinding.CursosItemBinding
-import com.darioArevalo.biblioisais.data.model.CursoServer
+import com.darioArevalo.biblioisais.databinding.CoursesItemBinding
+import com.darioArevalo.biblioisais.data.model.CourseServer
 import com.squareup.picasso.Picasso
 
 class CursosRVAdapter (
-        private val cursosList: ArrayList<CursoServer>,
+        private val cursosList: ArrayList<CourseServer>,
         private val onItemClickListener: OnItemClickListener
         ) : RecyclerView.Adapter<CursosRVAdapter.CursoViewHolder>(){
 
@@ -18,7 +18,7 @@ class CursosRVAdapter (
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CursoViewHolder {
         val itemView =
-                LayoutInflater.from(parent.context).inflate(R.layout.cursos_item,parent,false)
+                LayoutInflater.from(parent.context).inflate(R.layout.courses_item,parent,false)
         return CursoViewHolder(itemView,onItemClickListener)
     }
 
@@ -35,21 +35,21 @@ class CursosRVAdapter (
             itemView: View,
             private val onItemClickListener: OnItemClickListener
     ):RecyclerView.ViewHolder(itemView){
-        val binding = CursosItemBinding.bind(itemView)
-        fun bindCurso(curso: CursoServer){
-            binding.nombreCapituloTextView.text=curso.nombre
-            binding.autorCursoTextView.text=curso.autor
-            binding.urlTextView.text=curso.url
-            Picasso.get().load(curso.imagen).into(binding.cursoImageView)
+        val binding = CoursesItemBinding.bind(itemView)
+        fun bindCurso(course: CourseServer){
+            binding.nombreCapituloTextView.text=course.name
+            binding.autorCursoTextView.text=course.author
+            binding.urlTextView.text=course.courseUrl
+            Picasso.get().load(course.courseUrl).into(binding.cursoImageView)
 
             binding.itemCursosCardView.setOnClickListener {
-                onItemClickListener.onItemClik(curso)
+                onItemClickListener.onItemClik(course)
             }
         }
     }
 
     interface OnItemClickListener{
-        fun onItemClik(biblioteca: CursoServer)
+        fun onItemClik(biblioteca: CourseServer)
     }
 
 }

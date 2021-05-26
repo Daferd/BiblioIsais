@@ -30,7 +30,7 @@
              android:layout_height="275dp"
              android:orientation="horizontal"
              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             tools:listitem="@layout/cursos_item"/>
+             tools:listitem="@layout/courses_item"/>
 
          <TextView
              android:id="@+id/curso2textView"
@@ -48,6 +48,6 @@
              android:layout_height="275dp"
              android:orientation="horizontal"
              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             tools:listitem="@layout/cursos_item" />
+             tools:listitem="@layout/courses_item" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>
