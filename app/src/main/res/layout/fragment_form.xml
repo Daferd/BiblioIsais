@@ -4,15 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     tools:context=".ui.main.form.FormFragment">
 
+    <include
+        layout="@layout/form_toolbar"
+        />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
+        android:padding="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -28,6 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="E-mail"
+        android:padding="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -43,6 +47,7 @@
         android:layout_height="wrap_content"
         android:hint="Edad"
         android:layout_marginTop="8dp"
+        android:padding="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -57,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Telefono"
+        android:padding="8dp"
         android:layout_marginTop="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -72,7 +78,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="send"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/md_blue_500"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"

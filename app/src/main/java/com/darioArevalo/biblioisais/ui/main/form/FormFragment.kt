@@ -6,7 +6,9 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
@@ -30,11 +32,19 @@ class FormFragment : Fragment(R.layout.fragment_form) {
     }
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentFormBinding.bind(view)
+
+        val mToolbar = view.findViewById<Toolbar>(R.id.form_toolbar)
+        mToolbar.visibility
+        mToolbar.setOnClickListener {
+            findNavController().navigate(R.id.action_FormFragment_to_navigation_biblioisais)
+        }
+
+        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        activity?.actionBar?.hide()
 
         sendForm()
     }
@@ -61,6 +71,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
+                    findNavController().navigate(R.id.action_FormFragment_to_navigation_biblioisais)
                     Toast.makeText(requireContext(),"Se guardo formulario",Toast.LENGTH_SHORT).show()
                     val webIntent : Intent = Uri.parse(args.selectedCourse.courseUrl).let { webpage ->
                         Intent(Intent.ACTION_VIEW,webpage)

@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -36,6 +37,14 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
 
         binding = FragmentBibliomundoBinding.bind(view)
 
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         viewModel.fetchLocalLibraries().observe(viewLifecycleOwner,{ localResult ->
             when(localResult){

@@ -19,8 +19,8 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
         app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/blue_200"
-        app:itemTextColor="@color/blue_200"/>
+        app:itemIconTint="@color/md_blue_500"
+        app:itemTextColor="@color/md_blue_500"/>
 
     <!--nav_host_fragment-->
     <fragment
@@ -30,6 +30,7 @@
         android:layout_height="0dp"
         app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"

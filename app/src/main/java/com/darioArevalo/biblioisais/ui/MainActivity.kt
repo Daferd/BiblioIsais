@@ -2,6 +2,7 @@ package com.darioArevalo.biblioisais.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -49,10 +50,17 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_biblioteca -> {
                     binding.navView.hide()
                 }
+                R.id.splashFragment -> {
+                    //binding.navView.hide()
+                }
                 else -> {
                     binding.navView.show()
                 }
             }
         }
     }
+
+
+
+
 }

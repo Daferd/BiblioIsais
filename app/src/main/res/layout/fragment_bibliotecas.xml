@@ -7,10 +7,14 @@
     android:orientation="vertical"
     tools:context=".ui.main.bibliotecas.BibliotecasFragment">
 
+    <include
+        layout="@layout/isais_toolbar"
+        />
+
     <org.imaginativeworld.whynotimagecarousel.ImageCarousel
         android:id="@+id/carousel"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="250dp"
         app:autoPlay="true"
         app:autoPlayDelay="4000"/>
 
@@ -21,15 +25,5 @@
         tools:listitem="@layout/pdf_item"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
-
-    <Button
-        android:id="@+id/pdf_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center"
-        android:text="PDF"
-        />
 
 </LinearLayout>
