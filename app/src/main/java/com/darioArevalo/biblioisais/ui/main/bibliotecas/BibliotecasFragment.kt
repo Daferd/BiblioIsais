@@ -59,6 +59,46 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
     private lateinit var storageReference: StorageReference
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentBibliotecasBinding.bind(view)
+
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
+            when(result){
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+
+                    for (image in result.data){
+                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    }
+
+                }
+                is Result.Failure -> {
+
+                }
+            }
+
+        })
+
+
+
+        binding.carousel.onItemClickListener = object : OnItemClickListener {
+            override fun onClick(position: Int, carouselItem: CarouselItem) {
+                Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onLongClick(position: Int, dataObject: CarouselItem) {
+            }
+
+        }
+
+
+
+    }
+
     /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -76,7 +116,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
         }
 
     }*/
-
+/*
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -115,7 +155,6 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
             }
 
             override fun onLongClick(position: Int, dataObject: CarouselItem) {
-                TODO("Not yet implemented")
             }
 
         }
@@ -155,7 +194,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
         }
 
         return view
-    }
+    }*/
 
 
     override fun onPdfClick(pdf: PdfServer) {
