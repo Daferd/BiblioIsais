@@ -3,19 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/navigation_bibliomundo"
         android:name="com.darioArevalo.biblioisais.ui.main.bibliomundo.BibliomundoFragment"
         android:label="Bibliotecas del Mundo"
-        tools:layout="@layout/fragment_bibliomundo" />
+        tools:layout="@layout/fragment_bibliomundo" >
+        <action
+            android:id="@+id/action_navigation_bibliomundo_to_navigation_biblioteca"
+            app:destination="@id/navigation_biblioteca"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_biblioisais"
         android:name="com.darioArevalo.biblioisais.ui.main.biblioisais.BiblioisaisFragment"
         android:label="Biblio Isais"
-        tools:layout="@layout/fragment_biblioisais" />
+        tools:layout="@layout/fragment_biblioisais" >
+        <action
+            android:id="@+id/action_navigation_biblioisais_to_surveyFragment"
+            app:destination="@id/FormFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_biblioteca"
@@ -26,7 +38,14 @@
         android:id="@+id/navigation_lecturaHuerta"
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.LecturaHuertaFragment"
         android:label="fragment_lectura_huerta"
-        tools:layout="@layout/fragment_lectura_huerta" />
+        tools:layout="@layout/fragment_lectura_huerta" >
+        <action
+            android:id="@+id/action_navigation_lecturaHuerta_to_agregarTemaFragment"
+            app:destination="@id/agregarTemaFragment" />
+        <action
+            android:id="@+id/action_navigation_lecturaHuerta_to_detallesPostFragment"
+            app:destination="@id/detallesPostFragment" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.darioArevalo.biblioisais.ui.auth.LoginFragment"
@@ -34,7 +53,11 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_navigation_bibliomundo"
-            app:destination="@id/navigation_bibliomundo" />
+            app:destination="@id/navigation_bibliomundo"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
@@ -49,7 +72,81 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_registerFragment_to_navigation_bibliomundo"
+            android:id="@+id/action_registerFragment_to_navigation_profile"
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.darioArevalo.biblioisais.ui.main.profile.ProfileFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
+        <action
+            android:id="@+id/action_navigation_profile_to_newdataFragment"
+            app:destination="@id/newdataFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/FormFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.form.FormFragment"
+        android:label="fragment_form"
+        tools:layout="@layout/fragment_form" >
+        <argument
+            android:name="selectedCourse"
+            app:argType="com.darioArevalo.biblioisais.data.model.CourseServer" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_therapy"
+        android:name="com.darioArevalo.biblioisais.ui.main.therapy.TherapyFragment"
+        android:label="Terapia Ancestral"
+        tools:layout="@layout/fragment_therapy" />
+    <dialog
+        android:id="@+id/newdataFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.profile.NewdataFragment"
+        android:label="fragment_newdata"
+        tools:layout="@layout/fragment_newdata" >
+        <argument
+            android:name="userData"
+            app:argType="com.darioArevalo.biblioisais.data.model.UserServer"
+            app:nullable="true" />
+        <argument
+            android:name="bandData"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </dialog>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.splash.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_navigation_bibliomundo"
             app:destination="@id/navigation_bibliomundo" />
     </fragment>
+    <fragment
+        android:id="@+id/agregarTemaFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.AgregarTemaFragment"
+        android:label="fragment_agregar_tema"
+        tools:layout="@layout/fragment_agregar_tema" >
+        <action
+            android:id="@+id/action_agregarTemaFragment_to_navigation_lecturaHuerta"
+            app:destination="@id/navigation_lecturaHuerta" />
+    </fragment>
+    <fragment
+        android:id="@+id/detallesPostFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.DetallesPostFragment"
+        android:label="fragment_detalles_post"
+        tools:layout="@layout/fragment_detalles_post" />
 </navigation>

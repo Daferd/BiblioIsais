@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
@@ -17,6 +18,7 @@ import com.darioArevalo.biblioisais.domain.Libraries.LibrariesRepoImpl
 import com.darioArevalo.biblioisais.presentation.libraries.LibrariesViewModel
 import com.darioArevalo.biblioisais.presentation.libraries.LibrariesViewModelFactory
 import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.LibrariesAdapterAux
+
 
 class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAdapterAux.OnLibraryClickListener {
 
@@ -34,7 +36,6 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
 
         binding = FragmentBibliomundoBinding.bind(view)
 
-        //concatAdapter = ConcatAdapter()
 
         viewModel.fetchLocalLibraries().observe(viewLifecycleOwner,{ localResult ->
             when(localResult){
@@ -84,36 +85,46 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
             }
         })
 
-        /*viewModel.fetchLibraries().observe(viewLifecycleOwner, Observer { result ->
+
+        /*
+        viewModel.fetchLibraries().observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    //binding.progressBar.visibility = View.VISIBLE
                 }
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
+                    //binding.progressBar.visibility = View.GONE
                     concatAdapter.apply {
-                        addAdapter(0, LocalConcatAdapter(LibrariesAdapter(result.data.first., this@BibliomundoFragment)))
-                        addAdapter(1, NationalConcatAdapter(LibrariesAdapter(result.data.second., this@BibliomundoFragment)))
-                        addAdapter(2, InternationalConcatAdapter(LibrariesAdapter(result.data.third., this@BibliomundoFragment)))
+                        addAdapter(0, LocalConcatAdapter(LibrariesAdapter(result.data.first, this@BibliomundoFragment)))
+                        addAdapter(1, NationalConcatAdapter(LibrariesAdapter(result.data.second, this@BibliomundoFragment)))
+                        addAdapter(2, InternationalConcatAdapter(LibrariesAdapter(result.data.third, this@BibliomundoFragment)))
                     }
+                    Log.d("resultLocal","libreria local: ${result.data.first}")
                     binding.bibliotecasRecyclerView.adapter = concatAdapter
                 }
                 is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
-                    Log.e("FetchError", "Error: $result.exception ")
+                    //binding.progressBar.visibility = View.GONE
+                    Log.e("FetchError", "Error: ${result.exception} ")
                     Toast.makeText(requireContext(), "Error: ${result.exception}", Toast.LENGTH_SHORT)
                             .show()
                 }
             }
-        })*/
+        })
+        */
 
     }
 
     override fun onLibraryClick(library: LibraryServer) {
-        val webIntent : Intent = Uri.parse(library.pageUrl).let { webpage ->
-            Intent(Intent.ACTION_VIEW, webpage)
+        val libraryName = library.name
+        if(libraryName=="Biblioteca ISAIS"){
+            findNavController().navigate(R.id.action_navigation_bibliomundo_to_navigation_biblioteca)
+        }else{
+            val webIntent : Intent = Uri.parse(library.pageUrl).let { webpage ->
+                Intent(Intent.ACTION_VIEW, webpage)
+            }
+            startActivity(webIntent)
         }
-        startActivity(webIntent)
+
     }
 
 }

@@ -19,7 +19,7 @@
             android:layout_centerInParent="true"/>
     </RelativeLayout> -->
 
-    <LinearLayout
+   <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -39,7 +39,7 @@
             android:layout_height="275dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/cursos_item"/>
+            tools:listitem="@layout/courses_item"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -56,7 +56,7 @@
             android:layout_height="275dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/cursos_item" />
+            tools:listitem="@layout/courses_item" />
 
         <TextView
             android:layout_width="match_parent"
@@ -73,16 +73,17 @@
         android:layout_height="275dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/cursos_item" />
+        tools:listitem="@layout/courses_item" />
 </LinearLayout>
 
-<!--<androidx.recyclerview.widget.RecyclerView
+    <!--
+<androidx.recyclerview.widget.RecyclerView
     android:id="@+id/bibliotecas_recycler_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>-->
-
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+-->
     <!--<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bibliotecas_recycler_view"
         android:layout_width="match_parent"

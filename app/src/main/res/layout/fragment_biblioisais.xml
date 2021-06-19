@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -30,7 +31,7 @@
              android:layout_height="275dp"
              android:orientation="horizontal"
              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             tools:listitem="@layout/cursos_item"/>
+             tools:listitem="@layout/courses_item"/>
 
          <TextView
              android:id="@+id/curso2textView"
@@ -48,6 +49,6 @@
              android:layout_height="275dp"
              android:orientation="horizontal"
              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             tools:listitem="@layout/cursos_item" />
+             tools:listitem="@layout/courses_item" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

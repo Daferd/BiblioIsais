@@ -9,6 +9,7 @@ import kotlinx.coroutines.tasks.await
 
 class LibrariesDataSource {
 
+
     suspend fun getLocalLibraries():Result<List<LibraryServer>>{
         val libraryList = mutableListOf<LibraryServer>()
 
@@ -36,4 +37,35 @@ class LibrariesDataSource {
         }
         return Result.Success(libraryList)
     }
+
+
+    /*suspend fun getLocalLibraries():List<LibraryServer>{
+        val libraryList = mutableListOf<LibraryServer>()
+
+        val querySnapshot = FirebaseFirestore.getInstance().collection("localLibraries").get().await()
+        for(post in querySnapshot){
+            post.toObject(LibraryServer::class.java)?.let { fbLibrary->libraryList.add(fbLibrary) }
+        }
+        return libraryList
+    }
+
+    suspend fun getNationalLibraries():List<LibraryServer>{
+        val libraryList = mutableListOf<LibraryServer>()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("nationalLibraries").get().await()
+        for(post in querySnapshot.documents){
+            post.toObject(LibraryServer::class.java)?.let { fbLibrary->libraryList.add(fbLibrary) }
+        }
+        return libraryList
+    }
+
+    suspend fun getInternationalLibraries():List<LibraryServer>{
+        val libraryList = mutableListOf<LibraryServer>()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("internationalLibraries").get().await()
+        for(post in querySnapshot.documents){
+            post.toObject(LibraryServer::class.java)?.let { fbLibrary->libraryList.add(fbLibrary) }
+        }
+        return libraryList
+    }
+
+     */
 }

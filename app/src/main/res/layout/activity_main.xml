@@ -17,6 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
         app:menu="@menu/bottom_nav_menu"
         app:itemIconTint="@color/blue_200"
         app:itemTextColor="@color/blue_200"/>

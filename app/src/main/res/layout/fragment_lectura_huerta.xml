@@ -1,28 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/fondotexturanaranja"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment">
+    tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment"
+    android:orientation="vertical">
+
+    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+        android:id="@+id/carousel"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        app:autoPlay="true"
+        app:autoPlayDelay="4000" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        android:layout_marginBottom="3dp"
+        android:orientation="vertical">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/mcv_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_normal"
+            android:layout_marginVertical="@dimen/margin_small"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            app:cardCornerRadius="@dimen/search_view_radius">
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:imeOptions="actionDone|flagNoExtractUi"
+                android:queryBackground="@color/transparent"
+                android:queryHint="Search Article"
+                android:searchHintIcon="@drawable/ic_baseline_search_500"
+                android:searchIcon="@drawable/ic_baseline_search_500" />
+
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/progress_bar"
+        android:id="@+id/progressBarLecturaHuerta"
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ProgressBar
+            android:layout_centerInParent="true"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
+            android:layout_height="wrap_content"/>
 
     </RelativeLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_blog"
+    <LinearLayout
+        android:layout_marginTop="260dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-</LinearLayout>
+        android:orientation="vertical">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_postList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="16dp"
+        android:fontFamily="sans-serif-condensed"
+        android:src="@drawable/ic_baseline_add_500"
+        android:text="Nuevo tema"
+        android:textColor="#536DFE"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:backgroundTint="#00083A"
+        app:icon="@drawable/ic_baseline_add_500"
+        app:iconTint="#536DFE" />
+
+
+</FrameLayout>
