@@ -36,7 +36,6 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
     private lateinit var binding: FragmentAgregarTemaBinding
     private lateinit var bitmapGlobal : Bitmap
     private  val REQUEST_IMAGE_CAPTURE = 1
-    private var filePath: Uri? = null
     private val viewModel by viewModels<LecturaHuertaViewModel> {
         LecturaHuertaViewModelFactory(LecturaHuertaRepoImpl(LecturaHuertaDataSource()))
     }
@@ -55,7 +54,7 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
         val dateNow = Calendar.getInstance().time
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
         val date = sdf.format(dateNow)
-        binding.postTimeAgregarTema.text = date.toString()
+        //binding.postTimeAgregarTema.text = date.toString()
         newPost(dateNow.toString())
 
     }
