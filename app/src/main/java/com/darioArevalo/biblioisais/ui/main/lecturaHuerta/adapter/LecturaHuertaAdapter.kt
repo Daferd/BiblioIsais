@@ -39,7 +39,7 @@ class LecturaHuertaAdapter(private val postList:List<PostServer>, private val it
         val context: Context
     ): BaseViewHolder<PostServer>(binding.root){
         override fun bind(item: PostServer) {
-            Glide.with(context).load(item.profile_picture).centerCrop().into(binding.imgPost)
+            Glide.with(context).load(item.post_image).centerCrop().into(binding.imgPost)
             binding.txtTitulo.text = item.titulo
             binding.txtDescripcion.text = item.contenido
             binding.root.setOnClickListener{itemOnClickListener.onPostClick(item)}
