@@ -76,13 +76,19 @@
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/extended_fab"
-        app:icon="@drawable/ic_baseline_add_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|right"
         android:layout_margin="16dp"
+        android:fontFamily="sans-serif-condensed"
         android:src="@drawable/ic_baseline_add_500"
-        android:text="Nuevo tema" />
+        android:text="Nuevo tema"
+        android:textColor="#536DFE"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        app:backgroundTint="#00083A"
+        app:icon="@drawable/ic_baseline_add_500"
+        app:iconTint="#536DFE" />
 
 
 </FrameLayout>
