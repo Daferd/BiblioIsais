@@ -31,7 +31,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:text="TextView"
-            android:textColor="#969595"
+            android:textColor="#010157"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/comment_user_img"
             app:layout_constraintTop_toTopOf="parent" />
@@ -45,7 +45,7 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:text="Text Comment Goes Here"
-            android:textColor="#969595"
+            android:textColor="#01018C"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
