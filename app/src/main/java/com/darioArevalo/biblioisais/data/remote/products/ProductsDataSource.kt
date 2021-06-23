@@ -25,6 +25,10 @@ class ProductsDataSource {
         return Result.Success(pdfsList)
     }
 
+    fun downloadPDF(urlString:String){
+        Log.d("datasource_download_pdf",urlString)
+    }
+
     suspend fun getIsaisImages(): Result<List<ImageServer>>{
         val imageList = mutableListOf<ImageServer>()
 

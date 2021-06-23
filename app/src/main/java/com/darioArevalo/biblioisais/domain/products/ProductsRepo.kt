@@ -8,4 +8,5 @@ interface ProductsRepo {
     suspend fun getPDFs():Result<List<PdfServer>>
     suspend fun getIsaisImages():Result<List<ImageServer>>
     suspend fun getGoogleImages():Result<List<ImageServer>>
+    fun downloadPDF(urlString: String)
 }
