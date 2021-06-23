@@ -43,7 +43,9 @@ class PdfsAdapter(
     ): BaseViewHolder<PdfServer>(binding.root){
         override fun bind(item: PdfServer) {
             binding.nombreBibliotecaTextView.text = item.name
-            binding.urlTextView.text = item.pdfUrl
+            binding.textView7.text = item.name
+            binding.root.setOnClickListener{itemClickListener.onPdfClick(item)}
+            //binding.urlTextView.text = item.pdfUrl
         }
     }
 }

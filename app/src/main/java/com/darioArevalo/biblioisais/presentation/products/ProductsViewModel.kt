@@ -35,6 +35,10 @@ class ProductsViewModel(private val repo: ProductsRepo): ViewModel() {
             emit(Result.Failure(e))
         }
     }
+
+    fun fetchDownloadPDF(urlString:String){
+        repo.downloadPDF(urlString)
+    }
 }
 
 class ProductsViewModelFactory(private val repo: ProductsRepo): ViewModelProvider.Factory{

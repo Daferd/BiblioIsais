@@ -21,8 +21,11 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
@@ -40,8 +43,12 @@ import kotlinx.coroutines.tasks.await
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
+import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.*
 
 
@@ -81,6 +88,20 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
                 }
             }
 
+        })
+
+        viewModel.fetchPdf().observe(viewLifecycleOwner,{ result->
+            when(result){
+                is Result.Loading ->{
+
+                }
+                is Result.Success -> {
+                    binding.pdfRecyclerView.adapter = PdfsAdapter(result.data,this)
+                }
+                is Result.Failure -> {
+
+                }
+            }
         })
 
 
@@ -197,8 +218,25 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
     }*/
 
 
-    override fun onPdfClick(pdf: PdfServer) {
+    override  fun onPdfClick(pdf: PdfServer) {
 
+        Log.d("pdf_listener_url","${pdf.pdfUrl}")
+        viewModel.fetchDownloadPDF(pdf.pdfUrl)
+
+        /*val httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(pdf.pdfUrl)
+
+
+        val localFile = File.createTempFile("document","pdf")
+
+        httpsReference.downloadUrl.addOnSuccessListener {
+            Log.d("DescargaOk","pdf ok")
+
+
+        }.addOnFailureListener{
+            Log.d("descargaOFF","failure pdf")
+        }*/
+
+/*
         val islandRef = storageReference.child("PDFs/Cedula.pdf")
 
         val localFile = File.createTempFile("PDFs","pdf")
@@ -207,8 +245,17 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
             Toast.makeText(context,"yes",Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show()
-        }
+        }*/
+
+
         
+    }
+
+    companion object{
+        private lateinit var url: URL
+        private lateinit var urlx: URL
+        private lateinit var httpURLConnection: HttpURLConnection
+        private lateinit var inputStream: InputStream
     }
 }
 

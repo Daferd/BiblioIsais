@@ -9,4 +9,5 @@ class ProductsRepoImpl(private val dataSource: ProductsDataSource):ProductsRepo 
     override suspend fun getPDFs(): Result<List<PdfServer>> = dataSource.getPDFs()
     override suspend fun getIsaisImages(): Result<List<ImageServer>> = dataSource.getIsaisImages()
     override suspend fun getGoogleImages(): Result<List<ImageServer>> =dataSource.getImageGoogle()
+    override  fun downloadPDF(urlString:String)  = dataSource.downloadPDF(urlString)
 }
