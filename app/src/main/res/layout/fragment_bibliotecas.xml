@@ -5,26 +5,31 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.main.bibliotecas.BibliotecasFragment"
-    android:background="@color/md_blue_grey_50">
-
-    <include
-        layout="@layout/isais_toolbar"
-        />
+    tools:context=".ui.main.bibliotecas.BibliotecasFragment">
 
     <org.imaginativeworld.whynotimagecarousel.ImageCarousel
         android:id="@+id/carousel"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
+        android:layout_height="300dp"
         app:autoPlay="true"
         app:autoPlayDelay="4000"/>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pdf_recycler_view"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/pdf_item"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/pdf_item" />
+
+    <Button
+        android:id="@+id/pdf_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:text="PDF"
+        />
 
 </LinearLayout>

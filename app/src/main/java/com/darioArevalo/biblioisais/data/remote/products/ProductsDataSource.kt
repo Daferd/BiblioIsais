@@ -16,10 +16,17 @@ class ProductsDataSource {
         val pdfsList = mutableListOf<PdfServer>()
 
         val querySnapshot = FirebaseFirestore.getInstance().collection("pdfCourses").get().await()
-        for (pdf in querySnapshot){
-            pdf.toObject(PdfServer::class.java)?.let { fbPdf-> pdfsList.add(fbPdf) }
+        for (pdfs in querySnapshot.documents){
+            pdfs.toObject(PdfServer::class.java)?.let {   it1 -> pdfsList.add(it1)  }
+            Log.d("Query_pdf", "${pdfs}")
+
+
         }
         return Result.Success(pdfsList)
+    }
+
+    fun downloadPDF(urlString:String){
+        Log.d("datasource_download_pdf",urlString)
     }
 
     suspend fun getIsaisImages(): Result<List<ImageServer>>{

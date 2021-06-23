@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:padding="5dp"
+        android:background="@color/blue_alert_dialog"
+        android:text="AGREGA UNA FOTO"
+        android:textSize="35dp"
+        android:textColor="@color/blue_text_alert_dialog"
+        android:gravity="center"
+        android:textStyle="normal|bold"
+        android:fontFamily="sans-serif-condensed-light"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DEDEDE"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/ImgVw_CancelCustomAlertDialog"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@drawable/ic_baseline_cancel_24"
+            android:layout_height="50dp"/>
+
+        <ImageView
+            android:id="@+id/ImgVw_UploadCustomAlertDialog"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@drawable/ic_baseline_cloud_upload_24"
+            android:layout_height="50dp"/>
+
+        <ImageView
+            android:id="@+id/ImgVw_TakePhotoCustomAlertDialog"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:src="@drawable/ic_baseline_linked_camera_24"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

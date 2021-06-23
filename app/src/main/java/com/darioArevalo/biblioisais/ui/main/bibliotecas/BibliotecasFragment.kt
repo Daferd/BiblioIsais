@@ -22,9 +22,11 @@ import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
@@ -42,8 +44,12 @@ import kotlinx.coroutines.tasks.await
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
+import java.io.BufferedInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 import java.util.*
 
 
@@ -51,6 +57,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
     //private lateinit var notificationsViewModel: NotificationsViewModel
     private lateinit var binding: FragmentBibliotecasBinding
+
 
     private val viewModel by viewModels<ProductsViewModel>{ ProductsViewModelFactory(
             ProductsRepoImpl(ProductsDataSource())
@@ -60,6 +67,78 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
     private lateinit var storageReference: StorageReference
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentBibliotecasBinding.bind(view)
+
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
+            when(result){
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+
+                    for (image in result.data){
+                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    }
+
+                }
+                is Result.Failure -> {
+
+                }
+            }
+
+        })
+
+        viewModel.fetchPdf().observe(viewLifecycleOwner,{ result->
+            when(result){
+                is Result.Loading ->{
+
+                }
+                is Result.Success -> {
+                    binding.pdfRecyclerView.adapter = PdfsAdapter(result.data,this)
+                }
+                is Result.Failure -> {
+
+                }
+            }
+        })
+
+
+
+        binding.carousel.onItemClickListener = object : OnItemClickListener {
+            override fun onClick(position: Int, carouselItem: CarouselItem) {
+                Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onLongClick(position: Int, dataObject: CarouselItem) {
+            }
+
+        }
+
+
+
+    }
+
+    /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        //binding.carousel.addData(imageList)
+
+        val db = FirebaseFirestore.getInstance()
+        db.collection("ciudades").document("LA").get().addOnSuccessListener { document ->
+            document?.let {
+                Log.d("Firestore","DocumentSnapShot data:${document.data}" )
+            }
+        }
+
+        binding.btnTakePicture.setOnClickListener{
+            dispatchTakePictureIntent()
+        }
+
+    }*/
+/*
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -68,16 +147,8 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
         val view: View = inflater.inflate(R.layout.fragment_bibliotecas, container,false)
         val carousel = view.findViewById<ImageCarousel>(R.id.carousel)
+        val btn_pdf = view.findViewById<Button>(R.id.pdf_button)
         val recyclerPdf = view.findViewById<RecyclerView>(R.id.pdf_recycler_view)
-        val mToolbar = view.findViewById<Toolbar>(R.id.isais_toolbar)
-
-        mToolbar.visibility
-        mToolbar.setOnClickListener {
-            findNavController().navigate(R.id.action_navigation_biblioteca_to_navigation_bibliomundo)
-        }
-
-        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        activity?.actionBar?.hide()
 
         viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
             when(result){
@@ -98,6 +169,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
                 }
             }
         })
+
 
         carousel.onItemClickListener = object : OnItemClickListener {
             override fun onClick(position: Int, carouselItem: CarouselItem) {
@@ -124,18 +196,68 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
             }
         })
 
-        return view
-    }
+        btn_pdf.setOnClickListener {
 
-    override fun onPdfClick(pdf: PdfServer) {
+            var islandRef = storageReference.child("isaisImages/20210316_143909.jpg")
+
+            val ONE_MEGABYTE: Long = 1024 * 1024
+            islandRef.getBytes(ONE_MEGABYTE).addOnSuccessListener {
+                // Data for "images/island.jpg" is returned, use this as needed
+            }.addOnFailureListener {
+                // Handle any errors
+            }
+
+            /*val localFile = File.createTempFile("PDFs","pdf")
+
+            islandRef.getFile(localFile).addOnSuccessListener {
+                Toast.makeText(context,"yes",Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show()
+            }*/
+        }
+
+        return view
+    }*/
+
+
+    override  fun onPdfClick(pdf: PdfServer) {
+
+        Log.d("pdf_listener_url","${pdf.pdfUrl}")
+        viewModel.fetchDownloadPDF(pdf.pdfUrl)
+
+        /*val httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(pdf.pdfUrl)
+
+
+        val localFile = File.createTempFile("document","pdf")
+
+        httpsReference.downloadUrl.addOnSuccessListener {
+            Log.d("DescargaOk","pdf ok")
+
+
+        }.addOnFailureListener{
+            Log.d("descargaOFF","failure pdf")
+        }*/
+
+/*
         val islandRef = storageReference.child("PDFs/Cedula.pdf")
+
         val localFile = File.createTempFile("PDFs","pdf")
 
         islandRef.getFile(localFile).addOnSuccessListener {
             Toast.makeText(context,"yes",Toast.LENGTH_SHORT).show()
         }.addOnFailureListener {
             Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show()
-        }
+        }*/
+
+
+
+    }
+
+    companion object{
+        private lateinit var url: URL
+        private lateinit var urlx: URL
+        private lateinit var httpURLConnection: HttpURLConnection
+        private lateinit var inputStream: InputStream
     }
 }
 

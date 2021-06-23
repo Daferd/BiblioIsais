@@ -22,6 +22,12 @@
     <color name="transparent">#0fff</color>
     <color name="orange_ligth_edtxt">#ffe0b9</color>
 
+    <color name="background_details">#F4F0E9</color>
+    <color name="blue_alert_dialog">#02182E</color>
+    <color name="blue_text_alert_dialog">#67ACF1</color>
+    <color name="orange_background_textview">#F48F4B</color>
+    <color name="orange_color_txt">#7C4E08</color>
+
 
 
     <!--reds-->
