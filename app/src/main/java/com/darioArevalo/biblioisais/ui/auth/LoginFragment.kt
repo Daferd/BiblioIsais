@@ -1,9 +1,11 @@
 package com.darioArevalo.biblioisais.ui.auth
 
+import android.app.ActionBar
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -21,14 +23,24 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val viewModel by viewModels<AuthViewModel>{AuthViewModelFactory(AuthRepoImpl(AuthDataSource()))}
+    private lateinit var acyionbar : ActionBar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentLoginBinding.bind(view)
+
         isUserLoggedIn()
         doLogin()
         goToSingUpPage()
+
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
     }
 
     private fun isUserLoggedIn() {
@@ -92,4 +104,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         })
     }
+
+
+
 }

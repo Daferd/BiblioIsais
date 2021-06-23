@@ -19,6 +19,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.core.net.toUri
@@ -176,6 +177,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
             }
 
             override fun onLongClick(position: Int, dataObject: CarouselItem) {
+                TODO("Not yet implemented")
             }
 
         }
@@ -248,7 +250,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
         }*/
 
 
-        
+
     }
 
     companion object{

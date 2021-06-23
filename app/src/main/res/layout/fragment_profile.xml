@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:fillViewport="true"
+    android:background="@color/md_blue_grey_50">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +17,7 @@
         tools:context=".ui.miperfil.PerfilFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="136dp"
+            android:layout_width="140dp"
             android:layout_height="136dp" >
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -56,12 +57,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/title_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="Nombre"
                     android:textStyle="bold"
                     android:textSize="24sp" />
@@ -89,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/title_email_text_view"
@@ -123,7 +125,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/title_password_text_view"

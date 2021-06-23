@@ -36,7 +36,6 @@ class NewdataFragment : DialogFragment() {
         return inflater.inflate(R.layout.fragment_newdata, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -47,6 +46,7 @@ class NewdataFragment : DialogFragment() {
         if(bandData == 1){
             binding.dataTextInputLayout.hint = "Nombre actual"
             binding.dataEditText.setText(args.userData?.username)
+            binding.dataEditText.isEnabled = false
             binding.newdataTextInputLayout.hint = "Nuevo nombre"
             binding.acceptButton.setOnClickListener {
                 uploadName()
@@ -55,19 +55,26 @@ class NewdataFragment : DialogFragment() {
         } else if(bandData == 2){
             binding.dataTextInputLayout.hint = "Correo actual"
             binding.dataEditText.setText(args.userData?.email)
+            binding.dataEditText.isEnabled = false
             binding.newdataTextInputLayout.hint = "Nuevo email"
             binding.acceptButton.setOnClickListener {
                 uploadEmail()
             }
 
         } else {
-            binding.dataTextInputLayout.hint = "Contraseña actual"
-            binding.dataEditText.setText("Ingrese nueva contraseña")
-            binding.newdataTextInputLayout.hint = "Nueva contraseña"
-            binding.acceptButton.setOnClickListener {
-                uploadPassword()
-            }
+            binding.dataTextInputLayout.hint = "Nueva Contraseña"
+            //binding.dataEditText.setText("Ingrese nueva contraseña")
+            binding.newdataTextInputLayout.hint = "Repita nueva contraseña"
 
+            binding.acceptButton.setOnClickListener {
+                val password = binding.dataEditText.text
+                val confirmPassword = binding.newdataEditText.text
+                if(password != confirmPassword){
+                    Toast.makeText(context,"Las contraseñas no coinciden",Toast.LENGTH_LONG).show()
+                } else{
+                    uploadPassword()
+                }
+            }
         }
 
         binding.cancelButton.setOnClickListener{
@@ -113,7 +120,6 @@ class NewdataFragment : DialogFragment() {
                     Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show()
                 }
             }
-
         })
     }
 
@@ -132,7 +138,6 @@ class NewdataFragment : DialogFragment() {
                     alertDialog.dismiss()
                 }
             }
-
         })
     }
 

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/splashFragment">
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/navigation_bibliomundo"
@@ -33,7 +33,11 @@
         android:id="@+id/navigation_biblioteca"
         android:name="com.darioArevalo.biblioisais.ui.main.bibliotecas.BibliotecasFragment"
         android:label="Biblioteca"
-        tools:layout="@layout/fragment_bibliotecas" />
+        tools:layout="@layout/fragment_bibliotecas" >
+        <action
+            android:id="@+id/action_navigation_biblioteca_to_navigation_bibliomundo"
+            app:destination="@id/navigation_bibliomundo" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_lecturaHuerta"
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.LecturaHuertaFragment"
@@ -103,6 +107,9 @@
         <argument
             android:name="selectedCourse"
             app:argType="com.darioArevalo.biblioisais.data.model.CourseServer" />
+        <action
+            android:id="@+id/action_FormFragment_to_navigation_biblioisais"
+            app:destination="@id/navigation_biblioisais" />
     </fragment>
     <fragment
         android:id="@+id/navigation_therapy"
