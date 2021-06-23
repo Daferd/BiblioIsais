@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".ui.main.bibliotecas.BibliotecasFragment">
+    tools:context=".ui.main.bibliotecas.BibliotecasFragment"
+    android:background="@color/md_blue_grey_50">
 
     <include
         layout="@layout/isais_toolbar"
@@ -14,16 +15,16 @@
     <org.imaginativeworld.whynotimagecarousel.ImageCarousel
         android:id="@+id/carousel"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="180dp"
         app:autoPlay="true"
         app:autoPlayDelay="4000"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pdf_recycler_view"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/pdf_item"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </LinearLayout>

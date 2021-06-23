@@ -3,6 +3,7 @@
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
@@ -67,7 +68,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         })
 
         binding.cameraImageView.setOnClickListener {
-            dispatchTakePictureIntent()
+            uploadImage()
+
         }
 
         binding.logOutButton.setOnClickListener {
@@ -88,6 +90,23 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             findNavController().navigate(action)
         }
 
+    }
+
+    private fun uploadImage() {
+        //val opciones = arrayListOf<String>("Tomar foto","Cargar imagen","Cancelar")
+        val alertOpciones = AlertDialog.Builder(context)
+        alertOpciones.setTitle("Seleccione una opción:")
+        alertOpciones.setPositiveButton("Tomar foto") { dialogInterface: DialogInterface, i: Int ->
+            dispatchTakePictureIntent()
+        }
+        alertOpciones.setNegativeButton("Cargar imagen") { dialogInterface: DialogInterface, i: Int ->
+            /* val intent = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+             intent.setType("image/")
+             band = true
+             startActivityForResult(intent,10)*/
+            Toast.makeText(context, "cargar foto", Toast.LENGTH_SHORT).show()
+        }
+        alertOpciones.show()
     }
 
     private fun dispatchTakePictureIntent(){
