@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:srcCompat="@drawable/orange"
+        android:layout_width="230dp"
+        android:layout_height="503dp"
+        app:srcCompat="@drawable/logo_biblioisais"
         tools:layout_editor_absoluteX="88dp"
         tools:layout_editor_absoluteY="187dp" />
 </LinearLayout>

@@ -1,15 +1,21 @@
 package com.darioArevalo.biblioisais.data.remote.products
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.ImageServer
 import com.darioArevalo.biblioisais.data.model.PdfServer
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
-import org.imaginativeworld.whynotimagecarousel.CarouselItem
-import kotlin.math.log
+import java.io.File
 
 class ProductsDataSource {
+    companion object{
+        val CREATE_FiLE = 1
+    }
 
 
     suspend fun getPDFs(): Result<List<PdfServer>>{
@@ -25,9 +31,22 @@ class ProductsDataSource {
         return Result.Success(pdfsList)
     }
 
-    fun downloadPDF(urlString:String){
+    fun downloadPDF(urlString:String,context: Context){
         Log.d("datasource_download_pdf",urlString)
-    }
+        //val storage = FirebaseStorage.getInstance()
+        //val localfile = File.createTempFile("document","pdf")
+        //val httpsReference = storage.getReferenceFromUrl(urlString)
+
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+        val fileuri = Uri.parse(urlString)
+        intent.setDataAndType(fileuri, "application/pdf")
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        val in1 = Intent.createChooser(intent, "open file")
+        in1.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        context.startActivity(in1)
+
+  }
 
     suspend fun getIsaisImages(): Result<List<ImageServer>>{
         val imageList = mutableListOf<ImageServer>()
