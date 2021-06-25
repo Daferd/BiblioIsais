@@ -1,5 +1,6 @@
 package com.darioArevalo.biblioisais.presentation.products
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
@@ -36,8 +37,8 @@ class ProductsViewModel(private val repo: ProductsRepo): ViewModel() {
         }
     }
 
-    fun fetchDownloadPDF(urlString:String){
-        repo.downloadPDF(urlString)
+    fun fetchDownloadPDF(urlString:String,context: Context){
+        repo.downloadPDF(urlString,context)
     }
 }
 
