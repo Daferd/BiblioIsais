@@ -25,6 +25,15 @@ class AuthViewModel(private val repo: AuthRepo) : ViewModel() {
             emit(Result.Failure(e))
         }
     }
+
+    fun recoverPassword(email:String) = liveData(Dispatchers.IO){
+        emit(Result.Loading())
+        try {
+            emit(Result.Success(repo.recoverPassword(email)))
+        }catch (e: Exception){
+            emit(Result.Failure(e))
+        }
+    }
 }
 
 class AuthViewModelFactory(private val repo: AuthRepo): ViewModelProvider.Factory{

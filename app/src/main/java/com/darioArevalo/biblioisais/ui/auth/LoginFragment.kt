@@ -1,7 +1,10 @@
 package com.darioArevalo.biblioisais.ui.auth
 
 import android.app.ActionBar
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -33,6 +36,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         isUserLoggedIn()
         doLogin()
         goToSingUpPage()
+        recoverPassword()
 
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
@@ -41,6 +45,37 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+    }
+
+    private fun recoverPassword() {
+
+        binding.txtOlvidaste.setOnClickListener {
+
+            val alertOptions = AlertDialog.Builder(context)
+                alertOptions.setTitle("¿Olvidaste tu contraseña?")
+                alertOptions.setPositiveButton("Enviar correo") { dialogInterface: DialogInterface, i: Int ->
+                    val email = binding.editTextEmail.text.toString().trim()
+                    if (email.isEmpty()){
+                        binding.editTextEmail.error = "Escriba un correo"
+                        Toast.makeText(context,"Escriba un correo de recuperación",Toast.LENGTH_SHORT).show()
+                    } else {
+                        viewModel.recoverPassword(email).observe(viewLifecycleOwner,{result->
+                            when(result){
+                                is Result.Success -> {
+                                    Toast.makeText(context,"Se ha enviado un correo de recuperación",Toast.LENGTH_SHORT).show()
+                                }
+                                is Result.Failure -> {
+                                    Toast.makeText(context,"Error al enviar correo",Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                        })
+                    }
+                }
+
+                alertOptions.show()
+
+        }
+
     }
 
     private fun isUserLoggedIn() {

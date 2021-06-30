@@ -47,7 +47,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding = FragmentProfileBinding.bind(view)
 
-
         viewModel.fetchUser().observe(viewLifecycleOwner,{  result->
             when(result){
                 is Result.Loading -> {
@@ -93,7 +92,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     private fun uploadImage() {
-        //val opciones = arrayListOf<String>("Tomar foto","Cargar imagen","Cancelar")
         val alertOpciones = AlertDialog.Builder(context)
         alertOpciones.setTitle("Seleccione una opción:")
         alertOpciones.setPositiveButton("Tomar foto") { dialogInterface: DialogInterface, i: Int ->

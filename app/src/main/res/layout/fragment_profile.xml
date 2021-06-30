@@ -39,7 +39,8 @@
                 android:layout_height="32dp"
                 android:src="@drawable/ic_camera"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -63,8 +64,7 @@
                     android:id="@+id/title_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
-                    android:text="Nombre"
+                    android:text="@string/name"
                     android:textStyle="bold"
                     android:textSize="24sp" />
 
@@ -97,7 +97,7 @@
                     android:id="@+id/title_email_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Correo Electronico"
+                    android:text="@string/email"
                     android:textStyle="bold"
                     android:textSize="24sp" />
 
@@ -131,7 +131,7 @@
                     android:id="@+id/title_password_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contraseña"
+                    android:text="@string/password"
                     android:textStyle="bold"
                     android:textSize="24sp" />
 
@@ -151,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Log out" />
+            android:text="@string/log_out" />
 
     </LinearLayout>
 

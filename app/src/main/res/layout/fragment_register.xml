@@ -6,14 +6,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".ui.auth.RegisterFragment">
+    tools:context=".ui.auth.RegisterFragment"
+    android:background="@color/md_grey_100">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/registro"
+        android:textSize="32sp"
+        android:textColor="@color/md_orange_800"
+        android:textStyle="bold"
+        android:gravity="center_horizontal"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/text_input_layout_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="User"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        android:hint="@string/name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_marginTop="16dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextUsername"
@@ -27,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:hint="E-mail"
+        android:hint="@string/email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -41,7 +52,7 @@
         android:id="@+id/text_input_layout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         app:passwordToggleEnabled="true"
         android:layout_marginTop="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -57,7 +68,7 @@
         android:id="@+id/text_input_layout_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Confirm password"
+        android:hint="@string/confirm_password"
         app:passwordToggleEnabled="true"
         android:layout_marginTop="8dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -73,7 +84,7 @@
         android:id="@+id/btn_signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SignUp"
+        android:text="@string/signup"
         android:layout_marginTop="16dp"/>
 
     <ProgressBar

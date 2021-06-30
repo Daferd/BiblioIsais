@@ -53,7 +53,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         binding.btnSendForm.setOnClickListener {
             val username = binding.editTextUsername.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
-            val age = binding.editTextEdad.text.toString().trim()
+            val age = binding.editTextYear.text.toString().trim()
             val phoneNumber = binding.editTextPhoneNumber.text.toString().trim()
 
             validateFormData(username,email,age,phoneNumber)
@@ -102,7 +102,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
             return true
         }
         if (age.isEmpty()) {
-            binding.editTextEdad.error = "Password is empty"
+            binding.editTextYear.error = "Password is empty"
             return true
         }
         if (phoneNumber.isEmpty()) {

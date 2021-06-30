@@ -3,7 +3,6 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="nombre">Nombre</string>
     <string name="pais">País:</string>
     <string name="ciudad">Colombia</string>
     <string name="bibliomundo">BiblioMundo</string>
@@ -14,4 +13,16 @@
 
     <string name="hint_titulo">Titulo</string>
     <string name="hint_contenido">Contenido</string>
+    <string name="name">Nombre</string>
+    <string name="email">Correo electrónico</string>
+    <string name="registro">Registro</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="signup">Registrarse</string>
+    <string name="signin">Iniciar sesión</string>
+    <string name="not_have_an_account_sign_up">¿No tienes una cuenta? Registrate</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="years">Edad</string>
+    <string name="phone_number">Telefono</string>
+    <string name="send">Enviar</string>
 </resources>
