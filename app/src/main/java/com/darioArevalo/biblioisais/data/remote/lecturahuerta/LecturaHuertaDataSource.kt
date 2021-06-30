@@ -13,6 +13,7 @@ import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.auth.User
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -35,11 +36,12 @@ class LecturaHuertaDataSource {
 
     fun setPost(autor:String, contenido:String, titulo:String, date: String, bitmap: Bitmap){
          val querySnapshot = FirebaseFirestore.getInstance().collection("postblog")
+         val user = FirebaseAuth.getInstance().currentUser
          uuid = UUID.randomUUID()
          downloadTask = ""
 
 
-         var post_Id = ""
+         var User_Id = user?.uid.toString()
          val storaRef = FirebaseStorage.getInstance().reference
          val imageRef = storaRef.child("fotosPost/" + uuid.toString())
          val baos = ByteArrayOutputStream()
@@ -58,14 +60,15 @@ class LecturaHuertaDataSource {
          }.addOnCompleteListener {task->
              if (task.isSuccessful){
                  downloadTask = task.result.toString()
-                 post_Id = querySnapshot.document().id
+                 val post_Id = querySnapshot.document().id
                  val postHashMap = hashMapOf(
                      "autor" to  autor,
                      "contenido" to contenido,
                      "titulo" to titulo,
                      "timestamp" to FieldValue.serverTimestamp(),
                      "post_image" to downloadTask,
-                     "post_Id" to post_Id
+                     "post_Id" to post_Id,
+                     "User_Id" to User_Id
                  )
                  querySnapshot.document(post_Id)
                      .set(postHashMap)
@@ -82,39 +85,6 @@ class LecturaHuertaDataSource {
          }
 
 
-/*
-         Log.d("storageUriOut","value ${downloadTask}")
-         post_Id = querySnapshot.document().id
-         val postHashMap = hashMapOf(
-             "autor" to  autor,
-             "contenido" to contenido,
-             "titulo" to titulo,
-             "timestamp" to FieldValue.serverTimestamp(),
-             "post_image" to downloadTask,
-             "post_Id" to post_Id
-         )
-
-         querySnapshot.document(post_Id)
-             .set(postHashMap)
-             .addOnCompleteListener{
-                 if (it.isSuccessful){
-                     //message for succesfull
-                 }else{
-                     //message for failure
-                 }
-
-             }*/
-
-         //querySnapshot.document(post_Id).collection("comentarios_post").document()
-
-         /*querySnapshot.add(postHashMap).addOnCompleteListener {
-
-             if (it.isSuccessful){
-                     //message for succesfull
-             }else{
-                     //message for failure
-             }
-         }*/
 
 
      }
@@ -136,16 +106,5 @@ class LecturaHuertaDataSource {
 
 
 
-/*
-val user = FirebaseAuth.getInstance().currentUser
-        var userID = ""
-        user?.let {
-            userID = user.uid
-            val db = FirebaseFirestore.getInstance()
-            db.collection("users").document(userID).get().await()
-        }
-*
-*
-*
-* */
+
 

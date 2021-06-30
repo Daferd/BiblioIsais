@@ -12,7 +12,7 @@
         android:background="@color/blue_alert_dialog"
         android:text="AGREGA UNA FOTO"
         android:textSize="35dp"
-        android:textColor="@color/blue_text_alert_dialog"
+        android:textColor="@color/md_blue_500"
         android:gravity="center"
         android:textStyle="normal|bold"
         android:fontFamily="sans-serif-condensed-light"/>

@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="230dp"
-        android:layout_height="503dp"
+        android:layout_width="248dp"
+        android:layout_height="206dp"
         app:srcCompat="@drawable/logo_biblioisais"
         tools:layout_editor_absoluteX="88dp"
         tools:layout_editor_absoluteY="187dp" />
