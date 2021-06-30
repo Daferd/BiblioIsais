@@ -104,7 +104,7 @@
                     android:elegantTextHeight="true"
                     android:ems="1"
                     android:hint="@string/hint_contenido"
-                    android:inputType="textImeMultiLine|textMultiLine|textCapWords"
+                    android:inputType="textMultiLine"
                     android:paddingTop="15dp"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
                     android:scrollbars="vertical" />

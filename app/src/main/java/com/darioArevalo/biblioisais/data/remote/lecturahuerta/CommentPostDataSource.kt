@@ -1,36 +1,19 @@
 package com.darioArevalo.biblioisais.data.remote.lecturahuerta
 
-import android.os.Message
 import android.util.Log
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.CommentPost
-import com.darioArevalo.biblioisais.data.model.PostServer
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FieldValue
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.SetOptions
-import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.tasks.await
-import okhttp3.Response
 
 class CommentPostDataSource {
-    //private lateinit var database: DatabaseReference
 
-    //ingresar argumento id del post
     suspend fun  getLatestComments(keyPost:String): Result<List<CommentPost>> {
         val commentPostList = mutableListOf<CommentPost>()
-        //Log.d("KeyPost","::::::${keyPost}")
-        //val querySnapshot = FirebaseFirestore.getInstance().collection("comentarios_post").get().await()
-        //for (comments in querySnapshot.documents){
-        //    comments.toObject(CommentPost::class.java)?.let {
-        //        commentPostList.add(it)
-        //        Log.d("comments","${it.content}")
-         //   }
-        //}
-        //return Result.Success(commentPostList)
-
 
         val database = FirebaseDatabase.getInstance().reference
         val databaseReference = database.child("comentarios_post/${keyPost}").get().await()
@@ -42,62 +25,37 @@ class CommentPostDataSource {
 
         }
 
-
-        /*
-
-        databaseReference.get().addOnCompleteListener { task->
-            if (task.isSuccessful){
-                val result = task.result
-
-                result.let {
-                    result?.children?.forEach {snapShot->
-                        val post = snapShot.getValue<CommentPost>()
-                        commentPostList.add(post!!)
-
-
-                    }
-                }
-
-            } else{
-                Log.d("Error_database_realtime", task.exception.toString())
-            }
-
-        }*/
-
         return Result.Success(commentPostList)
 
 
     }
 
     fun addNewComment(content:String,keyPost: String) {
-        /*val path = "commentPost/$keyPost"
 
-        var querySnapshot = FirebaseFirestore.getInstance().collection("postblog")
-            .document(keyPost).collection("comentarios_post").document()
-        val commentHashMap = hashMapOf(
-            "content" to content,
-            "post_Id" to keyPost,
-            "autor" to "autor x",
-            "timestamp" to FieldValue.serverTimestamp()
-        )
+        val user = FirebaseAuth.getInstance().currentUser
+        val User_Id = user?.uid.toString()
+        val user_name = user?.displayName.toString()
+        val create_at = FieldValue.serverTimestamp()
 
-
-        querySnapshot.set(commentHashMap).addOnCompleteListener {
-            if (it.isSuccessful){
-
-            }else{
-
-            }
-        }*/
-
-
-        //val database = Firebase.database.reference
+        Log.d("comment_namexxx","${user?.displayName}")
         val database = FirebaseDatabase.getInstance().reference
         val key_random = database.push().key.toString()
         Log.d("key_random", key_random)
         Log.d("key_post",keyPost)
-        val comment = CommentPost(content,"bool","null","autor x",keyPost)
-        database.child("comentarios_post").child(keyPost).child(key_random).setValue(comment)
+        Log.d("user_name_datasource",user_name)
+        val time_server =  Timestamp.now()
+        val time_created = time_server.seconds * 1000 + time_server.nanoseconds / 1000000
+        Log.d("map_timestamp","${time_created.toString()}}")
+
+        //val comment = CommentPost(content = content,create_at = FieldValue.serverTimestamp(),autor = User_Id,post_Id = keyPost)
+        database.child("comentarios_post").child(keyPost).child(key_random).setValue(
+            CommentPost(
+                content = content,
+                create_at = time_created, //'ServerValue.TIMESTAMP.toString()',
+                autor = user_name,
+                post_Id = keyPost
+            )
+        )
 
 
 
