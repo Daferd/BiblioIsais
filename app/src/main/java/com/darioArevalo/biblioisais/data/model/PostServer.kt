@@ -16,6 +16,8 @@ data class PostServer(
     val autor: String = "",
     val contenido: String =  "",
     val titulo: String ="",
-    val post_Id: String = ""
+    val post_Id: String = "",
+    //val timestamp: String = "",
+    val created_at: Long?= null
 
 ):Parcelable

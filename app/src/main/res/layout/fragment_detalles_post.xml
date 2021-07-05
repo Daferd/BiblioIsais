@@ -65,11 +65,12 @@
 
 
             <com.github.chrisbanes.photoview.PhotoView
-                android:scaleType="centerInside"
+                android:scaleType="fitCenter"
+                android:layout_gravity="center"
                 tools:src="@tools:sample/backgrounds/scenic"
                 android:id="@+id/photo_view_detalles"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/txt_title_detalles"
