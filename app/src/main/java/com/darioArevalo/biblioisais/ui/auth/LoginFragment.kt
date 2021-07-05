@@ -4,7 +4,6 @@ import android.app.ActionBar
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -26,7 +25,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private lateinit var binding: FragmentLoginBinding
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val viewModel by viewModels<AuthViewModel>{AuthViewModelFactory(AuthRepoImpl(AuthDataSource()))}
-    private lateinit var acyionbar : ActionBar
+    //private lateinit var acyionbar : ActionBar
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -80,7 +79,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private fun isUserLoggedIn() {
         firebaseAuth.currentUser?.let {
-            findNavController().navigate(R.id.action_loginFragment_to_navigation_bibliomundo)
+            findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
         }
     }
 
@@ -120,7 +119,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    findNavController().navigate(R.id.action_loginFragment_to_navigation_bibliomundo)
+                    findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
                     Toast.makeText(
                             requireContext(),
                             "Welcome ${result.data?.email}",

@@ -5,7 +5,9 @@ import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -25,16 +27,19 @@ import com.darioArevalo.biblioisais.databinding.FragmentProfileBinding
 import com.darioArevalo.biblioisais.domain.profile.ProfileRepoImpl
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModel
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModelFactory
+import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.AgregarTemaFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import java.io.ByteArrayOutputStream
+import java.io.IOException
 import java.util.*
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private lateinit var binding: FragmentProfileBinding
+    private lateinit var bitmapGlobal : Bitmap
     private val REQUEST_IMAGE_CAPTURE = 1
 
     private val viewModel by viewModels<ProfileViewModel>{ ProfileViewModelFactory(
@@ -91,20 +96,29 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     }
 
-    private fun uploadImage() {
-        val alertOpciones = AlertDialog.Builder(context)
-        alertOpciones.setTitle("Seleccione una opción:")
-        alertOpciones.setPositiveButton("Tomar foto") { dialogInterface: DialogInterface, i: Int ->
-            dispatchTakePictureIntent()
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+            PERMISSION_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    chooseImageGallery()
+                }else{
+                    Toast.makeText(context,"Permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-        alertOpciones.setNegativeButton("Cargar imagen") { dialogInterface: DialogInterface, i: Int ->
-            /* val intent = Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-             intent.setType("image/")
-             band = true
-             startActivityForResult(intent,10)*/
-            Toast.makeText(context, "cargar foto", Toast.LENGTH_SHORT).show()
-        }
-        alertOpciones.show()
+    }
+
+    private fun chooseImageGallery(){
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.setAction(Intent.ACTION_GET_CONTENT)
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"),
+            IMAGE_CHOOSE
+        )//intent, IMAGE_CHOOSE)
     }
 
     private fun dispatchTakePictureIntent(){
@@ -124,6 +138,21 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             binding.profileImageView.setImageBitmap(imageBitmap)
             uploadPicture(imageBitmap)
         }
+
+        if(requestCode == IMAGE_CHOOSE && resultCode == Activity.RESULT_OK){
+            binding.profileImageView.setImageURI(data?.data)
+            val imgBitmap = data?.data
+
+            try {
+                bitmapGlobal = MediaStore.Images.Media.getBitmap(context?.contentResolver,imgBitmap)
+                binding.profileImageView.setImageBitmap(bitmapGlobal)
+                uploadPicture(bitmapGlobal)
+
+            }catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
+
     }
 
     private fun uploadPicture(imageBitmap: Bitmap){
@@ -146,6 +175,33 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             })
         }
 
+    }
+
+    private fun uploadImage() {
+        val alertOpciones = AlertDialog.Builder(context)
+        alertOpciones.setTitle("Seleccione una opción:")
+        alertOpciones.setPositiveButton("Tomar foto") { dialogInterface: DialogInterface, i: Int ->
+            dispatchTakePictureIntent()
+        }
+        alertOpciones.setNegativeButton("Cargar imagen") { dialogInterface: DialogInterface, i: Int ->
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                if (activity?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)   == PackageManager.PERMISSION_DENIED){
+                    val permission = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
+                    requestPermissions(permission, PERMISSION_CODE)
+                }else{
+                    chooseImageGallery()
+
+                }
+            }else{
+                chooseImageGallery()
+            }
+        }
+        alertOpciones.show()
+    }
+
+    companion object {
+        private const val IMAGE_CHOOSE = 1000;
+        private const val PERMISSION_CODE = 1001;
     }
 
 
