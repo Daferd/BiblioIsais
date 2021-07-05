@@ -50,7 +50,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         }
 
         activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        activity?.actionBar?.hide()
+        //activity?.actionBar?.hide()
 
         sendForm()
     }
@@ -64,8 +64,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
             val organization = binding.editTextOrganization.text.toString().trim()
             val gender = binding.editTextGender.text.toString().trim()
 
-
-            validateFormData(username,email,age,phoneNumber,organization,gender)
+            if (validateFormData(username,email,age,phoneNumber,organization,gender)) return@setOnClickListener
 
             createForm(username,email,age,phoneNumber,organization,gender)
         }

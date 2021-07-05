@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -37,6 +38,14 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CoursesAdap
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentBiblioisaisBinding.bind(view)
+
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         viewModel.fetchEpisodesCourse0().observe(viewLifecycleOwner,{ courseResult->
             when(courseResult){

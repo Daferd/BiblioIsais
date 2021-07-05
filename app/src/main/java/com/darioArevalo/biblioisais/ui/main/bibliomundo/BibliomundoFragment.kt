@@ -39,14 +39,6 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
 
         binding = FragmentBibliomundoBinding.bind(view)
 
-        val callback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                activity?.finish()
-            }
-        }
-
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         viewModel.fetchLocalLibraries().observe(viewLifecycleOwner,{ localResult ->
             when(localResult){

@@ -25,4 +25,10 @@
     <string name="years">Edad</string>
     <string name="phone_number">Telefono</string>
     <string name="send">Enviar</string>
+    <string name="therapy">Terapia</string>
+    <string name="orchardReading">LecturaHuerta</string>
+    <string name="profile">Perfil</string>
+    <string name="local_libraries">Bibliotecas Locales</string>
+    <string name="national_libraries">Bibliotecas Nacionales</string>
+    <string name="international_libraries">Bibliotecas Internacionales</string>
 </resources>
