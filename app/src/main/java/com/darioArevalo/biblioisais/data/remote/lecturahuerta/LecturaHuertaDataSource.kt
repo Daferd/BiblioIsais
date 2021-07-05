@@ -10,6 +10,7 @@ import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,6 +21,7 @@ import com.google.firebase.storage.UploadTask
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
 import java.util.*
+import kotlin.properties.Delegates
 
 class LecturaHuertaDataSource {
 
@@ -42,12 +44,16 @@ class LecturaHuertaDataSource {
 
 
          var User_Id = user?.uid.toString()
+         val user_name = user?.displayName.toString()
          val storaRef = FirebaseStorage.getInstance().reference
          val imageRef = storaRef.child("fotosPost/" + uuid.toString())
          val baos = ByteArrayOutputStream()
          bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos)
          val data = baos.toByteArray()
          val uploadTask = imageRef.putBytes(data)
+
+        val time_server =  Timestamp.now()
+        val time_created = time_server.seconds * 1000 + time_server.nanoseconds / 1000000
 
 
          uploadTask.continueWithTask{ task->
@@ -62,13 +68,14 @@ class LecturaHuertaDataSource {
                  downloadTask = task.result.toString()
                  val post_Id = querySnapshot.document().id
                  val postHashMap = hashMapOf(
-                     "autor" to  autor,
+                     "autor" to  user_name,
                      "contenido" to contenido,
                      "titulo" to titulo,
                      "timestamp" to FieldValue.serverTimestamp(),
                      "post_image" to downloadTask,
                      "post_Id" to post_Id,
-                     "User_Id" to User_Id
+                     "User_Id" to User_Id,
+                     "created_at" to time_created
                  )
                  querySnapshot.document(post_Id)
                      .set(postHashMap)
@@ -93,8 +100,6 @@ class LecturaHuertaDataSource {
         private lateinit var downloadTask : String
         private lateinit var uuid: UUID
     }
-
-
 
     }
 

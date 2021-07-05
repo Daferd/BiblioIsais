@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.core.BaseViewHolder
 import com.darioArevalo.biblioisais.data.model.PostServer
+import com.darioArevalo.biblioisais.data.model.TimeUtils
 import com.darioArevalo.biblioisais.databinding.LecturaHuertaRowBinding
 import com.darioArevalo.biblioisais.databinding.PostItemBinding
 
@@ -39,9 +40,13 @@ class LecturaHuertaAdapter(private val postList:List<PostServer>, private val it
         val context: Context
     ): BaseViewHolder<PostServer>(binding.root){
         override fun bind(item: PostServer) {
+
+
+
             Glide.with(context).load(item.post_image).centerCrop().into(binding.imgPost)
             binding.txtTitulo.text = item.titulo
             binding.txtDescripcion.text = item.contenido
+
             binding.root.setOnClickListener{itemOnClickListener.onPostClick(item)}
 
             //Glide.with(context).load(item.post_image).centerCrop().into(binding.postImage)
