@@ -222,7 +222,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
     override fun onPdfClick(pdf: PdfServer) {
 
-        Log.d("pdf_listener_url","${pdf.pdfUrl}")
+        Log.d("pdf_listener_url", pdf.pdfUrl)
         viewModel.fetchDownloadPDF(pdf.pdfUrl, requireContext())
 
         /*val httpsReference = FirebaseStorage.getInstance().getReferenceFromUrl(pdf.pdfUrl)
