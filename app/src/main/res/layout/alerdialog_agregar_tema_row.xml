@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:padding="5dp"
+        android:background="@color/blue_alert_dialog"
+        android:text="Publicando . . ."
+        android:textSize="35dp"
+        android:textColor="@color/md_blue_500"
+        android:gravity="center"
+        android:textStyle="normal|bold"
+        android:fontFamily="sans-serif-condensed-light"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#DEDEDE"/>
+
+</LinearLayout>
