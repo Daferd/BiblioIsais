@@ -1,5 +1,6 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
+import android.app.ActionBar
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -7,16 +8,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
 import com.darioArevalo.biblioisais.data.remote.lecturahuerta.CommentPostDataSource
@@ -24,7 +27,6 @@ import com.darioArevalo.biblioisais.databinding.FragmentDetallesPostBinding
 import com.darioArevalo.biblioisais.domain.lecturahuerta.CommentPostRepoImp
 import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewModel
 import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewModelFactory
-import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.LecturaHuertaAdapter
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
 
 
@@ -43,6 +45,8 @@ class DetallesPostFragment : Fragment() {
             post = it.getParcelable<PostServer>("post")!!
             Log.d("detalles","$post")
         }
+
+
 
     }
 
@@ -72,9 +76,9 @@ class DetallesPostFragment : Fragment() {
 
         binding.postTimeDetalles.text = created_at
 
-        Glide.with(requireContext()).load(post.profile_picture).centerCrop().into(binding.profilePhotoDetalles)
-        Glide.with(requireContext()).load(post.post_image).centerCrop().into(binding.photoViewDetalles)
-
+        Glide.with(requireContext()).load(post.profile_picture).fitCenter().into(binding.profilePhotoDetalles)
+        Glide.with(requireContext()).load(post.post_image).fitCenter().into(binding.photoViewDetalles)
+        //center crop
         viewModel.fechtLatestComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
             when(result){
                 is Result.Loading->{
@@ -111,6 +115,13 @@ class DetallesPostFragment : Fragment() {
             }
 
 
+        }
+
+        binding.photoViewDetalles.setOnClickListener {
+            val bundle = Bundle()
+            val imagepass = ImageBundle(bitmap = post.post_image)
+            bundle.putParcelable("image_view",imagepass)
+            findNavController().navigate(R.id.action_detallesPostFragment_to_imageviewFragment,bundle)
         }
 
 

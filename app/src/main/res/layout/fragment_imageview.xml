@@ -3,20 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.lecturaHuerta.ImageviewFragmentDialog">
+    tools:context=".ui.main.lecturaHuerta.ImageviewFragment">
 
     <com.github.chrisbanes.photoview.PhotoView
         android:scaleType="fitCenter"
         android:layout_gravity="center"
         tools:src="@tools:sample/backgrounds/scenic"
-        android:id="@+id/photo_view_detalles"
+        android:id="@+id/photo_view_detalles_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
 </FrameLayout>

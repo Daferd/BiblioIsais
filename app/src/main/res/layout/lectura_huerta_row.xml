@@ -6,6 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/md_orange_100"
     android:layout_marginHorizontal="@dimen/margin_normal"
     android:layout_marginVertical="@dimen/margin_small"
     android:padding="@dimen/margin_small"
@@ -47,7 +48,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mcv_picturePost"
             app:layout_constraintTop_toTopOf="@+id/mcv_picturePost"
-            tools:text="Margarita" />
+            tools:text="Titulo" />
 
         <TextView
             android:id="@+id/txt_descripcion"
@@ -60,7 +61,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/txt_titulo"
             app:layout_constraintTop_toBottomOf="@+id/txt_titulo"
-            tools:text="Margarita con ingredientes: vodka, soda, limon" />
+            tools:text="Contenido diversos de topicos diferentes." />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
