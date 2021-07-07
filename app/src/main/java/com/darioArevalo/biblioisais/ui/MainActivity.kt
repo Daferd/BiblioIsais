@@ -53,6 +53,15 @@ class MainActivity : AppCompatActivity() {
                 R.id.splashFragment -> {
                     //binding.navView.hide()
                 }
+                R.id.imageviewFragment ->{
+                    binding.navView.hide()
+                }
+                R.id.detallesPostFragment->{
+                    binding.navView.hide()
+                }
+                R.id.agregarTemaFragment ->{
+                    binding.navView.hide()
+                }
                 else -> {
                     binding.navView.show()
                 }

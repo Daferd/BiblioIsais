@@ -151,5 +151,14 @@
         android:id="@+id/detallesPostFragment"
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.DetallesPostFragment"
         android:label="fragment_detalles_post"
-        tools:layout="@layout/fragment_detalles_post" />
+        tools:layout="@layout/fragment_detalles_post" >
+        <action
+            android:id="@+id/action_detallesPostFragment_to_imageviewFragment"
+            app:destination="@id/imageviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageviewFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.ImageviewFragment"
+        android:label="fragment_imageview"
+        tools:layout="@layout/fragment_imageview" />
 </navigation>

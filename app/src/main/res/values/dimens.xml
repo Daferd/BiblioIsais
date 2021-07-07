@@ -4,8 +4,8 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
 
-    <dimen name="margin_normal">20dp</dimen>
-    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_normal">10dp</dimen>
+    <dimen name="margin_small">3dp</dimen>
 
     <dimen name="common_radius">14dp</dimen>
     <dimen name="common_elevation">8dp</dimen>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondotexturanaranja"
+    android:background="@color/md_orange_50"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment">
 
@@ -82,12 +82,12 @@
         android:fontFamily="sans-serif-condensed"
         android:src="@drawable/ic_baseline_add_500"
         android:text="Nuevo tema"
-        android:textColor="#536DFE"
+        android:textColor="@color/md_orange_50"
         android:textStyle="bold"
         android:textSize="20dp"
-        app:backgroundTint="#00083A"
+        app:backgroundTint="@color/orange_700"
         app:icon="@drawable/ic_baseline_add_500"
-        app:iconTint="#536DFE" />
+        app:iconTint="@color/md_orange_50" />
 
 
 </FrameLayout>
