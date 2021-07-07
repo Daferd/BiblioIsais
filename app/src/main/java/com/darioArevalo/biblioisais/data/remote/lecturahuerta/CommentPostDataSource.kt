@@ -40,6 +40,9 @@ class CommentPostDataSource {
 
         Log.d("comment_namexxx","${user?.displayName}")
         val database = FirebaseDatabase.getInstance().reference
+        
+        database.keepSynced(true)
+
         val key_random = database.push().key.toString()
         Log.d("key_random", key_random)
         Log.d("key_post",keyPost)
