@@ -72,6 +72,8 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
         binding = FragmentBibliotecasBinding.bind(view)
 
+        //cristiam care pichingo
+
         viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
             when(result){
                 is Result.Loading -> {
