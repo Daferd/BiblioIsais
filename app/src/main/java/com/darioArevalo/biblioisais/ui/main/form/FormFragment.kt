@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.viewModels
@@ -37,6 +38,11 @@ class FormFragment : Fragment(R.layout.fragment_form) {
 
         binding = FragmentFormBinding.bind(view)
 
+        val items = listOf("Masculino","Femenino","LGTBI","Otro")
+
+        val adapter = ArrayAdapter(requireContext(),R.layout.dropdown_item,items)
+        binding.editTextGender.setAdapter(adapter)
+
         val mToolbar = view.findViewById<Toolbar>(R.id.form_toolbar)
         mToolbar.visibility
         mToolbar.setOnClickListener {
@@ -44,7 +50,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         }
 
         activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
-        activity?.actionBar?.hide()
+        //activity?.actionBar?.hide()
 
         sendForm()
     }
@@ -53,17 +59,26 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         binding.btnSendForm.setOnClickListener {
             val username = binding.editTextUsername.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
-            val age = binding.editTextEdad.text.toString().trim()
+            val age = binding.editTextYear.text.toString().trim()
             val phoneNumber = binding.editTextPhoneNumber.text.toString().trim()
+            val organization = binding.editTextOrganization.text.toString().trim()
+            val gender = binding.editTextGender.text.toString().trim()
 
-            validateFormData(username,email,age,phoneNumber)
+            if (validateFormData(username,email,age,phoneNumber,organization,gender)) return@setOnClickListener
 
-            createForm(username,email,age,phoneNumber)
+            createForm(username,email,age,phoneNumber,organization,gender)
         }
     }
 
-    private fun createForm(username: String, email: String, age: String, phoneNumber: String) {
-        viewModel.sendForm(username,email,age,phoneNumber).observe(viewLifecycleOwner,{ result ->
+    private fun createForm(
+        username: String,
+        email: String,
+        age: String,
+        phoneNumber: String,
+        organization: String,
+        gender: String
+    ) {
+        viewModel.sendForm(username,email,age,phoneNumber,organization,gender).observe(viewLifecycleOwner,{ result ->
             when(result){
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -91,7 +106,9 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         username: String,
         email: String,
         age: String,
-        phoneNumber: String
+        phoneNumber: String,
+        organization: String,
+        gender: String
     ): Boolean {
         if (username.isEmpty()) {
             binding.editTextUsername.error = "Username is empty"
@@ -102,11 +119,20 @@ class FormFragment : Fragment(R.layout.fragment_form) {
             return true
         }
         if (age.isEmpty()) {
-            binding.editTextEdad.error = "Password is empty"
+            binding.editTextYear.error = "Password is empty"
             return true
         }
         if (phoneNumber.isEmpty()) {
             binding.editTextPhoneNumber.error = "Confirm password is empty"
+            return true
+        }
+        if (organization.isEmpty()) {
+            binding.editTextOrganization.error = "Confirm password is empty"
+            return true
+        }
+
+        if (gender.isEmpty()) {
+            binding.editTextGender.error = "Confirm password is empty"
             return true
         }
 

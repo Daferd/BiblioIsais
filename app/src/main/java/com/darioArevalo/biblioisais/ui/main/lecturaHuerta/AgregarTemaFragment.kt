@@ -1,5 +1,6 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
@@ -40,6 +41,7 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
         LecturaHuertaViewModelFactory(LecturaHuertaRepoImpl(LecturaHuertaDataSource()))
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAgregarTemaBinding.bind(view)
@@ -152,7 +154,7 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
         val btUploadPhoto = dialogView.findViewById<ImageView>(R.id.ImgVw_UploadCustomAlertDialog)
         btUploadPhoto.setOnClickListener {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (activity?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)   == PackageManager.PERMISSION_DENIED){
+                if (activity?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
                     val permission = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                     requestPermissions(permission,PERMISSION_CODE)
                 }else{
@@ -178,8 +180,8 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
 
 
     companion object {
-        private val IMAGE_CHOOSE = 1000;
-        private val PERMISSION_CODE = 1001;
+        private const val IMAGE_CHOOSE = 1000;
+        private const val PERMISSION_CODE = 1001;
     }
 
 }

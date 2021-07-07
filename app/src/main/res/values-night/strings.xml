@@ -4,4 +4,17 @@
     <string name="bibliomundo">BiblioMundo</string>
     <string name="biblioisais">BiblioIsais</string>
     <string name="biblioteca">Biblioteca</string>
+    <string name="nombre">Nombre</string>
+    <string name="signup">Registrarse</string>
+    <string name="signin">Iniciar sesión</string>
+    <string name="not_have_an_account_sign_up">¿No tienes una cuenta? Registrate</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="years">Edad</string>
+    <string name="phone_number">Telefono</string>
+    <string name="send">Enviar</string>
+    <string name="therapy">Terapia</string>
+    <string name="orchardReading">LecturaHuerta</string>
+    <string name="local_libraries">Bibliotecas Locales</string>
+    <string name="national_libraries">Bibliotecas Nacionales</string>
+    <string name="international_libraries">Bibliotecas Internacionales</string>
 </resources>

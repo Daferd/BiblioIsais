@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.main.bibliomundo.BibliomundoFragment"
     android:padding="8dp"
     android:background="@drawable/fondotexturanaranja">
-
-    <!--<RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone">
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout> -->
 
    <LinearLayout
         android:layout_width="match_parent"
@@ -28,10 +19,13 @@
             android:id="@+id/localLibrariesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bibliotecas Locales"
+            android:text="@string/local_libraries"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            android:textColor="@color/md_blue_700"/>
+            android:textColor="@color/md_blue_700"
+            android:visibility="gone"
+            android:padding="4dp"
+            android:background="#33141414"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/local_libraries_recycler_view"
@@ -39,16 +33,29 @@
             android:layout_height="275dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/courses_item"/>
+            tools:listitem="@layout/library_item"/>
+
+       <RelativeLayout
+           android:id="@+id/progress_bar"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:visibility="gone">
+           <ProgressBar
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_centerInParent="true"/>
+       </RelativeLayout>
 
         <TextView
+            android:id="@+id/nationalLibrariesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bibliotecas Nacionales"
+            android:text="@string/national_libraries"
             android:textSize="24sp"
             android:textStyle="bold|italic"
             android:textColor="@color/md_blue_700"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/national_libraries_recycler_view"
@@ -56,16 +63,18 @@
             android:layout_height="275dp"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/courses_item" />
+            tools:listitem="@layout/library_item" />
 
         <TextView
+            android:id="@+id/internationalLibrariesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Bibliotecas Internacionales"
+            android:text="@string/international_libraries"
             android:textSize="24sp"
             android:textStyle="bold|italic"
             android:textColor="@color/md_blue_700"
-            android:layout_marginTop="16dp"/>
+            android:layout_marginTop="16dp"
+            android:visibility="gone"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/international_libraries_recycler_view"
@@ -73,7 +82,7 @@
         android:layout_height="275dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/courses_item" />
+        tools:listitem="@layout/library_item"/>
 </LinearLayout>
 
     <!--

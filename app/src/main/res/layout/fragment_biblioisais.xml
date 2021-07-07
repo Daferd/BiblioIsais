@@ -23,7 +23,8 @@
              android:text="Dialogos sobre derecho própio"
              android:textSize="24sp"
              android:textStyle="bold|italic"
-             android:textColor="@color/md_blue_700"/>
+             android:textColor="@color/md_blue_700"
+            android:visibility="gone"/>
 
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/cursos1_recycler_view"
@@ -33,6 +34,17 @@
              app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
              tools:listitem="@layout/courses_item"/>
 
+        <RelativeLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
          <TextView
              android:id="@+id/curso2textView"
              android:layout_width="match_parent"
@@ -41,7 +53,8 @@
              android:textSize="24sp"
              android:textStyle="bold|italic"
              android:textColor="@color/md_blue_700"
-             android:layout_marginTop="16dp"/>
+             android:layout_marginTop="16dp"
+             android:visibility="gone"/>
 
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/cursos2_recycler_view"

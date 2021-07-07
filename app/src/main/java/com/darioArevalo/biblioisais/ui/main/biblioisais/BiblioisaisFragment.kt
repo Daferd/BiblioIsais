@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.databinding.FragmentBiblioisaisBinding
 import com.darioArevalo.biblioisais.data.model.CourseServer
 import com.darioArevalo.biblioisais.data.remote.courses.CoursesDataSource
@@ -36,37 +39,51 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CoursesAdap
 
         binding = FragmentBiblioisaisBinding.bind(view)
 
+        val callback = object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                activity?.finish()
+            }
+        }
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+
         viewModel.fetchEpisodesCourse0().observe(viewLifecycleOwner,{ courseResult->
             when(courseResult){
                 is Result.Loading -> {
+                    binding.progressBar.show()
+                    viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
+                        when(courseResult){
+                            is Result.Loading -> {
+
+                            }
+
+                            is Result.Success -> {
+                                binding.cursos2RecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
+                            }
+
+                            is Result.Failure -> {
+                                Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
 
                 }
 
                 is Result.Success -> {
+                    binding.progressBar.hide()
+                    binding.curso1textView.show()
+                    binding.curso2textView.show()
                     binding.cursos1RecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
 
                 is Result.Failure -> {
+                    binding.progressBar.hide()
                     Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
                 }
             }
         })
 
-      viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
-            when(courseResult){
-                is Result.Loading -> {
 
-                }
-
-                is Result.Success -> {
-                    binding.cursos2RecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
-                }
-
-                is Result.Failure -> {
-                    Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
-                }
-            }
-        })
 
 
 

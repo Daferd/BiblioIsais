@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ConcatAdapter
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.databinding.FragmentBibliomundoBinding
 import com.darioArevalo.biblioisais.data.model.LibraryServer
 import com.darioArevalo.biblioisais.data.remote.libraries.LibrariesDataSource
@@ -37,23 +39,47 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
 
         binding = FragmentBibliomundoBinding.bind(view)
 
-        val callback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                activity?.finish()
-            }
-        }
-
-
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         viewModel.fetchLocalLibraries().observe(viewLifecycleOwner,{ localResult ->
             when(localResult){
                 is Result.Loading -> {
-                    //binding.progressBar.show()
+                    binding.progressBar.show()
+                    viewModel.fetchNationalLibraries().observe(viewLifecycleOwner, { nationalResults ->
+                        when(nationalResults){
+                            is Result.Success ->{
+                                binding.nationalLibrariesRecyclerView.adapter=LibrariesAdapterAux(nationalResults.data,this@BibliomundoFragment)
+                            }
+                            is Result.Failure -> {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Hubo un error : ${nationalResults.exception}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    })
+
+                    viewModel.fetchInternationalLibraries().observe(viewLifecycleOwner, { internationalResults ->
+                        when(internationalResults){
+                            is Result.Success ->{
+                                binding.internationalLibrariesRecyclerView.adapter=LibrariesAdapterAux(internationalResults.data,this@BibliomundoFragment)
+                            }
+                            is Result.Failure -> {
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Hubo un error : ${internationalResults.exception}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    })
                 }
 
                 is Result.Success -> {
-                    //binding.progressBar.hide()
+                    binding.progressBar.hide()
+                    binding.localLibrariesTextView.show()
+                    binding.nationalLibrariesTextView.show()
+                    binding.internationalLibrariesTextView.show()
                     binding.localLibrariesRecyclerView.adapter = LibrariesAdapterAux(localResult.data,this@BibliomundoFragment)
                 }
                 is Result.Failure -> {
@@ -64,35 +90,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
             }
         })
 
-        viewModel.fetchNationalLibraries().observe(viewLifecycleOwner, { nationalResults ->
-            when(nationalResults){
-                is Result.Success ->{
-                    binding.nationalLibrariesRecyclerView.adapter=LibrariesAdapterAux(nationalResults.data,this@BibliomundoFragment)
-                }
-                is Result.Failure -> {
-                    Toast.makeText(
-                            requireContext(),
-                            "Hubo un error : ${nationalResults.exception}",
-                            Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
 
-        viewModel.fetchInternationalLibraries().observe(viewLifecycleOwner, { internationalResults ->
-            when(internationalResults){
-                is Result.Success ->{
-                    binding.internationalLibrariesRecyclerView.adapter=LibrariesAdapterAux(internationalResults.data,this@BibliomundoFragment)
-                }
-                is Result.Failure -> {
-                    Toast.makeText(
-                            requireContext(),
-                            "Hubo un error : ${internationalResults.exception}",
-                            Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
 
 
         /*

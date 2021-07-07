@@ -12,13 +12,14 @@
     <ImageView
         android:layout_width="120dp"
         android:layout_height="120dp"
+        tools:ignore="ContentDescription"
         android:background="@drawable/logo_biblioisais"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="BIBLIO ISAIS"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/md_blue_700"/>
 
@@ -26,7 +27,7 @@
         android:id="@+id/text_input_layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="E-mail"
+        android:hint="@string/email"
         app:startIconDrawable="@drawable/ic_email"
         android:layout_marginTop="24dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -43,8 +44,8 @@
         android:id="@+id/text_input_layout_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
-        app:passwordToggleEnabled="true"
+        android:hint="@string/password"
+        app:endIconMode="password_toggle"
         android:layout_marginTop="8dp"
         app:startIconDrawable="@drawable/ic_lock"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -61,21 +62,38 @@
         android:id="@+id/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="SignIn"
+        android:text="@string/signin"
         android:layout_marginTop="16dp"/>
 
     <TextView
-        android:id="@+id/txt_signup"
+        android:id="@+id/txt_olvidaste"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Not have an account? Sign Up"/>
+        android:textSize="18sp"
+        android:textColor="@color/md_grey_700"
+        android:gravity="right"
+        android:text="¿Olvidaste tu contraseña?"
+        android:layout_marginTop="4dp"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/txt_signup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@color/md_grey_700"
+        android:gravity="center"
+        android:text="@string/not_have_an_account_sign_up"
+        android:layout_marginTop="168dp"/>
+
+
+
+
 
 
 

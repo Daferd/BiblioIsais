@@ -8,6 +8,8 @@ class FormRepoImpl(private val dataSource: FormDataSource): FormRepo {
         username: String,
         email: String,
         age: String,
-        numberPhone: String
-    ):FirebaseFirestore? = dataSource.setForm(username,email,age,numberPhone)
+        numberPhone: String,
+        organization: String,
+        gender: String
+    ): FirebaseFirestore? = dataSource.setForm(username,email,age,numberPhone,organization,gender)
 }

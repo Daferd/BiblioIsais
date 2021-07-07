@@ -6,6 +6,16 @@
     app:startDestination="@id/loginFragment">
 
     <fragment
+        android:id="@+id/navigation_biblioisais"
+        android:name="com.darioArevalo.biblioisais.ui.main.biblioisais.BiblioisaisFragment"
+        android:label="Biblio Isais"
+        tools:layout="@layout/fragment_biblioisais" >
+        <action
+            android:id="@+id/action_navigation_biblioisais_to_surveyFragment"
+            app:destination="@id/FormFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/navigation_bibliomundo"
         android:name="com.darioArevalo.biblioisais.ui.main.bibliomundo.BibliomundoFragment"
         android:label="Bibliotecas del Mundo"
@@ -17,16 +27,6 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_rigth" />
-    </fragment>
-
-    <fragment
-        android:id="@+id/navigation_biblioisais"
-        android:name="com.darioArevalo.biblioisais.ui.main.biblioisais.BiblioisaisFragment"
-        android:label="Biblio Isais"
-        tools:layout="@layout/fragment_biblioisais" >
-        <action
-            android:id="@+id/action_navigation_biblioisais_to_surveyFragment"
-            app:destination="@id/FormFragment" />
     </fragment>
 
     <fragment
@@ -56,19 +56,15 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_navigation_bibliomundo"
-            app:destination="@id/navigation_bibliomundo"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_rigth" />
-        <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_rigth" />
+        <action
+            android:id="@+id/action_loginFragment_to_navigation_biblioisais"
+            app:destination="@id/navigation_biblioisais" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"

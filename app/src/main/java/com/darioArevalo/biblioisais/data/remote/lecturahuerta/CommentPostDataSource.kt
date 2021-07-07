@@ -25,12 +25,9 @@ class CommentPostDataSource {
            comments.getValue<CommentPost>().let {
                commentPostList.add(it!!)
             }
-
         }
 
         return Result.Success(commentPostList)
-
-
     }
 
     fun addNewComment(content:String,keyPost: String) {
