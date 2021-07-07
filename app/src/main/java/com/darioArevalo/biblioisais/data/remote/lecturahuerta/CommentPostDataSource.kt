@@ -6,6 +6,7 @@ import com.darioArevalo.biblioisais.data.model.CommentPost
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FieldValue
 import kotlinx.coroutines.tasks.await
@@ -16,6 +17,8 @@ class CommentPostDataSource {
         val commentPostList = mutableListOf<CommentPost>()
 
         val database = FirebaseDatabase.getInstance().reference
+        database.keepSynced(true)
+
         val databaseReference = database.child("comentarios_post/${keyPost}").get().await()
 
         for (comments in databaseReference.children){
@@ -30,9 +33,10 @@ class CommentPostDataSource {
     fun addNewComment(content:String,keyPost: String) {
 
         val user = FirebaseAuth.getInstance().currentUser
-        val User_Id = user?.uid.toString()
+        val user_id = user?.uid.toString()
+        val photo_user = user?.photoUrl.toString()
         val user_name = user?.displayName.toString()
-        val create_at = FieldValue.serverTimestamp()
+        //val create_at = FieldValue.serverTimestamp()
 
         Log.d("comment_namexxx","${user?.displayName}")
         val database = FirebaseDatabase.getInstance().reference
@@ -50,7 +54,9 @@ class CommentPostDataSource {
                 content = content,
                 create_at = time_created, //'ServerValue.TIMESTAMP.toString()',
                 autor = user_name,
-                post_Id = keyPost
+                post_Id =  keyPost,
+                User_Id = user_id,
+                photo_url_user = photo_user
             )
         )
 

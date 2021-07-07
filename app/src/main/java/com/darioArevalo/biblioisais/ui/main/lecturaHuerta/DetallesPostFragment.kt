@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.PostServer
+import com.darioArevalo.biblioisais.data.model.TimeUtils
 import com.darioArevalo.biblioisais.data.remote.lecturahuerta.CommentPostDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentDetallesPostBinding
 import com.darioArevalo.biblioisais.domain.lecturahuerta.CommentPostRepoImp
@@ -60,9 +61,17 @@ class DetallesPostFragment : Fragment() {
         binding.rvPostDetalles.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
 
 
+        val created_at = post.created_at?.let {
+            TimeUtils.timeAgo(it)
+        }
+
+
         binding.profileUserNameDetalles.text = post.autor
         binding.txtTitleDetalles.text = post.titulo
         binding.txtContenidoDetalles.text = post.contenido
+
+        binding.postTimeDetalles.text = created_at
+
         Glide.with(requireContext()).load(post.profile_picture).centerCrop().into(binding.profilePhotoDetalles)
         Glide.with(requireContext()).load(post.post_image).centerCrop().into(binding.photoViewDetalles)
 
@@ -76,6 +85,7 @@ class DetallesPostFragment : Fragment() {
                     binding.progressBarDetallesPost.visibility = View.GONE
                     Log.d("Livedata_comment","${result.data}")
                     binding.rvPostDetalles.adapter = commentAdapter(result.data)
+
                 }
 
                 is Result.Failure->{
