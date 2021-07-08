@@ -146,6 +146,9 @@
         <action
             android:id="@+id/action_agregarTemaFragment_to_navigation_lecturaHuerta"
             app:destination="@id/navigation_lecturaHuerta" />
+        <action
+            android:id="@+id/action_agregarTemaFragment_to_imageviewFragment"
+            app:destination="@id/imageviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/detallesPostFragment"

@@ -37,10 +37,10 @@
                 android:layout_margin="2dp"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <com.github.chrisbanes.photoview.PhotoView
                     android:id="@+id/imgVw_photoPost"
                     android:layout_width="0dp"
-                    android:layout_height="150dp"
+                    android:layout_height="300dp"
                     android:layout_gravity="center"
                     android:scaleType="fitCenter"
                     android:src="@drawable/ic_baseline_insert_photo_500"

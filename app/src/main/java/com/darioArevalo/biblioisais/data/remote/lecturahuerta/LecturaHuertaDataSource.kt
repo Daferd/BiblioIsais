@@ -10,6 +10,7 @@ import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -38,6 +39,11 @@ class LecturaHuertaDataSource {
         uuid = UUID.randomUUID()
         downloadTask = ""
 
+        val user = FirebaseAuth.getInstance().currentUser
+        val user_id = user?.uid.toString()
+        val photo_user = user?.photoUrl.toString()
+        val user_name = user?.displayName.toString()
+
 
         var post_Id = ""
         val storaRef = FirebaseStorage.getInstance().reference
@@ -47,6 +53,9 @@ class LecturaHuertaDataSource {
         val data = baos.toByteArray()
         val uploadTask = imageRef.putBytes(data)
 
+        val time_server =  Timestamp.now()
+        val time_created = time_server.seconds * 1000 + time_server.nanoseconds / 1000000
+        Log.d("map_timestamp","${time_created.toString()}}")
 
         uploadTask.continueWithTask{ task->
             if (!task.isSuccessful){
@@ -60,10 +69,10 @@ class LecturaHuertaDataSource {
                 downloadTask = task.result.toString()
                 post_Id = querySnapshot.document().id
                 val postHashMap = hashMapOf(
-                    "autor" to  autor,
+                    "autor" to  user_name,//autor,
                     "contenido" to contenido,
                     "titulo" to titulo,
-                    "timestamp" to FieldValue.serverTimestamp(),
+                    "created_at" to time_created,//FieldValue.serverTimestamp(),
                     "post_image" to downloadTask,
                     "post_Id" to post_Id
                 )
