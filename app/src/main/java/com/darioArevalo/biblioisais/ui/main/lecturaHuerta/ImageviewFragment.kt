@@ -23,10 +23,9 @@ class ImageviewFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         requireArguments().let {
-            image_bundle = it.getParcelable("image_view")!!
+            image_bundle = it.getParcelable("img_view_detalles")!!
             Log.d("detalles","$image_bundle")
         }
-
     }
 
     override fun onCreateView(
@@ -40,14 +39,15 @@ class ImageviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentImageviewBinding.bind(view)
-        Glide.with(requireContext()).load(image_bundle.bitmap).fitCenter().into(binding.photoViewDetallesFragment)
 
-        //setupView(view)
-        //setupClickListeners(view)
+        try {
+            Glide.with(requireContext()).load(image_bundle.bitmap_string).fitCenter().into(binding.photoViewDetallesFragment)
+
+        }catch (e:Exception){
+            e.printStackTrace()
+        }
     }
 
-    private fun setupView(view: View) {
 
-    }
 
 }

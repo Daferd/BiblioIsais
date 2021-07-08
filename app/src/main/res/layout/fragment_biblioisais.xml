@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".ui.main.biblioisais.BiblioisaisFragment"
     android:padding="8dp"
-    android:background="@drawable/fondotexturanaranja">
+    android:background="@color/md_orange_50">
 
 
     <LinearLayout

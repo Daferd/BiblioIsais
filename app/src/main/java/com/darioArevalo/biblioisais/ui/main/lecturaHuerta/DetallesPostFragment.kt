@@ -1,6 +1,7 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
-import android.app.ActionBar
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,12 +9,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -64,11 +63,9 @@ class DetallesPostFragment : Fragment() {
         binding.rvPostDetalles.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPostDetalles.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
 
-
         val created_at = post.created_at?.let {
             TimeUtils.timeAgo(it)
         }
-
 
         binding.profileUserNameDetalles.text = post.autor
         binding.txtTitleDetalles.text = post.titulo
@@ -104,23 +101,18 @@ class DetallesPostFragment : Fragment() {
             val keyPost = post.post_Id
 
             if (TextUtils.isEmpty(commentPost)){
-
                 Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
-
             }else{
                 viewModel.addNewComment(commentPost,keyPost)
                 binding.editTxtContent.setText("")
                 Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
-
             }
-
-
         }
 
         binding.photoViewDetalles.setOnClickListener {
             val bundle = Bundle()
-            val imagepass = ImageBundle(bitmap = post.post_image)
-            bundle.putParcelable("image_view",imagepass)
+            val imagepass = ImageBundle(bitmap_string = post.post_image)
+            bundle.putParcelable("img_view_detalles",imagepass)
             findNavController().navigate(R.id.action_detallesPostFragment_to_imageviewFragment,bundle)
         }
 
