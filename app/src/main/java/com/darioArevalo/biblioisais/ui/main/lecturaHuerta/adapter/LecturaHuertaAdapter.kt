@@ -4,6 +4,8 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.appcompat.view.menu.ActionMenuItemView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -12,9 +14,15 @@ import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
 import com.darioArevalo.biblioisais.databinding.LecturaHuertaRowBinding
 import com.darioArevalo.biblioisais.databinding.PostItemBinding
+import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
-class LecturaHuertaAdapter(private val postList:List<PostServer>, private val itemOnClickListener:OnPostClickListener):RecyclerView.Adapter<BaseViewHolder<*>>() {
+//List<PostServer>
+class LecturaHuertaAdapter(private val postList:ArrayList<PostServer>, private val itemOnClickListener:OnPostClickListener):RecyclerView.Adapter<BaseViewHolder<*>>(),Filterable {
 
+    private val main_list = postList
+    private val searchList = ArrayList<PostServer>(postList)
 
     interface OnPostClickListener{
         fun onPostClick(Post:PostServer)
@@ -27,11 +35,14 @@ class LecturaHuertaAdapter(private val postList:List<PostServer>, private val it
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
         when(holder){
-            is LecturaHuertaViewHolder -> holder.bind(postList[position])
+            is LecturaHuertaViewHolder -> {
+
+                holder.bind(postList[position])
+            }
         }
     }
 
-    override fun getItemCount(): Int = postList.size
+    override fun getItemCount(): Int = postList.size//postList.size
 
     private inner class LecturaHuertaViewHolder(
         val binding: LecturaHuertaRowBinding,
@@ -55,4 +66,38 @@ class LecturaHuertaAdapter(private val postList:List<PostServer>, private val it
             //binding.postTimestamp.text="Hace 2 horas"
         }
     }
+
+    override fun getFilter(): Filter {
+        return object: Filter(){
+            override fun performFiltering(constraint: CharSequence?): FilterResults {
+                val filteredList = ArrayList<PostServer>()
+
+
+                    if (constraint.isNullOrBlank() or constraint.isNullOrEmpty()){
+                        filteredList.addAll(searchList)
+                    }else{
+                        val filterPattern = constraint.toString().toLowerCase(Locale.ROOT).trim()
+                        searchList.forEach{
+                            if (it.autor.toLowerCase(Locale.ROOT).contains(filterPattern) || it.titulo.toLowerCase(
+                                    Locale.ROOT).contains(filterPattern)){
+                                filteredList.add(it)
+
+                            }
+                        }
+                    }
+                val result = FilterResults()
+                result.values = filteredList
+                return result
+            }
+
+            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
+                main_list.clear()
+                main_list.addAll(results!!.values as List<PostServer>)
+                notifyDataSetChanged()
+            }
+
+        }
+    }
+
+
 }
