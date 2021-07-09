@@ -46,7 +46,7 @@
 
         <activity
             android:name=".ui.MainActivity"
-            android:theme="@style/Theme.BiblioIsais.NoActionBar"
+            android:theme="@style/Theme.BiblioIsais.NoActionBar">
             android:label="@string/app_name"
             android:windowSoftInputMode="stateAlwaysHidden|adjustPan">
 

@@ -60,15 +60,17 @@
             android:layout_height="wrap_content"/>
 
     </RelativeLayout>
+
     <LinearLayout
-        android:layout_marginTop="260dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="483dp"
+        android:layout_marginTop="260dp"
         android:orientation="vertical">
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_postList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
     </LinearLayout>
 
