@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.databinding.FragmentTherapyBinding
 
@@ -20,6 +21,7 @@ class TherapyFragment : Fragment(R.layout.fragment_therapy) {
         binding = FragmentTherapyBinding.bind(view)
 
         binding.psychologyCardView.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_therapy_to_therapyFragmentDialog)
             Toast.makeText(context,"Psychology",Toast.LENGTH_SHORT).show()
         }
         binding.spiritualCardView.setOnClickListener {

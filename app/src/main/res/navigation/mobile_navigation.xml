@@ -131,7 +131,11 @@
         android:id="@+id/navigation_therapy"
         android:name="com.darioArevalo.biblioisais.ui.main.therapy.TherapyFragment"
         android:label="Terapia Ancestral"
-        tools:layout="@layout/fragment_therapy" />
+        tools:layout="@layout/fragment_therapy" >
+        <action
+            android:id="@+id/action_navigation_therapy_to_therapyFragmentDialog"
+            app:destination="@id/therapyFragmentDialog" />
+    </fragment>
     <dialog
         android:id="@+id/newdataFragment"
         android:name="com.darioArevalo.biblioisais.ui.main.profile.NewdataFragment"
@@ -188,4 +192,9 @@
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.ImageviewFragment"
         android:label="fragment_imageview"
         tools:layout="@layout/fragment_imageview" />
+    <dialog
+        android:id="@+id/therapyFragmentDialog"
+        android:name="com.darioArevalo.biblioisais.ui.main.therapy.TherapyFragmentDialog"
+        android:label="fragment_therapy_dialog"
+        tools:layout="@layout/fragment_therapy_dialog" />
 </navigation>
