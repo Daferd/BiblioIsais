@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_biblioisais" >
         <action
             android:id="@+id/action_navigation_biblioisais_to_surveyFragment"
-            app:destination="@id/FormFragment" />
+            app:destination="@id/FormFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
     </fragment>
 
     <fragment
@@ -36,7 +40,11 @@
         tools:layout="@layout/fragment_bibliotecas" >
         <action
             android:id="@+id/action_navigation_biblioteca_to_navigation_bibliomundo"
-            app:destination="@id/navigation_bibliomundo" />
+            app:destination="@id/navigation_bibliomundo"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
     </fragment>
     <fragment
         android:id="@+id/navigation_lecturaHuerta"
@@ -45,10 +53,18 @@
         tools:layout="@layout/fragment_lectura_huerta" >
         <action
             android:id="@+id/action_navigation_lecturaHuerta_to_agregarTemaFragment"
-            app:destination="@id/agregarTemaFragment" />
+            app:destination="@id/agregarTemaFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
         <action
             android:id="@+id/action_navigation_lecturaHuerta_to_detallesPostFragment"
-            app:destination="@id/detallesPostFragment" />
+            app:destination="@id/detallesPostFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -64,7 +80,11 @@
             app:popExitAnim="@anim/slide_out_rigth" />
         <action
             android:id="@+id/action_loginFragment_to_navigation_biblioisais"
-            app:destination="@id/navigation_biblioisais" />
+            app:destination="@id/navigation_biblioisais"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -72,8 +92,8 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" >
         <action
-            android:id="@+id/action_registerFragment_to_navigation_profile"
-            app:destination="@id/navigation_profile"
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -145,7 +165,11 @@
         tools:layout="@layout/fragment_agregar_tema" >
         <action
             android:id="@+id/action_agregarTemaFragment_to_navigation_lecturaHuerta"
-            app:destination="@id/navigation_lecturaHuerta" />
+            app:destination="@id/navigation_lecturaHuerta"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_rigth" />
         <action
             android:id="@+id/action_agregarTemaFragment_to_imageviewFragment"
             app:destination="@id/imageviewFragment" />

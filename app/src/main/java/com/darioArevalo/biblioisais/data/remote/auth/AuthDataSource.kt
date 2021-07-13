@@ -19,6 +19,9 @@ class AuthDataSource {
     suspend fun singUp(email: String, password: String, username: String, form: Boolean): FirebaseUser? {
         val authResult = FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).await()
         authResult.user?.let { user ->
+
+            user.sendEmailVerification()
+
             val profileDates = UserProfileChangeRequest.Builder()
                 .setDisplayName(username)
                 .setPhotoUri(Uri.parse("https://firebasestorage.googleapis.com/v0/b/biblioisais.appspot.com/o/defaultPhoto.png?alt=media&token=647dbd4d-d667-43c1-99f9-bd58248a10d4"))
