@@ -46,19 +46,21 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_layout_year"
+        android:id="@+id/text_input_layout_date_of_birth"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/years"
+        android:hint="@string/date_of_birth"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextYear"
+            android:id="@+id/editTextDateOfBirth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
             android:inputType="phone"/>
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -5,7 +5,7 @@ import android.provider.ContactsContract
 data class FormServer (
     val username: String = "",
     val email: String = "",
-    val age: String = "",
+    val date: String = "",
     val phoneNumber: String = "",
     val organization: String = "",
     val gender: String = ""

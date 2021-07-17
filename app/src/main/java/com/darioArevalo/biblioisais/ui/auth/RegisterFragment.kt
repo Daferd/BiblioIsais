@@ -58,8 +58,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context,"Actualiza tu foto de perfil",Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.action_registerFragment_to_navigation_profile)
+                    Toast.makeText(context,"Verifica el registro en tu cuenta de correo",Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 is Result.Failure -> {
                     binding.progressBar.visibility = View.GONE

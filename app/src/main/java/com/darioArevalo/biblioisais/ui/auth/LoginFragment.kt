@@ -78,9 +78,17 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun isUserLoggedIn() {
-        firebaseAuth.currentUser?.let {
-            findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
+        val user = FirebaseAuth.getInstance().currentUser
+
+        user?.let {
+            if (user.isEmailVerified){
+                findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
+            }
         }
+        /*firebaseAuth.currentUser?.let {
+
+            findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
+        }*/
     }
 
     private fun doLogin() {
@@ -119,12 +127,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
-                    Toast.makeText(
+                    if(!result.data?.isEmailVerified!!){
+                        Toast.makeText(context,"Correo electrónico no verificado",Toast.LENGTH_SHORT).show()
+                        binding.btnSignin.isEnabled = true
+                    }else{
+                        findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
+                        Toast.makeText(
                             requireContext(),
-                            "Welcome ${result.data?.email}",
+                            "Welcome ${result.data?.displayName}",
                             Toast.LENGTH_SHORT
-                    ).show()
+                        ).show()
+                    }
+
                 }
                 is Result.Failure -> {
                     binding.progressBar.visibility = View.GONE

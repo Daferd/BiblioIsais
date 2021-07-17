@@ -12,14 +12,14 @@ class FormViewModel(private val repo: FormRepo): ViewModel() {
     fun sendForm(
         username: String,
         email: String,
-        age: String,
+        date: String,
         numberPhone: String,
         organization: String,
         gender: String
     ) = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
-            emit(Result.Success(repo.sendForm(username,email,age,numberPhone,organization,gender)))
+            emit(Result.Success(repo.sendForm(username,email,date,numberPhone,organization,gender)))
         }catch (e: Exception){
             emit(Result.Failure(e))
         }

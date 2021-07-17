@@ -22,7 +22,7 @@
     <string name="signin">Iniciar sesión</string>
     <string name="not_have_an_account_sign_up">¿No tienes una cuenta? Registrate</string>
     <string name="log_out">Cerrar sesión</string>
-    <string name="years">Edad</string>
+    <string name="date_of_birth">Fecha de nacimiento</string>
     <string name="phone_number">Telefono</string>
     <string name="send">Enviar</string>
     <string name="therapy">Terapia</string>

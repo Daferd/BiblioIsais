@@ -1,5 +1,6 @@
 package com.darioArevalo.biblioisais.ui.main.form
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -52,33 +53,47 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         //activity?.actionBar?.hide()
 
+        binding.editTextDateOfBirth.setOnClickListener {
+            showDatePickerDialog()
+        }
+
         sendForm()
+    }
+
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        fragmentManager?.let { datePicker.show(it,"datePicker") }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun onDateSelected(day:Int, month:Int, year:Int){
+        binding.editTextDateOfBirth.setText("$day/$month/$year")
     }
 
     private fun sendForm() {
         binding.btnSendForm.setOnClickListener {
             val username = binding.editTextUsername.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
-            val age = binding.editTextYear.text.toString().trim()
+            val date = binding.editTextDateOfBirth.text.toString().trim()
             val phoneNumber = binding.editTextPhoneNumber.text.toString().trim()
             val organization = binding.editTextOrganization.text.toString().trim()
             val gender = binding.editTextGender.text.toString().trim()
 
-            if (validateFormData(username,email,age,phoneNumber,organization,gender)) return@setOnClickListener
+            if (validateFormData(username,email,date,phoneNumber,organization,gender)) return@setOnClickListener
 
-            createForm(username,email,age,phoneNumber,organization,gender)
+            createForm(username,email,date,phoneNumber,organization,gender)
         }
     }
 
     private fun createForm(
         username: String,
         email: String,
-        age: String,
+        date: String,
         phoneNumber: String,
         organization: String,
         gender: String
     ) {
-        viewModel.sendForm(username,email,age,phoneNumber,organization,gender).observe(viewLifecycleOwner,{ result ->
+        viewModel.sendForm(username,email,date,phoneNumber,organization,gender).observe(viewLifecycleOwner,{ result ->
             when(result){
                 is Result.Loading -> {
                     binding.progressBar.visibility = View.VISIBLE
@@ -105,7 +120,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
     private fun validateFormData(
         username: String,
         email: String,
-        age: String,
+        date: String,
         phoneNumber: String,
         organization: String,
         gender: String
@@ -118,8 +133,8 @@ class FormFragment : Fragment(R.layout.fragment_form) {
             binding.editTextEmail.error = "email is empty"
             return true
         }
-        if (age.isEmpty()) {
-            binding.editTextYear.error = "Password is empty"
+        if (date.isEmpty()) {
+            binding.editTextDateOfBirth.error = "Password is empty"
             return true
         }
         if (phoneNumber.isEmpty()) {
