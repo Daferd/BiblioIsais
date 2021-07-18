@@ -20,11 +20,11 @@
              android:id="@+id/curso1textView"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="Dialogos sobre derecho própio"
+             android:text="@string/certificate_in_own_law"
              android:textSize="24sp"
              android:textStyle="bold|italic"
              android:textColor="@color/md_blue_700"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/cursos1_recycler_view"
@@ -49,12 +49,12 @@
              android:id="@+id/curso2textView"
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
-             android:text="Curso 2"
+             android:text="@string/certificate_on_economies_and_orchards"
              android:textSize="24sp"
              android:textStyle="bold|italic"
              android:textColor="@color/md_blue_700"
              android:layout_marginTop="16dp"
-             android:visibility="gone"/>
+             android:visibility="visible"/>
 
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/cursos2_recycler_view"

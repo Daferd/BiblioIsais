@@ -17,4 +17,6 @@
     <string name="local_libraries">Bibliotecas Locales</string>
     <string name="national_libraries">Bibliotecas Nacionales</string>
     <string name="international_libraries">Bibliotecas Internacionales</string>
+    <string name="certificate_in_own_law">Diplomado en Derecho Propio</string>
+    <string name="certificate_on_economies_and_orchards">Diplomado sobre Economías y Huertas</string>
 </resources>

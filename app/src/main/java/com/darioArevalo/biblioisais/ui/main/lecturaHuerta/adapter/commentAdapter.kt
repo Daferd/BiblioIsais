@@ -45,8 +45,6 @@ class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerVie
             binding.commentUsername.text = item.autor
             binding.commentContent.text = item.content
             Glide.with(context).load(item.photo_url_user).centerCrop().into(binding.commentUserImg)
-
-
         }
 
     }
