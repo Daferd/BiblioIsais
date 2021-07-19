@@ -67,14 +67,44 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
     private lateinit var storageReference: StorageReference
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return super.onCreateView(inflater, container, savedInstanceState)
+
+        //val view: View = inflater.inflate(R.layout.fragment_bibliotecas, container,false)
+        val carousel = view?.findViewById<ImageCarousel>(R.id.carousel)
+        val recyclerPdf = view?.findViewById<RecyclerView>(R.id.pdf_recycler_view)
+
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
+            when(result){
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    for (image in result.data){
+                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    }
+                    carousel?.addData(imageList)
+                    //imageList.add(CarouselItem(result.data[0].imageUrl,result.data[0].name))
+                    //Log.d("imagenes","info : ${result.data[0].imageUrl}")
+
+                }
+                is Result.Failure -> {
+
+                }
+            }
+        })
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentBibliotecasBinding.bind(view)
 
-        //cristiam care pichingo
-
-        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
+        /*viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
             when(result){
                 is Result.Loading -> {
 
@@ -91,7 +121,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
                 }
             }
 
-        })
+        })*/
 
         viewModel.fetchPdf().observe(viewLifecycleOwner,{ result->
             when(result){

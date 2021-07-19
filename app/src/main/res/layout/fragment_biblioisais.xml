@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_orange_50"
     android:orientation="vertical"
-    tools:context=".ui.main.biblioisais.BiblioisaisFragment"
     android:padding="8dp"
-    android:background="@color/md_orange_50">
+    tools:context=".ui.main.biblioisais.BiblioisaisFragment">
 
 
     <LinearLayout
@@ -17,51 +16,71 @@
         android:orientation="vertical">
 
         <TextView
-             android:id="@+id/curso1textView"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="@string/certificate_in_own_law"
-             android:textSize="24sp"
-             android:textStyle="bold|italic"
-             android:textColor="@color/md_blue_700"
-            android:visibility="gone"/>
+            android:id="@+id/curso1textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/certificate_in_own_law"
+            android:textColor="@color/md_blue_700"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
 
-         <androidx.recyclerview.widget.RecyclerView
-             android:id="@+id/cursos1_recycler_view"
-             android:layout_width="match_parent"
-             android:layout_height="275dp"
-             android:orientation="horizontal"
-             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             tools:listitem="@layout/courses_item"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cursos1_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/courses_item" />
 
         <RelativeLayout
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:visibility="gone">
+
             <ProgressBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"/>
+                android:layout_centerInParent="true" />
         </RelativeLayout>
 
-         <TextView
-             android:id="@+id/curso2textView"
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:text="@string/certificate_on_economies_and_orchards"
-             android:textSize="24sp"
-             android:textStyle="bold|italic"
-             android:textColor="@color/md_blue_700"
-             android:layout_marginTop="16dp"
-             android:visibility="gone"/>
+        <TextView
+            android:id="@+id/curso2textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/certificate_on_economies_and_orchards"
+            android:textColor="@color/md_blue_700"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
 
-         <androidx.recyclerview.widget.RecyclerView
-             android:id="@+id/cursos2_recycler_view"
-             android:layout_width="match_parent"
-             android:layout_height="275dp"
-             android:orientation="horizontal"
-             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-             tools:listitem="@layout/courses_item" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cursos2_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/courses_item" />
+
+        <TextView
+            android:id="@+id/otherCoursestextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/other_courses"
+            android:textColor="@color/md_blue_700"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:visibility="gone" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/otherCoursesRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="275dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/courses_item" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

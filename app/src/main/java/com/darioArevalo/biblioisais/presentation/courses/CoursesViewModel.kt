@@ -10,15 +10,6 @@ import com.darioArevalo.biblioisais.domain.Libraries.LibrariesRepo
 
 
 class CoursesViewModel(private val repo: CoursesRepo): ViewModel() {
-    fun fetchEpisodesCourse0() = liveData(Dispatchers.IO){
-        emit(Result.Loading())
-        try {
-            emit(repo.getCourse0())
-        } catch (e: Exception){
-            emit(Result.Failure(e))
-        }
-    }
-
     fun fetchEpisodesCourse1() = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
@@ -28,10 +19,19 @@ class CoursesViewModel(private val repo: CoursesRepo): ViewModel() {
         }
     }
 
-    fun fetchEpisodiesCourse2() = liveData(Dispatchers.IO){
+    fun fetchEpisodesCourse2() = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
             emit(repo.getCourse2())
+        } catch (e: Exception){
+            emit(Result.Failure(e))
+        }
+    }
+
+    fun fetchEpisodiesCourse3() = liveData(Dispatchers.IO){
+        emit(Result.Loading())
+        try {
+            emit(repo.getCourse3())
         } catch (e: Exception){
             emit(Result.Failure(e))
         }
