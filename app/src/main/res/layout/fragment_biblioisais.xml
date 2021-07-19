@@ -24,7 +24,7 @@
              android:textSize="24sp"
              android:textStyle="bold|italic"
              android:textColor="@color/md_blue_700"
-            android:visibility="visible"/>
+            android:visibility="gone"/>
 
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/cursos1_recycler_view"
@@ -54,7 +54,7 @@
              android:textStyle="bold|italic"
              android:textColor="@color/md_blue_700"
              android:layout_marginTop="16dp"
-             android:visibility="visible"/>
+             android:visibility="gone"/>
 
          <androidx.recyclerview.widget.RecyclerView
              android:id="@+id/cursos2_recycler_view"

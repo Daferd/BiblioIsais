@@ -32,23 +32,46 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Psicología"
+                    android:text="Terapia Psicologíca"
                     android:textSize="32sp"
                     android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:text="Prestación de servicios de terapia psicológica y tele-consulta."
+                    android:textSize="16sp"
+                    android:textColor="@color/md_grey_900"/>
+
+
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/psychology_information"
+                    android:textColor="@color/md_grey_700"
+                    android:justificationMode="inter_word"
+                    android:textSize="16sp"
+                    app:trimExpandedText="Leer mas"
+                    app:trimCollapsedText="Leer menos"
+                    app:trimMode="trimModeLength"
+                    app:trimLength="200"
+                    app:colorClickableText="@color/md_blue_300"
+                    android:layout_marginTop="4dp"/>
+
+                <!--<TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:textColor="@color/md_grey_800"
                     android:justificationMode="inter_word"
-                    android:text="Todos los tratamientos psicológicos que prestamos, se realizan con independencia de los distintos enfoques de la disciplina. Buscamos un objetivo común: mejorar el bienestar de las personas consultantes, para conseguir que los problemas de la vida se conviertan en retos, soluciones, alternativas u oportunidades y no en amenazas."/>
+                    android:text="Todos los tratamientos psicológicos que prestamos, se realizan con independencia de los distintos enfoques de la disciplina. Buscamos un objetivo común: mejorar el bienestar de las personas consultantes, para conseguir que los problemas de la vida se conviertan en retos, soluciones, alternativas u oportunidades y no en amenazas."
+                    tools:ignore="UnusedAttribute" />
 
                 <LinearLayout
                     android:id="@+id/expandableLayoutPsychology"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -72,7 +95,8 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                         android:src="@drawable/ic_arrow_down"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:ignore="ContentDescription" />
 
                     <ImageView
                         android:id="@+id/collapseButton"
@@ -84,11 +108,7 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                         app:layout_constraintTop_toTopOf="parent"
                         android:visibility="gone"/>
 
-
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
+                </androidx.constraintlayout.widget.ConstraintLayout> -->
 
             </LinearLayout>
 
@@ -111,17 +131,30 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Espiritual"
+                    android:text="Terapia Espiritual"
                     android:textSize="32sp"
                     android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_800"
+                    android:text="Prestación de servicios de Hampi Kamayuq por tele-consulta."
+                    android:textSize="16sp"
+                    android:textColor="@color/md_grey_900"/>
+
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spiritual_information"
+                    android:textColor="@color/md_grey_700"
                     android:justificationMode="inter_word"
-                    android:padding="4dp"
-                    android:text="La espiritualidad es el conocimiento, aceptación o cultivo de la esencia inmaterial de uno mismo. ... En religión, la espiritualidad es dirigir la vida y el desarrollo espiritual según las enseñanzas y normas de un dios o profeta."/>
+                    android:textSize="16sp"
+                    app:trimExpandedText="Leer mas"
+                    app:trimCollapsedText="Leer menos"
+                    app:trimMode="trimModeLength"
+                    app:trimLength="200"
+                    app:colorClickableText="@color/md_blue_300"
+                    android:layout_marginTop="4dp"/>
 
             </LinearLayout>
 
@@ -144,18 +177,30 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Medicina"
+                    android:text="Telemedicina"
                     android:textSize="32sp"
                     android:textColor="@color/black"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_800"
-                    android:justificationMode="inter_word"
-                    android:padding="4dp"
-                    android:text="Son artes médicas surgidas como respuesta de Dios a una oración sincera de alguien acerado en sus sentimientos por un tremendo campo de fuerza. En un lado, su deseo de ayudar, y en el otro, su humilde conciencia de que es incapaz de curar."/>
+                    android:text="Prestación de servicios de tele consulta en medicina."
+                    android:textSize="16sp"
+                    android:textColor="@color/md_grey_900"/>
 
+                <com.borjabravo.readmoretextview.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/medicine_information"
+                    android:textColor="@color/md_grey_700"
+                    android:justificationMode="inter_word"
+                    android:textSize="16sp"
+                    app:trimExpandedText="Leer mas"
+                    app:trimCollapsedText="Leer menos"
+                    app:trimMode="trimModeLength"
+                    app:trimLength="200"
+                    app:colorClickableText="@color/md_blue_300"
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

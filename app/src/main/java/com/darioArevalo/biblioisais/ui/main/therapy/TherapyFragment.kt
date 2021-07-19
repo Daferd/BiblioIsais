@@ -43,7 +43,7 @@ class TherapyFragment : Fragment(R.layout.fragment_therapy) {
             }
         }*/
 
-        binding.expandButton.setOnClickListener {
+        /*binding.expandButton.setOnClickListener {
                 TransitionManager.beginDelayedTransition(binding.psychologyCardView,AutoTransition())
                 binding.expandableLayoutPsychology.show()
                 binding.collapseButton.show()
@@ -55,7 +55,7 @@ class TherapyFragment : Fragment(R.layout.fragment_therapy) {
             binding.expandableLayoutPsychology.hide()
             binding.collapseButton.hide()
             binding.expandButton.show()
-        }
+        }*/
 
         binding.spiritualCardView.setOnClickListener {
             Toast.makeText(context,"Spiritual",Toast.LENGTH_SHORT).show()
