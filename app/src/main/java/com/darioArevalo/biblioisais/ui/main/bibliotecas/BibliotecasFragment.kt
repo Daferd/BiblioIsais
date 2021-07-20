@@ -63,6 +63,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
             ProductsRepoImpl(ProductsDataSource())
     ) }
 
+    //.
     private val imageList = mutableListOf<CarouselItem>()
 
     private lateinit var storageReference: StorageReference
@@ -71,8 +72,6 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentBibliotecasBinding.bind(view)
-
-        //cristiam care pichingo
 
         viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
             when(result){

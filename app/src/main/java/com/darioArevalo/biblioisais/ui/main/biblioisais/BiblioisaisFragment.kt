@@ -47,11 +47,11 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CoursesAdap
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
-        viewModel.fetchEpisodesCourse0().observe(viewLifecycleOwner,{ courseResult->
+        viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
             when(courseResult){
                 is Result.Loading -> {
                     binding.progressBar.show()
-                    viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
+                    viewModel.fetchEpisodesCourse2().observe(viewLifecycleOwner,{ courseResult->
                         when(courseResult){
                             is Result.Loading -> {
 
@@ -67,12 +67,29 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), CoursesAdap
                         }
                     })
 
+                    viewModel.fetchEpisodiesCourse3().observe(viewLifecycleOwner,{ courseResult->
+                        when(courseResult){
+                            is Result.Loading -> {
+
+                            }
+
+                            is Result.Success -> {
+                                binding.otherCoursesRecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
+                            }
+
+                            is Result.Failure -> {
+                                Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
+
                 }
 
                 is Result.Success -> {
                     binding.progressBar.hide()
                     binding.curso1textView.show()
                     binding.curso2textView.show()
+                    binding.otherCoursestextView.show()
                     binding.cursos1RecyclerView.adapter = CoursesAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
 

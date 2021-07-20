@@ -10,7 +10,7 @@ class CoursesDataSource {
 
     suspend fun getCourse1(): Result<List<CourseServer>> {
         val episodeList = mutableListOf<CourseServer>()
-        val querySnapshot = FirebaseFirestore.getInstance().collection("course 1").get().await()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("courseCertificateInOwnLaw").get().await()
         for(post in querySnapshot.documents){
             post.toObject(CourseServer::class.java)?.let { fbCourse->episodeList.add(fbCourse) }
         }
@@ -19,18 +19,18 @@ class CoursesDataSource {
 
     suspend fun getCourse2(): Result<List<CourseServer>> {
         val episodeList = mutableListOf<CourseServer>()
-        val querySnapshot = FirebaseFirestore.getInstance().collection("course1").get().await()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("courseCertificateOnEconomiesAndOrchards").get().await()
         for(post in querySnapshot){
-            post.toObject(CourseServer::class.java)?.let { fbCourse->episodeList.add(fbCourse) }
+            post.toObject(CourseServer::class.java).let { fbCourse->episodeList.add(fbCourse) }
         }
         return Result.Success(episodeList)
     }
 
     suspend fun getCourse3(): Result<List<CourseServer>> {
         val episodeList = mutableListOf<CourseServer>()
-        val querySnapshot = FirebaseFirestore.getInstance().collection("course3").get().await()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("otherCourses").get().await()
         for(post in querySnapshot){
-            post.toObject(CourseServer::class.java)?.let { fbCourse->episodeList.add(fbCourse) }
+            post.toObject(CourseServer::class.java).let { fbCourse->episodeList.add(fbCourse) }
         }
         return Result.Success(episodeList)
     }

@@ -9,6 +9,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FieldValue
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class CommentPostDataSource {
@@ -23,11 +24,25 @@ class CommentPostDataSource {
 
         for (comments in databaseReference.children){
            comments.getValue<CommentPost>().let {
+               //Log.d("xxx","${it?.user_Id}")
+               //it?.photo_url_user = getPhoto(it?.user_Id.toString())
+
                commentPostList.add(it!!)
             }
         }
-
         return Result.Success(commentPostList)
+    }
+
+    private fun getPhoto(userId: String): String {
+        val db = FirebaseFirestore.getInstance()
+        var photo_url = ""
+        val user = db.collection("users").document(userId).get().addOnSuccessListener { document ->
+            photo_url = document.data?.get("photo_url").toString()
+            Log.d("photo123","sus $photo_url")
+            return@addOnSuccessListener
+        }
+        Log.d("photo123","$user.")
+        return ""
     }
 
     fun addNewComment(content:String,keyPost: String) {
@@ -58,7 +73,7 @@ class CommentPostDataSource {
                 create_at = time_created, //'ServerValue.TIMESTAMP.toString()',
                 autor = user_name,
                 post_Id =  keyPost,
-                User_Id = user_id,
+                user_Id = user_id,
                 photo_url_user = photo_user
             )
         )

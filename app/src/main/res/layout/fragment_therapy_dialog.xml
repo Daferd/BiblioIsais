@@ -24,7 +24,8 @@
         android:textColor="@color/md_grey_800"
         android:justificationMode="inter_word"
         android:padding="4dp"
-        android:text="La psicología es la ciencia que estudia los procesos mentales. La palabra proviene del griego: psico- (alma o actividad mental) y -logía (estudio). Esta disciplina analiza las tres dimensiones de los mencionados procesos: cognitiva, afectiva y conductual."
+        android:text="Todos los tratamientos psicológicos que prestamos, se realizan con independencia de los distintos enfoques de la disciplina. Buscamos un objetivo común: mejorar el bienestar de las personas consultantes, para conseguir que los problemas de la vida se conviertan en retos, soluciones, alternativas u oportunidades y no en amenazas. Estamos para lograr los momentos de mejor estar, salud mental, mejor vivir y poder obtener hechos sucesivos de felicidad y tranquilidad y no de sufrimiento.
+Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te darán las indicaciones de fecha, hora y costo de tu teleconsulta o terapia."
         tools:ignore="UnusedAttribute" />
 
 </LinearLayout>
