@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import android.widget.ProgressBar
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.data.model.ImageServer
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
@@ -124,6 +125,18 @@ class LecturaHuertaDataSource {
 
 
     }
+
+    suspend fun getIsaisImages(): Result<List<ImageServer>>{
+        val imageList = mutableListOf<ImageServer>()
+
+        val querySnapshot = FirebaseFirestore.getInstance().collection("isaisImages").get().await()
+        for(image in querySnapshot){
+            image.toObject(ImageServer::class.java)?.let { fbImage -> imageList.add(fbImage) }
+        }
+        return Result.Success(imageList)
+    }
+
+
 
     companion object {
         private lateinit var downloadTask : String

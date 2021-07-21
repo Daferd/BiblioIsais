@@ -42,7 +42,7 @@ class LecturaHuertaAdapter(private val postList:ArrayList<PostServer>, private v
         }
     }
 
-    override fun getItemCount(): Int = postList.size//postList.size
+    override fun getItemCount(): Int = postList.size
 
     private inner class LecturaHuertaViewHolder(
         val binding: LecturaHuertaRowBinding,
