@@ -68,10 +68,58 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
     private lateinit var storageReference: StorageReference
 
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view: View = inflater.inflate(R.layout.fragment_bibliotecas, container,false)
+        val carousel = view.findViewById<ImageCarousel>(R.id.carousel)
+
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
+            when(result){
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    for (image in result.data){
+                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    }
+                    carousel.addData(imageList)
+                    //imageList.add(CarouselItem(result.data[0].imageUrl,result.data[0].name))
+                    //Log.d("imagenes","info : ${result.data[0].imageUrl}")
+
+                }
+                is Result.Failure -> {
+
+                }
+            }
+        })
+
+
+
+
+        carousel.onItemClickListener = object : OnItemClickListener {
+            override fun onClick(position: Int, carouselItem: CarouselItem) {
+                Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onLongClick(position: Int, dataObject: CarouselItem) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        return view
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentBibliotecasBinding.bind(view)
+        binding.pdfRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.pdfRecyclerView.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
+
 
         viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result->
             when(result){

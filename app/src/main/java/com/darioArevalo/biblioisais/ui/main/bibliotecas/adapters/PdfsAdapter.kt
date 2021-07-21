@@ -43,7 +43,8 @@ class PdfsAdapter(
     ): BaseViewHolder<PdfServer>(binding.root){
         override fun bind(item: PdfServer) {
             binding.nombreBibliotecaTextView.text = item.name
-            binding.textView7.text = item.name
+            binding.txtContenidoPdf.text = "Mi contenido"
+            binding.paisBibliotecaTextView.text = "BiblioIsais Colombia"
             binding.root.setOnClickListener{itemClickListener.onPdfClick(item)}
             //binding.urlTextView.text = item.pdfUrl
         }

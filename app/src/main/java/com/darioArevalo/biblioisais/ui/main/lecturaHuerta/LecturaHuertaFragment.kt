@@ -6,8 +6,10 @@ import android.view.*
 import android.view.inputmethod.EditorInfo
 import androidx.fragment.app.Fragment
 import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
+import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
@@ -28,23 +30,35 @@ import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.LecturaHuertaA
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.grpc.internal.SharedResourceHolder
+import org.imaginativeworld.whynotimagecarousel.CarouselItem
+import org.imaginativeworld.whynotimagecarousel.ImageCarousel
+import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
 
 
-class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta), LecturaHuertaAdapter.OnPostClickListener {
+class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListener {
     private lateinit var Adapter: LecturaHuertaAdapter
     private lateinit var binding: FragmentLecturaHuertaBinding
     private val viewModel by viewModels<LecturaHuertaViewModel> { LecturaHuertaViewModelFactory(
         LecturaHuertaRepoImpl(LecturaHuertaDataSource())
     ) }
 
+    private  var imageList = mutableListOf<CarouselItem>()
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Adapter = LecturaHuertaAdapter(ArrayList(),this)
+
+    return inflater.inflate(R.layout.fragment_lectura_huerta, container, false)
+    }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         binding = FragmentLecturaHuertaBinding.bind(view)
-
+        binding.carousel.visibility = View.VISIBLE
 
         binding.rvPostList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPostList.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
@@ -58,7 +72,7 @@ class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta), Lectur
                     binding.progressBarLecturaHuerta.visibility = View.GONE
                     Log.d("Livedata","${result.data}")
                     Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this)
-                    binding.rvPostList.adapter = Adapter//LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this)
+                    binding.rvPostList.adapter = Adapter
                 }
 
                 is Result.Failure->{
@@ -70,13 +84,58 @@ class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta), Lectur
         })
 
 
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
+            when(result){
+                is Result.Loading -> {
+
+                }
+                is Result.Success -> {
+                    for (image in result.data){
+                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    }
+                    binding.carousel.addData(imageList)
+                }
+                is Result.Failure -> {
+
+                }
+            }
+        })
+
+
+
+
+        binding.carousel.onItemClickListener = object : OnItemClickListener {
+            override fun onClick(position: Int, carouselItem: CarouselItem) {
+                Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
+            }
+            override fun onLongClick(position: Int, dataObject: CarouselItem) {
+                TODO("Not yet implemented")
+            }
+        }
+
+
+
+
         binding.searchView.imeOptions =EditorInfo.IME_ACTION_DONE
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                binding.carousel.visibility = View.GONE
+                if (query.isNullOrEmpty() or query.isNullOrBlank()){
+                    binding.carousel.visibility = View.VISIBLE
+                }else{
+                    binding.carousel.visibility = View.GONE
+                }
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
-                Adapter.filter.filter(newText)
+
+                if (newText.isNullOrEmpty() or newText.isNullOrBlank()){
+                    binding.carousel.visibility = View.VISIBLE
+                }else{
+                    binding.carousel.visibility = View.GONE
+                    Adapter.filter.filter(newText)
+                }
+
                 return false
             }
         })
@@ -85,39 +144,7 @@ class LecturaHuertaFragment : Fragment(R.layout.fragment_lectura_huerta), Lectur
         fabButton.setOnClickListener{
             findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)
         }
-
     }
-/*
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        try{
-            val item = menu?.findItem(R.id.searchView_MenuMain)
-            val searchView: SearchView = item?.actionView as SearchView
-            searchView.imeOptions = EditorInfo.IME_ACTION_DONE
-            searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
-                override fun onQueryTextSubmit(query: String?): Boolean {
-                    return false
-                }
-
-                override fun onQueryTextChange(newText: String?): Boolean {
-                    Adapter.filter.filter(newText)
-                    return false
-
-                }
-
-            })
-
-        }catch (e:Exception){
-            e.printStackTrace()
-        }
-
-    }*/
-/*
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
-        return true
-
-    }*/
 
     override fun onPostClick(Post: PostServer) {
         val bundle = Bundle()
