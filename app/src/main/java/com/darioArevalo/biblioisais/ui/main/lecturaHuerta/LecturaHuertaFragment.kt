@@ -71,6 +71,14 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
                 is Result.Success->{
                     binding.progressBarLecturaHuerta.visibility = View.GONE
                     Log.d("Livedata","${result.data}")
+
+                    if(result.data.isEmpty()){
+                        binding.emptyContainerLecturaHuerta.visibility = View.VISIBLE
+                        return@Observer
+                    }else{
+                        binding.emptyContainerLecturaHuerta.visibility = View.GONE
+                    }
+
                     Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this)
                     binding.rvPostList.adapter = Adapter
                 }

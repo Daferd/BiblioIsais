@@ -33,6 +33,7 @@ class DetallesPostFragment : Fragment() {
 
     private lateinit var post : PostServer
     private lateinit var binding: FragmentDetallesPostBinding
+    private lateinit var AdapterComment:commentAdapter
     private val viewModel by viewModels<CommentPostViewModel> { CommentPostViewModelFactory(
         CommentPostRepoImp(CommentPostDataSource())
     ) }
@@ -49,10 +50,13 @@ class DetallesPostFragment : Fragment() {
 
     }
 
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        AdapterComment= commentAdapter(ArrayList())
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_detalles_post, container, false)
     }
@@ -85,7 +89,17 @@ class DetallesPostFragment : Fragment() {
                 is Result.Success->{
                     binding.progressBarDetallesPost.visibility = View.GONE
                     Log.d("Livedata_comment","${result.data}")
-                    binding.rvPostDetalles.adapter = commentAdapter(result.data)
+                    //if (result.data.isEmpty()){
+                    //    binding.emptyContainer.visibility = View.VISIBLE
+                    //    return@Observer
+                    //}else{
+                    //    binding.emptyContainer.visibility = View.GONE
+                    //}
+                    AdapterComment.notifyDataSetChanged()
+
+                    AdapterComment = commentAdapter(result.data)
+                    binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
+
 
                 }
 

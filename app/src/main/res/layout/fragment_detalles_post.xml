@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".ui.main.lecturaHuerta.DetallesPostFragment">
 
@@ -53,6 +53,7 @@
 
 
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -94,10 +95,48 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
 
+
+            <RelativeLayout
+                android:id="@+id/empty_container"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/ic_baseline_error_outline_24"
+                        android:layout_gravity="center"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Aún no se creo ningun comentario, crea el primero con la opcion post"
+                        android:layout_centerInParent="true"/>
+
+                </LinearLayout>
+
+
+            </RelativeLayout>
+
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_postDetalles"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"

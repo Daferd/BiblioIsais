@@ -3,6 +3,7 @@ package com.darioArevalo.biblioisais.data.remote.lecturahuerta
 import android.util.Log
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.CommentPost
+import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -11,6 +12,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import java.util.*
 
 class CommentPostDataSource {
 
@@ -20,18 +22,44 @@ class CommentPostDataSource {
         val database = FirebaseDatabase.getInstance().reference
         database.keepSynced(true)
 
-        val databaseReference = database.child("comentarios_post/${keyPost}").get().await()
+        val databaseReference = database.child("comentarios_post/${keyPost}")//.get().await()
 
-        for (comments in databaseReference.children){
+        databaseReference.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(comments in snapshot.children){
+                    comments.getValue<CommentPost>().let {
+                        commentPostList.add(it!!)
+                        Log.d("ValueEvent_res",it.content)
+
+                    }
+
+                }
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("Error",error.toString())
+            }
+
+        })
+
+/*
+            for (comments in databaseReference.children){
            comments.getValue<CommentPost>().let {
                //Log.d("xxx","${it?.user_Id}")
                //it?.photo_url_user = getPhoto(it?.user_Id.toString())
-
                commentPostList.add(it!!)
             }
-        }
+
+        }*/
         return Result.Success(commentPostList)
     }
+
+
+
+
+
+
 
     private fun getPhoto(userId: String): String {
         val db = FirebaseFirestore.getInstance()
@@ -77,8 +105,5 @@ class CommentPostDataSource {
                 photo_url_user = photo_user
             )
         )
-
-
-
     }
 }
