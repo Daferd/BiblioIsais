@@ -13,6 +13,7 @@ import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
 import com.darioArevalo.biblioisais.databinding.CommentRowBinding
 import java.util.*
+import kotlin.collections.ArrayList
 
 class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerView.Adapter<BaseViewHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
@@ -27,6 +28,8 @@ class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerVie
     }
 
     override fun getItemCount(): Int = commentPostList.size
+
+
 
     private inner class CommentPostViewHolder(
         val binding: CommentRowBinding,
@@ -48,6 +51,8 @@ class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerVie
         }
 
     }
+
+
 
 
 
