@@ -39,7 +39,7 @@ class CursosRVAdapter (
         fun bindCurso(course: CourseServer){
             binding.nombreCapituloTextView.text=course.name
             binding.autorCursoTextView.text=course.author
-            binding.urlTextView.text=course.courseUrl
+            //binding.urlTextView.text=course.courseUrl
             Picasso.get().load(course.courseUrl).into(binding.cursoImageView)
 
             binding.itemCursosCardView.setOnClickListener {

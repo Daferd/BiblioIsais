@@ -25,8 +25,6 @@ class ProductsDataSource {
         for (pdfs in querySnapshot.documents){
             pdfs.toObject(PdfServer::class.java)?.let {   it1 -> pdfsList.add(it1)  }
             Log.d("Query_pdf", "${pdfs}")
-
-
         }
         return Result.Success(pdfsList)
     }
@@ -45,7 +43,6 @@ class ProductsDataSource {
         val in1 = Intent.createChooser(intent, "open file")
         in1.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(in1)
-
   }
 
     suspend fun getIsaisImages(): Result<List<ImageServer>>{

@@ -114,6 +114,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_newdataFragment"
             app:destination="@id/newdataFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_imageviewFragment"
+            app:destination="@id/imageviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/FormFragment"
@@ -149,6 +152,9 @@
             android:name="bandData"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_newdataFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </dialog>
     <fragment
         android:id="@+id/splashFragment"
@@ -191,7 +197,12 @@
         android:id="@+id/imageviewFragment"
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.ImageviewFragment"
         android:label="fragment_imageview"
-        tools:layout="@layout/fragment_imageview" />
+        tools:layout="@layout/fragment_imageview" >
+        <argument
+            android:name="bitmap"
+            app:argType="string"
+            android:defaultValue="no image" />
+    </fragment>
     <dialog
         android:id="@+id/therapyFragmentDialog"
         android:name="com.darioArevalo.biblioisais.ui.main.therapy.TherapyFragmentDialog"

@@ -37,16 +37,12 @@ class DetallesPostFragment : Fragment() {
         CommentPostRepoImp(CommentPostDataSource())
     ) }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         requireArguments().let {
             post = it.getParcelable<PostServer>("post")!!
             Log.d("detalles","$post")
         }
-
-
-
     }
 
     override fun onCreateView(

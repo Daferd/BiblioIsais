@@ -16,9 +16,8 @@ import com.darioArevalo.biblioisais.databinding.FragmentNewdataBinding
 import com.darioArevalo.biblioisais.domain.profile.ProfileRepoImpl
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModel
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModelFactory
-import com.darioArevalo.biblioisais.ui.main.profile.NewdataFragmentArgs
+import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 
 class NewdataFragment : DialogFragment() {
@@ -63,17 +62,19 @@ class NewdataFragment : DialogFragment() {
 
         } else {
             binding.dataTextInputLayout.hint = "Nueva Contraseña"
-            //binding.dataEditText.setText("Ingrese nueva contraseña")
             binding.newdataTextInputLayout.hint = "Repita nueva contraseña"
-
+            binding.dataTextInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
+            binding.newdataTextInputLayout.endIconMode = TextInputLayout.END_ICON_PASSWORD_TOGGLE
+            binding.dataEditText.inputType = 128
+            binding.newdataEditText.inputType = 128
             binding.acceptButton.setOnClickListener {
-                val password = binding.dataEditText.text
-                val confirmPassword = binding.newdataEditText.text
-                if(password != confirmPassword){
-                    Toast.makeText(context,"Las contraseñas no coinciden",Toast.LENGTH_LONG).show()
-                } else{
-                    uploadPassword()
-                }
+                val password = binding.dataEditText.text.toString().trim()
+                val confirmPassword = binding.newdataEditText.text.toString().trim()
+                if(verifyPassword(password,confirmPassword)) return@setOnClickListener
+
+                uploadPassword()
+
+                //uploadPassword()
             }
         }
 
@@ -82,6 +83,22 @@ class NewdataFragment : DialogFragment() {
         }
     }
 
+    private fun verifyPassword(password: String, confirmPassword: String): Boolean {
+        if (password.isEmpty()) {
+            binding.dataEditText.error = "Password is empty"
+            return true
+        }
+        if (confirmPassword.isEmpty()) {
+            binding.newdataEditText.error = "Confirm password is empty"
+            return true
+        }
+        if(password!=confirmPassword){
+            binding.dataEditText.error="Las contraseñas no coinciden"
+            binding.newdataEditText.error="Las contraseñas no coinciden"
+            return true
+        }
+        return false
+    }
     private fun uploadPassword() {
         val newPassword = binding.newdataEditText.text.toString().trim()
         val alertDialog = AlertDialog.Builder(requireContext()).setTitle("Guardando nueva contraseña...").create()
@@ -102,7 +119,6 @@ class NewdataFragment : DialogFragment() {
             }
         })
     }
-
     private fun uploadEmail() {
         val newEmail = binding.newdataEditText.text.toString().trim()
         val alertDialog = AlertDialog.Builder(requireContext()).setTitle("Guardando nuevo correo...").create()
@@ -112,7 +128,8 @@ class NewdataFragment : DialogFragment() {
                 is Result.Success -> {
                     alertDialog.dismiss()
                     dismiss()
-                    Toast.makeText(context,"Nuevo correo guardado",Toast.LENGTH_SHORT).show()
+                    //findNavController().navigate(R.id.action_newdataFragment_to_loginFragment)
+                    Toast.makeText(context,"Nuevo correo guardado, verificar en el correo",Toast.LENGTH_SHORT).show()
                 }
                 is Result.Failure -> {
                     alertDialog.dismiss()
@@ -122,7 +139,6 @@ class NewdataFragment : DialogFragment() {
             }
         })
     }
-
     private fun uploadName() {
         val newUsername = binding.newdataEditText.text.toString().trim()
         val alertDialog = AlertDialog.Builder(requireContext()).setTitle("Guardando nuevo nombre...").create()

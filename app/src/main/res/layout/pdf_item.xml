@@ -26,24 +26,37 @@
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_picture_as_pdf_60"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/txt_contenido_pdf"
+                app:layout_constraintEnd_toStartOf="@+id/pdf_author_text_view"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.571" />
 
             <TextView
-                android:id="@+id/nombre_biblioteca_text_view"
+                android:id="@+id/pdf_name_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="4dp"
                 android:gravity="start"
-                android:hint="@string/nombre"
+                tools:text="El hombre"
                 android:textColor="@color/black"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@+id/biblioteca_image_view"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/pdf_author_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:gravity="start"
+                android:maxLines="2"
+                android:text="Contenido PDF"
+                app:layout_constraintBottom_toTopOf="@+id/pais_biblioteca_text_view"
+                app:layout_constraintStart_toEndOf="@+id/biblioteca_image_view"
+                app:layout_constraintTop_toBottomOf="@+id/pdf_name_text_view"
+                app:layout_constraintVertical_bias="1.0" />
 
             <TextView
                 android:id="@+id/pais_biblioteca_text_view"
@@ -55,18 +68,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/biblioteca_image_view" />
 
-            <TextView
-                android:id="@+id/txt_contenido_pdf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:gravity="start"
-                android:maxLines="2"
-                android:text="Contenido PDF"
-                app:layout_constraintBottom_toTopOf="@+id/pais_biblioteca_text_view"
-                app:layout_constraintStart_toEndOf="@+id/biblioteca_image_view"
-                app:layout_constraintTop_toBottomOf="@+id/nombre_biblioteca_text_view"
-                app:layout_constraintVertical_bias="1.0" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

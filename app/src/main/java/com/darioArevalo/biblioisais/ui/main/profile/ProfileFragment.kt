@@ -21,6 +21,7 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.UserServer
 import com.darioArevalo.biblioisais.data.remote.profile.ProfileDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentProfileBinding
@@ -73,7 +74,6 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding.cameraImageView.setOnClickListener {
             uploadImage()
-
         }
 
         binding.logOutButton.setOnClickListener {
@@ -92,6 +92,13 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.passwordCardView.setOnClickListener {
             val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,3)
             findNavController().navigate(action)
+        }
+
+        binding.profileImageView.setOnClickListener {
+            val bundle = Bundle()
+            val imagepass = ImageBundle(bitmap_string = data.photo_url)
+            bundle.putParcelable("img_view_detalles",imagepass)
+            findNavController().navigate(R.id.action_navigation_profile_to_imageviewFragment,bundle)
         }
 
     }

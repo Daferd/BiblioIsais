@@ -94,8 +94,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         }
 
         if (password != confirmPassword) {
-            binding.editTextPassword.error = "Password does not match"
-            binding.editTextConfirmPassword.error = "Password does not match"
+            binding.editTextPassword.error = "Las contraseñas no coinciden"
+            binding.editTextConfirmPassword.error = "Las contraseñas no coinciden"
             return true
         }
         return false

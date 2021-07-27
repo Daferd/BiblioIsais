@@ -52,6 +52,7 @@ class ProfileDataSource {
     suspend fun uploadEmail(email: String){
         val user = FirebaseAuth.getInstance().currentUser
         user?.updateEmail(email)?.await()
+        user?.sendEmailVerification()
         FirebaseFirestore.getInstance().collection("users").document("${user?.uid}").update(mapOf("email" to email))
     }
 
