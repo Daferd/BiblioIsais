@@ -96,6 +96,7 @@ class DetallesPostFragment : Fragment() {
                     //    binding.emptyContainer.visibility = View.GONE
                     //}
                     AdapterComment.notifyDataSetChanged()
+
                     AdapterComment = commentAdapter(result.data)
                     binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
 
