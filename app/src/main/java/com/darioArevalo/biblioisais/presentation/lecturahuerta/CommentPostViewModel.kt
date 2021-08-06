@@ -17,6 +17,15 @@ class CommentPostViewModel(private val repo: CommentPostRepo):ViewModel(){
         }
 
     }
+
+    fun fetchSuspendComments(keyPost: String)= liveData(Dispatchers.IO) {
+        emit(Result.Loading())
+        try {
+            emit(repo.suspend_get_comments(keyPost))
+        }catch(e:Exception){
+            emit(Result.Failure(e))
+        }
+    }
     
     fun addNewComment(content:String,keyPost:String){
         repo.addNewComment(content,keyPost)
