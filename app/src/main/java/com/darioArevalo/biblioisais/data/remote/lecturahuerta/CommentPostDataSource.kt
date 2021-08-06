@@ -16,9 +16,9 @@ import java.util.*
 
 class CommentPostDataSource {
 
+
     suspend fun  getLatestComments(keyPost:String): Result<List<CommentPost>> {
         val commentPostList = mutableListOf<CommentPost>()
-
         val database = FirebaseDatabase.getInstance().reference
         database.keepSynced(true)
 
@@ -30,9 +30,7 @@ class CommentPostDataSource {
                     comments.getValue<CommentPost>().let {
                         commentPostList.add(it!!)
                         Log.d("ValueEvent_res",it.content)
-
                     }
-
                 }
 
             }
@@ -40,7 +38,6 @@ class CommentPostDataSource {
             override fun onCancelled(error: DatabaseError) {
                 Log.d("Error",error.toString())
             }
-
         })
 
 /*
@@ -54,11 +51,6 @@ class CommentPostDataSource {
         }*/
         return Result.Success(commentPostList)
     }
-
-
-
-
-
 
 
     private fun getPhoto(userId: String): String {

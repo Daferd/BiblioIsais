@@ -20,10 +20,11 @@ import com.darioArevalo.biblioisais.domain.form.FormRepoImpl
 import com.darioArevalo.biblioisais.presentation.form.FormViewModel
 import com.darioArevalo.biblioisais.presentation.form.FormViewModelFactory
 
+
 class FormFragment : Fragment(R.layout.fragment_form) {
 
     private lateinit var binding: FragmentFormBinding
-    val args: FormFragmentArgs by navArgs()
+    private val args: FormFragmentArgs by navArgs()
 
     private val viewModel by viewModels<FormViewModel>{
         FormViewModelFactory(
@@ -32,7 +33,6 @@ class FormFragment : Fragment(R.layout.fragment_form) {
             )
         )
     }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -50,7 +50,7 @@ class FormFragment : Fragment(R.layout.fragment_form) {
             findNavController().navigate(R.id.action_FormFragment_to_navigation_biblioisais)
         }
 
-        activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        //activity?.window?.decorView?.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
         //activity?.actionBar?.hide()
 
         binding.editTextDateOfBirth.setOnClickListener {
@@ -60,6 +60,8 @@ class FormFragment : Fragment(R.layout.fragment_form) {
         sendForm()
     }
 
+
+    @Suppress("DEPRECATION")
     private fun showDatePickerDialog() {
         val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
         fragmentManager?.let { datePicker.show(it,"datePicker") }
@@ -103,9 +105,9 @@ class FormFragment : Fragment(R.layout.fragment_form) {
                     binding.progressBar.visibility = View.GONE
                     findNavController().navigate(R.id.action_FormFragment_to_navigation_biblioisais)
                     Toast.makeText(requireContext(),"Se guardo formulario",Toast.LENGTH_SHORT).show()
-                    val webIntent : Intent = Uri.parse(args.selectedCourse.courseUrl).let { webpage ->
-                        Intent(Intent.ACTION_VIEW,webpage)
-                    }
+                    val webIntent = Intent(Intent.ACTION_VIEW,
+                        Uri.parse(args.selectedCourse.courseUrl)
+                    )
                     startActivity(webIntent)
                 }
                 is Result.Failure -> {

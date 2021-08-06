@@ -1,15 +1,14 @@
-package com.darioArevalo.biblioisais.presentation.courses
+package com.darioArevalo.biblioisais.presentation.biblioisais
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
-import com.darioArevalo.biblioisais.domain.courses.CoursesRepo
+import com.darioArevalo.biblioisais.domain.biblioisais.BiblioisaisRepo
 import kotlinx.coroutines.Dispatchers
 import com.darioArevalo.biblioisais.core.Result
-import com.darioArevalo.biblioisais.domain.Libraries.LibrariesRepo
 
 
-class CoursesViewModel(private val repo: CoursesRepo): ViewModel() {
+class BiblioisaisViewModel(private val repo: BiblioisaisRepo): ViewModel() {
     fun fetchEpisodesCourse1() = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
@@ -39,8 +38,8 @@ class CoursesViewModel(private val repo: CoursesRepo): ViewModel() {
 
 }
 
-class CoursesViewModelFactory(private val repo: CoursesRepo): ViewModelProvider.Factory {
+class BiblioisaisViewModelFactory(private val repo: BiblioisaisRepo): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(CoursesRepo::class.java).newInstance(repo)
+        return modelClass.getConstructor(BiblioisaisRepo::class.java).newInstance(repo)
     }
 }

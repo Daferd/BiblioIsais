@@ -10,9 +10,9 @@ import com.darioArevalo.biblioisais.core.BaseViewHolder
 import com.darioArevalo.biblioisais.data.model.LibraryServer
 import com.darioArevalo.biblioisais.databinding.LibraryItemBinding
 
-class LibrariesAdapterAux(
+class BibliomundoAdapter(
         private val internationalList:List<LibraryServer>,
-        private val itemClickListener: LibrariesAdapterAux.OnLibraryClickListener
+        private val itemClickListener: BibliomundoAdapter.OnLibraryClickListener
         ): RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     interface OnLibraryClickListener{
@@ -45,7 +45,6 @@ class LibrariesAdapterAux(
         override fun bind(item: LibraryServer) {
             binding.nombreBibliotecaTextView.text=item.name
             binding.paisBibliotecaTextView.text = item.country
-            binding.urlTextView.text = item.pageUrl
             Glide.with(context).load(item.imageUrl).centerCrop().into(binding.bibliotecaImageView)
         }
     }

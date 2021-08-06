@@ -10,11 +10,8 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -28,13 +25,9 @@ import com.darioArevalo.biblioisais.databinding.FragmentProfileBinding
 import com.darioArevalo.biblioisais.domain.profile.ProfileRepoImpl
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModel
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModelFactory
-import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.AgregarTemaFragment
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
-import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.util.*
+
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -122,7 +115,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     private fun chooseImageGallery(){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
-        intent.setAction(Intent.ACTION_GET_CONTENT)
+        intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent,"Select Picture"),
             IMAGE_CHOOSE
         )//intent, IMAGE_CHOOSE)
@@ -151,6 +144,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             val imgBitmap = data?.data
 
             try {
+                @Suppress("DEPRECATION")
                 bitmapGlobal = MediaStore.Images.Media.getBitmap(context?.contentResolver,imgBitmap)
                 binding.profileImageView.setImageBitmap(bitmapGlobal)
                 uploadPicture(bitmapGlobal)
@@ -164,7 +158,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     private fun uploadPicture(imageBitmap: Bitmap){
             val alertDialog = AlertDialog.Builder(requireContext()).setTitle("Guardando foto...").create()
-        imageBitmap?.let {
+        imageBitmap.let {
             viewModel.updatePictureProfile(imageBitmap = it).observe(viewLifecycleOwner,{   result ->
                 when(result){
                     is Result.Loading -> {
@@ -204,6 +198,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
         }
         alertOpciones.show()
+
     }
 
     companion object {

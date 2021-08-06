@@ -9,6 +9,7 @@
     <ImageView
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:background="@drawable/orange"/>
+        android:background="@drawable/orange"
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>

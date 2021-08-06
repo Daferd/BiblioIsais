@@ -13,5 +13,6 @@
         android:layout_height="206dp"
         app:srcCompat="@drawable/logo_biblioisais"
         tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="187dp" />
+        tools:layout_editor_absoluteY="187dp"
+        tools:ignore="ContentDescription" />
 </LinearLayout>

@@ -1,14 +1,14 @@
-package com.darioArevalo.biblioisais.presentation.products
+package com.darioArevalo.biblioisais.presentation.biblioteca_isais
 
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.darioArevalo.biblioisais.core.Result
-import com.darioArevalo.biblioisais.domain.products.ProductsRepo
+import com.darioArevalo.biblioisais.domain.biblioteca_isais.BibliotecaIsaisRepo
 import kotlinx.coroutines.Dispatchers
 
-class ProductsViewModel(private val repo: ProductsRepo): ViewModel() {
+class BibliotecaIsaisViewModel(private val repo: BibliotecaIsaisRepo): ViewModel() {
 
     fun fetchPdf() = liveData(Dispatchers.IO){
         emit(Result.Loading())
@@ -42,8 +42,8 @@ class ProductsViewModel(private val repo: ProductsRepo): ViewModel() {
     }
 }
 
-class ProductsViewModelFactory(private val repo: ProductsRepo): ViewModelProvider.Factory{
+class BibliotecaIsaisViewModelFactory(private val repo: BibliotecaIsaisRepo): ViewModelProvider.Factory{
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return modelClass.getConstructor(ProductsRepo::class.java).newInstance(repo)
+        return modelClass.getConstructor(BibliotecaIsaisRepo::class.java).newInstance(repo)
     }
 }

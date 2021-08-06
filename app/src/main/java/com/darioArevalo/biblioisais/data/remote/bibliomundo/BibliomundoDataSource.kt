@@ -1,13 +1,11 @@
-package com.darioArevalo.biblioisais.data.remote.libraries
+package com.darioArevalo.biblioisais.data.remote.bibliomundo
 
 import com.darioArevalo.biblioisais.core.Result
-import com.darioArevalo.biblioisais.data.model.LibraryList
 import com.darioArevalo.biblioisais.data.model.LibraryServer
-import com.darioArevalo.biblioisais.data.model.PostServer
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class LibrariesDataSource {
+class BibliomundoDataSource {
 
 
     suspend fun getLocalLibraries():Result<List<LibraryServer>>{

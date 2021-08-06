@@ -13,12 +13,13 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         tools:ignore="ContentDescription"
-        android:background="@drawable/logo_biblioisais"/>
+        android:background="@drawable/logo_biblioisais"
+        android:layout_marginTop="32dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BIBLIO ISAIS"
+        android:text="@string/name_app"
         android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/md_blue_700"/>
@@ -72,8 +73,9 @@
         android:textSize="18sp"
         android:textColor="@color/md_grey_700"
         android:gravity="right"
-        android:text="¿Olvidaste tu contraseña?"
-        android:layout_marginTop="4dp"/>
+        android:text="@string/did_you_forget_your_password"
+        android:layout_marginTop="4dp"
+        tools:ignore="RtlHardcoded" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -81,20 +83,21 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
 
-    <TextView
-        android:id="@+id/txt_signup"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:textColor="@color/md_grey_700"
-        android:gravity="center"
-        android:text="@string/not_have_an_account_sign_up"
-        android:layout_marginTop="168dp"/>
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/txt_signup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            android:text="@string/not_have_an_account_sign_up"
+            android:textColor="@color/md_grey_700"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
-
-
-
-
-
-
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

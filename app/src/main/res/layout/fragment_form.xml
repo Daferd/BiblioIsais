@@ -85,7 +85,7 @@
         android:id="@+id/text_input_layout_organization"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Etnia/Organización"
+        android:hint="@string/ethnicity_organization"
         android:layout_marginTop="8dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
@@ -101,7 +101,7 @@
         android:id="@+id/text_input_layout_gender"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Genero"
+        android:hint="@string/gender"
         app:endIconMode="dropdown_menu"
         app:boxBackgroundMode="outline"
         android:layout_marginTop="8dp"
@@ -112,10 +112,9 @@
         <AutoCompleteTextView
             android:id="@+id/editTextGender"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            tools:ignore="LabelFor" />
     </com.google.android.material.textfield.TextInputLayout>
-
-
 
     <Button
         android:id="@+id/btn_sendForm"
@@ -125,7 +124,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:backgroundTint="@color/md_blue_500"/>
+        android:backgroundTint="@color/md_orange_500"/>
 
     <ProgressBar
         android:id="@+id/progress_bar"

@@ -1,12 +1,11 @@
-package com.darioArevalo.biblioisais.data.remote.courses
+package com.darioArevalo.biblioisais.data.remote.biblioisais
 
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.CourseServer
-import com.darioArevalo.biblioisais.data.model.LibraryServer
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
-class CoursesDataSource {
+class BiblioisaisDataSource {
 
     suspend fun getCourse1(): Result<List<CourseServer>> {
         val episodeList = mutableListOf<CourseServer>()

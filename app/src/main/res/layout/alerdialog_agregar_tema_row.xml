@@ -11,7 +11,7 @@
         android:padding="5dp"
         android:background="@color/blue_alert_dialog"
         android:text="Publicando . . ."
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:textColor="@color/md_blue_500"
         android:gravity="center"
         android:textStyle="normal|bold"

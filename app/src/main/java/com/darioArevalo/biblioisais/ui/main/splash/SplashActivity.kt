@@ -3,10 +3,8 @@ package com.darioArevalo.biblioisais.ui.main.splash
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.fragment.findNavController
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.ui.MainActivity
-import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 import kotlin.concurrent.timerTask
 

@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="Terapia Psicologíca"
                     android:textSize="32sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -43,8 +43,21 @@
                     android:textSize="16sp"
                     android:textColor="@color/md_grey_900"/>
 
+                <kr.co.prnd.readmore.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/psychology_information"
+                    android:justificationMode="inter_word"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/md_grey_700"
+                    android:padding="4dp"
+                    app:readMoreColor="@color/md_blue_300"
+                    app:readMoreMaxLine="5"
+                    app:readMoreText="...Leer mas"/>
 
-                <com.borjabravo.readmoretextview.ReadMoreTextView
+
+                <!--<com.borjabravo.readmoretextview.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/psychology_information"
@@ -57,59 +70,8 @@
                     app:trimLength="200"
                     app:colorClickableText="@color/md_blue_300"
                     android:layout_marginTop="4dp"
-                    android:padding="5dp"/>
-
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/md_grey_800"
-                    android:justificationMode="inter_word"
-                    android:text="Todos los tratamientos psicológicos que prestamos, se realizan con independencia de los distintos enfoques de la disciplina. Buscamos un objetivo común: mejorar el bienestar de las personas consultantes, para conseguir que los problemas de la vida se conviertan en retos, soluciones, alternativas u oportunidades y no en amenazas."
-                    tools:ignore="UnusedAttribute" />
-
-                <LinearLayout
-                    android:id="@+id/expandableLayoutPsychology"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="visible">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/md_grey_800"
-                        android:justificationMode="inter_word"
-                        android:text="Estamos para lograr los momentos de mejor estar, salud mental, mejor vivir y poder obtener hechos sucesivos de felicidad y tranquilidad y no de sufrimiento.
-Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te darán las indicaciones de fecha, hora y costo de tu teleconsulta o terapia."
-                        />
-                </LinearLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp">
-
-                    <ImageView
-                        android:id="@+id/expandButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_arrow_down"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:ignore="ContentDescription" />
-
-                    <ImageView
-                        android:id="@+id/collapseButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/ic_arrow_up"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:visibility="gone"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout> -->
+                    android:padding="5dp"
+                    tools:targetApi="o" />-->
 
             </LinearLayout>
 
@@ -143,7 +105,20 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                     android:textSize="16sp"
                     android:textColor="@color/md_grey_900"/>
 
-                <com.borjabravo.readmoretextview.ReadMoreTextView
+                <kr.co.prnd.readmore.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/spiritual_information"
+                    android:justificationMode="inter_word"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/md_grey_700"
+                    android:padding="4dp"
+                    app:readMoreColor="@color/md_blue_300"
+                    app:readMoreMaxLine="5"
+                    app:readMoreText="...Leer mas"/>
+
+                <!--<com.borjabravo.readmoretextview.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/spiritual_information"
@@ -155,7 +130,7 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                     app:trimMode="trimModeLength"
                     app:trimLength="200"
                     app:colorClickableText="@color/md_blue_300"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp"/>-->
 
             </LinearLayout>
 
@@ -189,7 +164,20 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                     android:textSize="16sp"
                     android:textColor="@color/md_grey_900"/>
 
-                <com.borjabravo.readmoretextview.ReadMoreTextView
+                <kr.co.prnd.readmore.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/medicine_information"
+                    android:justificationMode="inter_word"
+                    android:textSize="16sp"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/md_grey_700"
+                    android:padding="4dp"
+                    app:readMoreColor="@color/md_blue_300"
+                    app:readMoreMaxLine="5"
+                    app:readMoreText="...Leer mas"/>
+
+                <!--<com.borjabravo.readmoretextview.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/medicine_information"
@@ -201,7 +189,7 @@ Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te dar
                     app:trimMode="trimModeLength"
                     app:trimLength="200"
                     app:colorClickableText="@color/md_blue_300"
-                    android:layout_marginTop="4dp"/>
+                    android:layout_marginTop="4dp"/>-->
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

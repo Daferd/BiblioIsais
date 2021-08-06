@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.main.bibliotecas.adapters
+package com.darioArevalo.biblioisais.ui.main.biblioteca_isais.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -44,7 +44,7 @@ class PdfsAdapter(
         override fun bind(item: PdfServer) {
             binding.pdfNameTextView.text = item.name
             binding.pdfAuthorTextView.text = item.author
-            binding.paisBibliotecaTextView.text = "BiblioIsais Colombia"
+            //binding.paisBibliotecaTextView.text = "BiblioIsais Colombia"
             binding.root.setOnClickListener{itemClickListener.onPdfClick(item)}
             //binding.urlTextView.text = item.pdfUrl
         }
