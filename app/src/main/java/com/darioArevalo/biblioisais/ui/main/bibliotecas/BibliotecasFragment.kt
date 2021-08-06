@@ -53,7 +53,7 @@ import java.net.URL
 import java.util.*
 
 
-class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter.OnPdfClickListener {
+class BibliotecasFragment : Fragment(), PdfsAdapter.OnPdfClickListener {
 
     //private lateinit var notificationsViewModel: NotificationsViewModel
     private lateinit var binding: FragmentBibliotecasBinding
@@ -75,41 +75,7 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_bibliotecas, container,false)
-        val carousel = view.findViewById<ImageCarousel>(R.id.carousel)
 
-        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
-            when(result){
-                is Result.Loading -> {
-
-                }
-                is Result.Success -> {
-                    for (image in result.data){
-                        imageList.add(CarouselItem(image.imageUrl,image.review))
-                    }
-                    carousel.addData(imageList)
-                    //imageList.add(CarouselItem(result.data[0].imageUrl,result.data[0].name))
-                    //Log.d("imagenes","info : ${result.data[0].imageUrl}")
-
-                }
-                is Result.Failure -> {
-
-                }
-            }
-        })
-
-
-
-
-        carousel.onItemClickListener = object : OnItemClickListener {
-            override fun onClick(position: Int, carouselItem: CarouselItem) {
-                Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onLongClick(position: Int, dataObject: CarouselItem) {
-                TODO("Not yet implemented")
-            }
-
-        }
         return view
     }
 
@@ -127,10 +93,11 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
 
                 }
                 is Result.Success -> {
-
+                    imageList.clear()
                     for (image in result.data){
                         imageList.add(CarouselItem(image.imageUrl,image.review))
                     }
+                    binding.carousel.addData(imageList)
 
                 }
                 is Result.Failure -> {
@@ -155,19 +122,16 @@ class BibliotecasFragment : Fragment(R.layout.fragment_bibliotecas), PdfsAdapter
         })
 
 
-
         binding.carousel.onItemClickListener = object : OnItemClickListener {
             override fun onClick(position: Int, carouselItem: CarouselItem) {
                 Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
             }
 
             override fun onLongClick(position: Int, dataObject: CarouselItem) {
+                Toast.makeText(context,"Auto: ${dataObject.caption}",Toast.LENGTH_SHORT).show()
+
             }
-
         }
-
-
-
     }
 
     /*override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

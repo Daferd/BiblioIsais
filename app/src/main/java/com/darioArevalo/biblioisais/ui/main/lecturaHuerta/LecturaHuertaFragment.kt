@@ -49,8 +49,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         savedInstanceState: Bundle?
     ): View? {
         Adapter = LecturaHuertaAdapter(ArrayList(),this)
-
-    return inflater.inflate(R.layout.fragment_lectura_huerta, container, false)
+        return inflater.inflate(R.layout.fragment_lectura_huerta, container, false)
     }
 
 
@@ -72,12 +71,12 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
                     binding.progressBarLecturaHuerta.visibility = View.GONE
                     Log.d("Livedata","${result.data}")
 
-                    if(result.data.isEmpty()){
-                        binding.emptyContainerLecturaHuerta.visibility = View.VISIBLE
-                        return@Observer
-                    }else{
-                        binding.emptyContainerLecturaHuerta.visibility = View.GONE
-                    }
+                    //if(result.data.isEmpty()){
+                    //    binding.emptyContainerLecturaHuerta.visibility = View.VISIBLE
+                    //    return@Observer
+                    //}else{
+                    //    binding.emptyContainerLecturaHuerta.visibility = View.GONE
+                    //}
 
                     Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this)
                     binding.rvPostList.adapter = Adapter
@@ -98,6 +97,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
                 }
                 is Result.Success -> {
+                    imageList.clear()
                     for (image in result.data){
                         imageList.add(CarouselItem(image.imageUrl,image.review))
                     }
@@ -117,7 +117,8 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
                 Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
             }
             override fun onLongClick(position: Int, dataObject: CarouselItem) {
-                TODO("Not yet implemented")
+                Toast.makeText(context,"Auto: ${dataObject.caption}",Toast.LENGTH_SHORT).show()
+                //Revisar******************************
             }
         }
 
