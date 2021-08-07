@@ -7,7 +7,6 @@ import com.darioArevalo.biblioisais.domain.biblioisais.BiblioisaisRepo
 import kotlinx.coroutines.Dispatchers
 import com.darioArevalo.biblioisais.core.Result
 
-
 class BiblioisaisViewModel(private val repo: BiblioisaisRepo): ViewModel() {
     fun fetchEpisodesCourse1() = liveData(Dispatchers.IO){
         emit(Result.Loading())
@@ -17,7 +16,6 @@ class BiblioisaisViewModel(private val repo: BiblioisaisRepo): ViewModel() {
             emit(Result.Failure(e))
         }
     }
-
     fun fetchEpisodesCourse2() = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
@@ -26,7 +24,6 @@ class BiblioisaisViewModel(private val repo: BiblioisaisRepo): ViewModel() {
             emit(Result.Failure(e))
         }
     }
-
     fun fetchEpisodiesCourse3() = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
@@ -37,9 +34,9 @@ class BiblioisaisViewModel(private val repo: BiblioisaisRepo): ViewModel() {
     }
 
 }
-
 class BiblioisaisViewModelFactory(private val repo: BiblioisaisRepo): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return modelClass.getConstructor(BiblioisaisRepo::class.java).newInstance(repo)
     }
 }
+

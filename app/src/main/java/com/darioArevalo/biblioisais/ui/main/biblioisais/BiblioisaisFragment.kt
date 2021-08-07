@@ -80,6 +80,7 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.certificateInOwnLawTextView.show()
                     binding.certificateOnEconomiesAndOrchardsTextView.show()
                     binding.otherCoursesTextView.show()
+
                     binding.cursos1RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
 

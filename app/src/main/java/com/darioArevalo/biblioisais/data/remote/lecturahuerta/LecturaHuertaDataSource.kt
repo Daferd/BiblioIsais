@@ -27,12 +27,35 @@ class LecturaHuertaDataSource {
     suspend fun getLatesPosts(): Result<List<PostServer>> {
         val postList = mutableListOf<PostServer>()
         val querySnapshot = FirebaseFirestore.getInstance().collection("postblog").get().await()
+/*
+        querySnapshot.addSnapshotListener{snapshot, e->
+            if (e!=null){
+                Log.d("Error_dataFirestorage","Listen failed")
+                return@addSnapshotListener
+            }
+
+            if( snapshot!=null && !snapshot.isEmpty){
+                for(post in snapshot.documents){
+                    post.toObject(PostServer::class.java).let {
+                        postList.add(it!!)
+                    }
+                }
+
+            }
+            else{
+                Log.d("Data_Null","Current Data Null")
+            }
+
+        }*/
+
+
 
         for(post in querySnapshot.documents){
             post.toObject(PostServer::class.java)?.let { postList.add(it) }
-            Log.d("Query Tag", "${post.id} => ${post.data}")
-        }
+            Log.d("Query Tag", "${post.id} => ${post.data}")}
+
         return Result.Success(postList)
+
     }
 
     fun setPost(autor:String, contenido:String, titulo:String, date: String, bitmap: Bitmap){
@@ -130,7 +153,7 @@ class LecturaHuertaDataSource {
         val imageList = mutableListOf<ImageServer>()
 
         val querySnapshot = FirebaseFirestore.getInstance().collection("isaisImages").get().await()
-        for(image in querySnapshot){
+        for(image in querySnapshot.documents){
             image.toObject(ImageServer::class.java)?.let { fbImage -> imageList.add(fbImage) }
         }
         return Result.Success(imageList)

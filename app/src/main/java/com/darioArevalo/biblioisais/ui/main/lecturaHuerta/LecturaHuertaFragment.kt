@@ -84,6 +84,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
                         binding.emptyContainerLecturaHuerta.hide()
                     }
 
+
                     Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this)
                     binding.rvPostList.adapter = Adapter
                 }
@@ -102,6 +103,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
                 }
                 is Result.Success -> {
+                    imageList.clear()
                     for (image in result.data){
                         imageList.add(CarouselItem(image.imageUrl,image.review))
                     }
@@ -122,7 +124,8 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
                 //Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
             }
             override fun onLongClick(position: Int, dataObject: CarouselItem) {
-                TODO("Not yet implemented")
+                Toast.makeText(context,"Auto: ${dataObject.caption}",Toast.LENGTH_SHORT).show()
+                //Revisar******************************
             }
         }
 

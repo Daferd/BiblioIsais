@@ -44,9 +44,6 @@ class BibliomundoViewModel(private val repo : BibliomundoRepo):ViewModel() {
             emit(Result.Failure(e))
         }
     }
-
-
-
 }
 
 class BibliomundoViewModelFactory(private val repo: BibliomundoRepo): ViewModelProvider.Factory {
@@ -54,3 +51,4 @@ class BibliomundoViewModelFactory(private val repo: BibliomundoRepo): ViewModelP
         return modelClass.getConstructor(BibliomundoRepo::class.java).newInstance(repo)
     }
 }
+

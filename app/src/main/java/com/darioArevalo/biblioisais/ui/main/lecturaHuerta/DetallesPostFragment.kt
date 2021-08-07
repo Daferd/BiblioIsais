@@ -1,23 +1,24 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
 import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
@@ -47,14 +48,21 @@ class DetallesPostFragment : Fragment() {
     }
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        AdapterComment= commentAdapter(ArrayList())
+        val rootview = inflater.inflate(R.layout.fragment_detalles_post,container,false)
+        val recyclerView = rootview?.findViewById<RecyclerView>(R.id.rv_postDetalles)
+
+        AdapterComment = commentAdapter(ArrayList())
+
+        //recyclerView?.adapter = AdapterComment
+        //AdapterComment.notifyDataSetChanged()
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_detalles_post, container, false)
+
+        return rootview
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -75,39 +83,77 @@ class DetallesPostFragment : Fragment() {
 
         Glide.with(requireContext()).load(post.profile_picture).fitCenter().into(binding.profilePhotoDetalles)
         Glide.with(requireContext()).load(post.post_image).fitCenter().into(binding.photoViewDetalles)
-        //center crop
-        viewModel.fechtLatestComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
-            when(result){
-                is Result.Loading->{
-                    Log.d("Livedata","Loading...")
-                    binding.progressBarDetallesPost.visibility = View.VISIBLE
+
+            viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
+                when(result){
+                    is Result.Loading->{
+                        Log.d("Livedata","Loading...")
+                        binding.progressBarDetallesPost.visibility = View.VISIBLE
+
+
+                    }
+                    is Result.Success->{
+                        binding.progressBarDetallesPost.visibility = View.GONE
+                        Log.d("Livedata_comment","${result.data}")
+
+                        if (result.data.isEmpty()){
+                            binding.emptyContainer.visibility = View.VISIBLE
+                            return@Observer
+                        }else{
+                            binding.emptyContainer.visibility = View.GONE
+                        }
+
+                        AdapterComment = commentAdapter(result.data)
+                        binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
+
+                    }
+
+                    is Result.Failure->{
+                        Log.d("livedata error","{${result.exception}}")
+                    }
                 }
-                is Result.Success->{
-                    binding.progressBarDetallesPost.visibility = View.GONE
-                    Log.d("Livedata_comment","${result.data}")
-                    //if (result.data.isEmpty()){
-                    //    binding.emptyContainer.visibility = View.VISIBLE
-                    //    return@Observer
-                    //}else{
-                    //    binding.emptyContainer.visibility = View.GONE
-                    //}
-                    AdapterComment.notifyDataSetChanged()
 
-                    AdapterComment = commentAdapter(result.data)
-                    binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
+            })
 
 
+/*
+            viewModel.fechtLatestComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
+                when(result){
+                    is Result.Loading->{
+                        Log.d("Livedata","Loading...")
+                        binding.progressBarDetallesPost.visibility = View.VISIBLE
+
+
+                    }
+                    is Result.Success->{
+                        binding.progressBarDetallesPost.visibility = View.GONE
+                        Log.d("Livedata_comment","${result.data}")
+
+                        //if (result.data.isEmpty()){
+                        //    binding.emptyContainer.visibility = View.VISIBLE
+                        //    return@Observer
+                        //}else{
+                        //    binding.emptyContainer.visibility = View.GONE
+                        //}
+
+
+                        AdapterComment.notifyDataSetChanged()
+                        AdapterComment = commentAdapter(result.data)
+                        binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
+
+                    }
+
+                    is Result.Failure->{
+                        Log.d("livedata error","{${result.exception}}")
+                    }
                 }
 
-                is Result.Failure->{
-                    Log.d("livedata error","{${result.exception}}")
-                }
-            }
+            })
+*/
 
-        })
-
+        var commentPost = ""
         binding.btnComment.setOnClickListener {
-            val commentPost = binding.editTxtContent.text.toString()
+            commentPost = binding.editTxtContent.text.toString()
             val keyPost = post.post_Id
 
             if (TextUtils.isEmpty(commentPost)){

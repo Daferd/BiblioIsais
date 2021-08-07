@@ -1,5 +1,6 @@
 package com.darioArevalo.biblioisais.data.remote.lecturahuerta
 
+import android.net.sip.SipSession
 import android.util.Log
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.CommentPost
@@ -16,30 +17,26 @@ import java.util.*
 
 class CommentPostDataSource {
 
-
-    suspend fun  getLatestComments(keyPost:String): Result<List<CommentPost>> {
+    fun  getLatestComments(keyPost:String): Result<List<CommentPost>> {
         val commentPostList = mutableListOf<CommentPost>()
         val database = FirebaseDatabase.getInstance().reference
         database.keepSynced(true)
 
         val databaseReference = database.child("comentarios_post/${keyPost}")//.get().await()
-
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
+                commentPostList.clear()
                 for(comments in snapshot.children){
                     comments.getValue<CommentPost>().let {
                         commentPostList.add(it!!)
                         Log.d("ValueEvent_res",it.content)
-                    }
                 }
-
-            }
-
+             } // End if
+            } // End Function
             override fun onCancelled(error: DatabaseError) {
                 Log.d("Error",error.toString())
             }
         })
-
 /*
             for (comments in databaseReference.children){
            comments.getValue<CommentPost>().let {
@@ -49,9 +46,26 @@ class CommentPostDataSource {
             }
 
         }*/
+        Log.d("size_list",commentPostList.size.toString())
+
+
         return Result.Success(commentPostList)
     }
+    
+   suspend fun suspend_get_comments(keyPost: String):Result<List<CommentPost>>{
+       val commentPostList = mutableListOf<CommentPost>()
+       val database = FirebaseDatabase.getInstance().reference
+       database.keepSynced(true)
 
+       val databaseReference = database.child("comentarios_post/${keyPost}").get().await()
+       for (comments in databaseReference.children){
+           comments.getValue<CommentPost>().let {
+               commentPostList.add(it!!)
+           }
+       }
+       Log.d("size_list",commentPostList.size.toString())
+       return Result.Success(commentPostList)
+   }
 
     private fun getPhoto(userId: String): String {
         val db = FirebaseFirestore.getInstance()
@@ -66,7 +80,6 @@ class CommentPostDataSource {
     }
 
     fun addNewComment(content:String,keyPost: String) {
-
         val user = FirebaseAuth.getInstance().currentUser
         val user_id = user?.uid.toString()
         val photo_user = user?.photoUrl.toString()
@@ -74,10 +87,8 @@ class CommentPostDataSource {
         //val create_at = FieldValue.serverTimestamp()
 
         Log.d("comment_namexxx","${user?.displayName}")
-        val database = FirebaseDatabase.getInstance().reference
-        
+        val database = FirebaseDatabase.getInstance().reference        
         database.keepSynced(true)
-
         val key_random = database.push().key.toString()
         Log.d("key_random", key_random)
         Log.d("key_post",keyPost)
