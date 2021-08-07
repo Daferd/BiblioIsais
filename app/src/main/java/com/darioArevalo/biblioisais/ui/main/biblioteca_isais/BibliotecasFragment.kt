@@ -1,56 +1,30 @@
-package com.darioArevalo.biblioisais.ui.main.bibliotecas
+package com.darioArevalo.biblioisais.ui.main.biblioteca_isais
 
-import android.Manifest
-import android.app.Activity.DOWNLOAD_SERVICE
-import android.app.Activity.RESULT_OK
-import android.app.DownloadManager
-import android.content.ActivityNotFoundException
-import android.content.Context
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.net.Uri
-import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
-import androidx.appcompat.widget.Toolbar
-import androidx.core.content.ContextCompat.checkSelfPermission
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.PdfServer
-import com.darioArevalo.biblioisais.data.remote.products.ProductsDataSource
+import com.darioArevalo.biblioisais.data.remote.biblioteca_isais.BibliotecaIsaisDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentBibliotecasBinding
-import com.darioArevalo.biblioisais.domain.products.ProductsRepoImpl
-import com.darioArevalo.biblioisais.presentation.products.ProductsViewModel
-import com.darioArevalo.biblioisais.presentation.products.ProductsViewModelFactory
-import com.darioArevalo.biblioisais.ui.main.bibliotecas.adapters.PdfsAdapter
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
+import com.darioArevalo.biblioisais.domain.biblioteca_isais.BibliotecaIsaisRepoImpl
+import com.darioArevalo.biblioisais.presentation.biblioteca_isais.BibliotecaIsaisViewModel
+import com.darioArevalo.biblioisais.presentation.biblioteca_isais.BibliotecaIsaisViewModelFactory
+import com.darioArevalo.biblioisais.ui.main.biblioteca_isais.adapters.PdfsAdapter
 import com.google.firebase.storage.StorageReference
-import kotlinx.coroutines.tasks.await
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
-import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
-import java.io.BufferedInputStream
-import java.io.ByteArrayOutputStream
-import java.io.File
 import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
-import java.util.*
 
 
 class BibliotecasFragment : Fragment(), PdfsAdapter.OnPdfClickListener {
@@ -59,8 +33,8 @@ class BibliotecasFragment : Fragment(), PdfsAdapter.OnPdfClickListener {
     private lateinit var binding: FragmentBibliotecasBinding
 
 
-    private val viewModel by viewModels<ProductsViewModel>{ ProductsViewModelFactory(
-            ProductsRepoImpl(ProductsDataSource())
+    private val viewModel by viewModels<BibliotecaIsaisViewModel>{ BibliotecaIsaisViewModelFactory(
+            BibliotecaIsaisRepoImpl(BibliotecaIsaisDataSource())
     ) }
 
     //.

@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_biblioteca"
-        android:name="com.darioArevalo.biblioisais.ui.main.bibliotecas.BibliotecasFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.biblioteca_isais.BibliotecasFragment"
         android:label="Biblioteca"
         tools:layout="@layout/fragment_bibliotecas" >
         <action

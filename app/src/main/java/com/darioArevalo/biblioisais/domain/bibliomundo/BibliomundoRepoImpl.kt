@@ -1,10 +1,10 @@
-package com.darioArevalo.biblioisais.domain.Libraries
+package com.darioArevalo.biblioisais.domain.bibliomundo
 
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.LibraryServer
-import com.darioArevalo.biblioisais.data.remote.libraries.LibrariesDataSource
+import com.darioArevalo.biblioisais.data.remote.bibliomundo.BibliomundoDataSource
 
-class LibrariesRepoImpl(private val dataSource: LibrariesDataSource): LibrariesRepo {
+class BibliomundoRepoImpl(private val dataSource: BibliomundoDataSource): BibliomundoRepo {
 
     override suspend fun getLocalLibraries(): Result<List<LibraryServer>> = dataSource.getLocalLibraries()
     override suspend fun getNationalLibraries(): Result<List<LibraryServer>> = dataSource.getNationalLibraries()
