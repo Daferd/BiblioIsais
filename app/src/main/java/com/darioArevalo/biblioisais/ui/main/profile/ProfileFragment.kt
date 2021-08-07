@@ -18,6 +18,8 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.UserServer
 import com.darioArevalo.biblioisais.data.remote.profile.ProfileDataSource
@@ -49,10 +51,24 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.fetchUser().observe(viewLifecycleOwner,{  result->
             when(result){
                 is Result.Loading -> {
+                    binding.progressBar.show()
+                    binding.profileImageView.hide()
+                    binding.cameraImageView.hide()
+                    binding.emailCardView.hide()
+                    binding.nameCardView.hide()
+                    binding.passwordCardView.hide()
+                    binding.logOutButton.hide()
 
                 }
 
                 is Result.Success -> {
+                    binding.progressBar.hide()
+                    binding.profileImageView.show()
+                    binding.cameraImageView.show()
+                    binding.emailCardView.show()
+                    binding.nameCardView.show()
+                    binding.passwordCardView.show()
+                    binding.logOutButton.show()
                     binding.nameTextView.text = result.data.username
                     binding.emailTextView.text = result.data.email
                     binding.passwordTextView.text = "******"

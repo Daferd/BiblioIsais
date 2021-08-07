@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
@@ -17,6 +18,7 @@ import com.darioArevalo.biblioisais.domain.profile.ProfileRepoImpl
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModel
 import com.darioArevalo.biblioisais.presentation.profile.ProfileViewModelFactory
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuth
 
 
 class NewdataFragment : DialogFragment() {
@@ -93,6 +95,10 @@ class NewdataFragment : DialogFragment() {
             binding.newdataEditText.error = "Confirm password is empty"
             return true
         }
+        if(password.length < 6){
+            binding.dataEditText.error = "La contraseña debe contener minimo 6 caracteres"
+            return true
+        }
         if(password!=confirmPassword){
             binding.dataEditText.error="Las contraseñas no coinciden"
             binding.newdataEditText.error="Las contraseñas no coinciden"
@@ -129,7 +135,8 @@ class NewdataFragment : DialogFragment() {
                 is Result.Success -> {
                     alertDialog.dismiss()
                     dismiss()
-                    //findNavController().navigate(R.id.action_newdataFragment_to_loginFragment)
+                    FirebaseAuth.getInstance().signOut()
+                    findNavController().navigate(R.id.action_newdataFragment_to_loginFragment)
                     Toast.makeText(context,"Nuevo correo guardado, verificar en el correo",Toast.LENGTH_SHORT).show()
                 }
                 is Result.Failure -> {

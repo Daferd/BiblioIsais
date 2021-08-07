@@ -9,8 +9,8 @@
 
     <item
         android:id="@+id/navigation_therapy"
-        android:icon="@drawable/ic_book1"
-        android:title="@string/therapy" />
+        android:icon="@drawable/ic_contact_phone"
+        android:title="@string/services" />
 
     <item
         android:id="@+id/navigation_lecturaHuerta"
