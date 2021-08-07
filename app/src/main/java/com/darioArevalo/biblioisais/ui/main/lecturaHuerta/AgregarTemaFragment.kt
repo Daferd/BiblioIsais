@@ -42,8 +42,6 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
         LecturaHuertaViewModelFactory(LecturaHuertaRepoImpl(LecturaHuertaDataSource()))
     }
 
-
-
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
