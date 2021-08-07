@@ -85,7 +85,7 @@ dependencies {
     //cardview
     implementation "androidx.cardview:cardview:1.0.0"
     //Texto expandible
-    implementation 'com.borjabravo:readmoretextview:2.0.1'
+    implementation 'kr.co.prnd:readmore-textview:1.0.0'
 
 
 

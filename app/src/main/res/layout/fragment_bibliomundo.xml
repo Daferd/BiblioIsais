@@ -23,14 +23,13 @@
             android:textSize="24sp"
             android:textStyle="bold|italic"
             android:textColor="@color/md_blue_700"
-            android:visibility="gone"
-            android:padding="4dp"
-            android:background="#33141414"/>
+            android:visibility="visible"
+            android:padding="4dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/local_libraries_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/library_item"/>
@@ -39,7 +38,8 @@
            android:id="@+id/progress_bar"
            android:layout_width="match_parent"
            android:layout_height="match_parent"
-           android:visibility="gone">
+           android:visibility="gone"
+           android:layout_marginTop="300dp">
            <ProgressBar
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
@@ -55,12 +55,12 @@
             android:textStyle="bold|italic"
             android:textColor="@color/md_blue_700"
             android:layout_marginTop="16dp"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/national_libraries_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/library_item" />
@@ -74,12 +74,12 @@
             android:textStyle="bold|italic"
             android:textColor="@color/md_blue_700"
             android:layout_marginTop="16dp"
-            android:visibility="gone"/>
+            android:visibility="visible"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/international_libraries_recycler_view"
         android:layout_width="match_parent"
-        android:layout_height="275dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/library_item"/>

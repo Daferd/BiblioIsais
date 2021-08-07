@@ -35,7 +35,7 @@
 
     <fragment
         android:id="@+id/navigation_biblioteca"
-        android:name="com.darioArevalo.biblioisais.ui.main.biblioteca_isais.BibliotecasFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.biblioteca_isais.BibliotecaIsaisFragment"
         android:label="Biblioteca"
         tools:layout="@layout/fragment_bibliotecas" >
         <action
@@ -45,6 +45,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_rigth" />
+        <action
+            android:id="@+id/action_navigation_biblioteca_to_imageviewFragment"
+            app:destination="@id/imageviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_lecturaHuerta"
@@ -65,6 +68,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_rigth" />
+        <action
+            android:id="@+id/action_navigation_lecturaHuerta_to_imageviewFragment"
+            app:destination="@id/imageviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -114,6 +120,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_newdataFragment"
             app:destination="@id/newdataFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_imageviewFragment"
+            app:destination="@id/imageviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/FormFragment"
@@ -131,11 +140,7 @@
         android:id="@+id/navigation_therapy"
         android:name="com.darioArevalo.biblioisais.ui.main.therapy.TherapyFragment"
         android:label="Terapia Ancestral"
-        tools:layout="@layout/fragment_therapy" >
-        <action
-            android:id="@+id/action_navigation_therapy_to_therapyFragmentDialog"
-            app:destination="@id/therapyFragmentDialog" />
-    </fragment>
+        tools:layout="@layout/fragment_therapy" />
     <dialog
         android:id="@+id/newdataFragment"
         android:name="com.darioArevalo.biblioisais.ui.main.profile.NewdataFragment"
@@ -149,6 +154,9 @@
             android:name="bandData"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_newdataFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </dialog>
     <fragment
         android:id="@+id/splashFragment"
@@ -191,10 +199,10 @@
         android:id="@+id/imageviewFragment"
         android:name="com.darioArevalo.biblioisais.ui.main.lecturaHuerta.ImageviewFragment"
         android:label="fragment_imageview"
-        tools:layout="@layout/fragment_imageview" />
-    <dialog
-        android:id="@+id/therapyFragmentDialog"
-        android:name="com.darioArevalo.biblioisais.ui.main.therapy.TherapyFragmentDialog"
-        android:label="fragment_therapy_dialog"
-        tools:layout="@layout/fragment_therapy_dialog" />
+        tools:layout="@layout/fragment_imageview" >
+        <argument
+            android:name="bitmap"
+            app:argType="string"
+            android:defaultValue="no image" />
+    </fragment>
 </navigation>

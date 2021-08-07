@@ -9,26 +9,26 @@
     android:padding="8dp"
     tools:context=".ui.main.biblioisais.BiblioisaisFragment">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/curso1textView"
+            android:id="@+id/certificateInOwnLawTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/certificate_in_own_law"
             android:textColor="@color/md_blue_700"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cursos1_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/courses_item" />
@@ -37,7 +37,8 @@
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone">
+            android:visibility="gone"
+            android:layout_marginTop="300dp">
 
             <ProgressBar
                 android:layout_width="wrap_content"
@@ -46,7 +47,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/curso2textView"
+            android:id="@+id/certificateOnEconomiesAndOrchardsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -54,31 +55,31 @@
             android:textColor="@color/md_blue_700"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cursos2_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/courses_item" />
 
         <TextView
-            android:id="@+id/otherCoursestextView"
+            android:id="@+id/otherCoursesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="@string/other_courses"
+            android:text="@string/digital_literacy"
             android:textColor="@color/md_blue_700"
             android:textSize="24sp"
             android:textStyle="bold|italic"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/otherCoursesRecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="275dp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/courses_item" />

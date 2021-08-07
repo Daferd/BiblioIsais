@@ -1,21 +1,14 @@
 package com.darioArevalo.biblioisais.ui
 
 import android.os.Bundle
-import android.view.View
-import android.widget.Toolbar
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.hide
 import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.databinding.ActivityMainBinding
-import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 
 class MainActivity : AppCompatActivity() {
 

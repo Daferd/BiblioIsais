@@ -23,8 +23,6 @@ class BibliotecaIsaisDataSource {
         for (pdfs in querySnapshot.documents){
             pdfs.toObject(PdfServer::class.java)?.let {   it1 -> pdfsList.add(it1)  }
             Log.d("Query_pdf", "${pdfs}")
-
-
         }
         return Result.Success(pdfsList)
     }
@@ -43,13 +41,11 @@ class BibliotecaIsaisDataSource {
         val in1 = Intent.createChooser(intent, "open file")
         in1.flags = Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(in1)
-
   }
 
     suspend fun getIsaisImages(): Result<List<ImageServer>>{
         val imageList = mutableListOf<ImageServer>()
-
-        val querySnapshot = FirebaseFirestore.getInstance().collection("isaisImages").get().await()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("libraryIsaisImages").get().await()
         for(image in querySnapshot){
             image.toObject(ImageServer::class.java)?.let { fbImage -> imageList.add(fbImage) }
         }

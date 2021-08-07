@@ -8,7 +8,7 @@
         android:id="@+id/form_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/md_blue_500"
+        android:background="@color/md_orange_500"
         app:theme="@style/ToolbarTheme"
         android:elevation="8dp"
         app:title="Formulario"

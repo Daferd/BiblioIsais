@@ -7,5 +7,6 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class PdfServer (
     val name: String = "",
+    val author: String = "",
     val pdfUrl: String = ""
 ):Parcelable

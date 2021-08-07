@@ -42,6 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/margin_normal"
             android:maxLines="1"
+            android:ellipsize="end"
             android:textSize="@dimen/text_size_normal"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/txt_descripcion"

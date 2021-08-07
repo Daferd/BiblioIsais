@@ -43,23 +43,20 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                 activity?.finish()
             }
         }
-
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
 
         viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
             when(courseResult){
                 is Result.Loading -> {
                     binding.progressBar.show()
+                    binding.certificateInOwnLawTextView.hide()
+                    binding.certificateOnEconomiesAndOrchardsTextView.hide()
+                    binding.otherCoursesTextView.hide()
                     viewModel.fetchEpisodesCourse2().observe(viewLifecycleOwner,{ courseResult->
                         when(courseResult){
-                            is Result.Loading -> {
-
-                            }
-
                             is Result.Success -> {
                                 binding.cursos2RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                             }
-
                             is Result.Failure -> {
                                 Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
                             }
@@ -68,27 +65,22 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
 
                     viewModel.fetchEpisodiesCourse3().observe(viewLifecycleOwner,{ courseResult->
                         when(courseResult){
-                            is Result.Loading -> {
-
-                            }
-
                             is Result.Success -> {
                                 binding.otherCoursesRecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                             }
-
                             is Result.Failure -> {
                                 Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
                             }
                         }
                     })
-
                 }
 
                 is Result.Success -> {
                     binding.progressBar.hide()
-                    binding.curso1textView.show()
-                    binding.curso2textView.show()
-                    binding.otherCoursestextView.show()
+                    binding.certificateInOwnLawTextView.show()
+                    binding.certificateOnEconomiesAndOrchardsTextView.show()
+                    binding.otherCoursesTextView.show()
+
                     binding.cursos1RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
 
@@ -98,15 +90,10 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                 }
             }
         })
-
-
-
-
-
     }
 
     override fun onEpisodesClick(episode: CourseServer) {
-        if(episode.name=="Justicia Especial Indígena"){
+        if(episode.nameCourse=="Diplomado en derecho propio"){
             val user = FirebaseAuth.getInstance().currentUser
             user?.let {
                 val db = FirebaseFirestore.getInstance()
@@ -134,6 +121,4 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
         }
 
     }
-
-
 }

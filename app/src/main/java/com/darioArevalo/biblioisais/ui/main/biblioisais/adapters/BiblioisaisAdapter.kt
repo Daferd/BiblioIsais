@@ -45,7 +45,6 @@ class BiblioisaisAdapter(
         override fun bind(item: CourseServer) {
             binding.nombreCapituloTextView.text = item.name
             binding.autorCursoTextView.text = item.author
-            binding.urlTextView.text = item.courseUrl
             Glide.with(context).load(item.courseImage).centerCrop().into(binding.cursoImageView)
         }
     }

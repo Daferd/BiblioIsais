@@ -39,6 +39,7 @@
         android:id="@+id/post_image"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        tools:background="@mipmap/ic_launcher"/>
+        tools:background="@mipmap/ic_launcher"
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>

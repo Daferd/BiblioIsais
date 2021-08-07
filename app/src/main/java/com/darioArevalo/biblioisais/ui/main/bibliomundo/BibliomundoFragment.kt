@@ -24,8 +24,7 @@ import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.BibliomundoAdap
 
 class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), BibliomundoAdapter.OnLibraryClickListener {
 
-    //private lateinit var homeViewModel: HomeViewModel
-    private lateinit var concatAdapter : ConcatAdapter
+    //private lateinit var concatAdapter : ConcatAdapter
     private lateinit var binding: FragmentBibliomundoBinding
     private val viewModel by viewModels<BibliomundoViewModel>{BibliomundoViewModelFactory(
         BibliomundoRepoImpl(
@@ -43,6 +42,9 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), Bibliomundo
             when(localResult){
                 is Result.Loading -> {
                     binding.progressBar.show()
+                    binding.localLibrariesTextView.hide()
+                    binding.nationalLibrariesTextView.hide()
+                    binding.internationalLibrariesTextView.hide()
                     viewModel.fetchNationalLibraries().observe(viewLifecycleOwner, { nationalResults ->
                         when(nationalResults){
                             is Result.Success ->{
@@ -55,6 +57,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), Bibliomundo
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+                            else -> {}
                         }
                     })
 
@@ -70,6 +73,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), Bibliomundo
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }
+                            else -> {}
                         }
                     })
                 }
@@ -125,9 +129,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), Bibliomundo
         if(libraryName=="Biblioteca ISAIS"){
             findNavController().navigate(R.id.action_navigation_bibliomundo_to_navigation_biblioteca)
         }else{
-            val webIntent : Intent = Uri.parse(library.pageUrl).let { webpage ->
-                Intent(Intent.ACTION_VIEW, webpage)
-            }
+            val webIntent = Intent(Intent.ACTION_VIEW, Uri.parse(library.pageUrl))
             startActivity(webIntent)
         }
 

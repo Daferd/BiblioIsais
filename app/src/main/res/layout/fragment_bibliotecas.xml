@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.biblioteca_isais.BibliotecasFragment">
+    tools:context=".ui.main.biblioteca_isais.BibliotecaIsaisFragment">
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,17 +17,30 @@
         <org.imaginativeworld.whynotimagecarousel.ImageCarousel
             android:id="@+id/carousel"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             app:autoPlay="true"
             app:autoPlayDelay="4000"/>
 
+        <RelativeLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="150dp"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/pdf_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:orientation="horizontal"
+            android:orientation="vertical"
+            android:layout_marginTop="8dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/pdf_item" />
 

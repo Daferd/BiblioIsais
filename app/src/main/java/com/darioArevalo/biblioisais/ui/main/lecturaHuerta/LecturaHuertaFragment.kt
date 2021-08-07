@@ -19,6 +19,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
+import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.remote.lecturahuerta.LecturaHuertaDataSource
 import com.darioArevalo.biblioisais.databinding.ActivityMainBinding
@@ -61,33 +64,36 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
         binding.rvPostList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPostList.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
+
         viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result->
             when(result){
                 is Result.Loading->{
                     Log.d("Livedata","Loading...")
-                    binding.progressBarLecturaHuerta.visibility = View.VISIBLE
+                    binding.progressBarLecturaHuerta.show()
+                    binding.carousel.hide()
                 }
                 is Result.Success->{
-                    binding.progressBarLecturaHuerta.visibility = View.GONE
+                    binding.progressBarLecturaHuerta.hide()
+                    binding.carousel.show()
                     Log.d("Livedata","${result.data}")
 
-                    //if(result.data.isEmpty()){
-                    //    binding.emptyContainerLecturaHuerta.visibility = View.VISIBLE
-                    //    return@Observer
-                    //}else{
-                    //    binding.emptyContainerLecturaHuerta.visibility = View.GONE
-                    //}
+                    if(result.data.isEmpty()){
+                        binding.emptyContainerLecturaHuerta.show()
+                        return@Observer
+                    }else{
+                        binding.emptyContainerLecturaHuerta.hide()
+                    }
+
 
                     Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this)
                     binding.rvPostList.adapter = Adapter
                 }
 
                 is Result.Failure->{
-                    binding.progressBarLecturaHuerta.visibility = View.GONE
+                    binding.progressBarLecturaHuerta.hide()
                     Log.d("livedata error","{${result.exception}}")
                 }
             }
-
         })
 
 
@@ -109,12 +115,13 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
             }
         })
 
-
-
-
         binding.carousel.onItemClickListener = object : OnItemClickListener {
             override fun onClick(position: Int, carouselItem: CarouselItem) {
-                Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
+                val bundle = Bundle()
+                val imagepass = ImageBundle(bitmap_string = carouselItem.imageUrl.toString())
+                bundle.putParcelable("img_view_detalles",imagepass)
+                findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_imageviewFragment,bundle)
+                //Toast.makeText(context,"Auto: ${carouselItem.caption}",Toast.LENGTH_SHORT).show()
             }
             override fun onLongClick(position: Int, dataObject: CarouselItem) {
                 Toast.makeText(context,"Auto: ${dataObject.caption}",Toast.LENGTH_SHORT).show()
@@ -122,26 +129,23 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
             }
         }
 
-
-
-
         binding.searchView.imeOptions =EditorInfo.IME_ACTION_DONE
         binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
-                binding.carousel.visibility = View.GONE
+                binding.carousel.hide()
                 if (query.isNullOrEmpty() or query.isNullOrBlank()){
-                    binding.carousel.visibility = View.VISIBLE
+                    binding.carousel.show()
                 }else{
-                    binding.carousel.visibility = View.GONE
+                    binding.carousel.hide()
                 }
                 return false
             }
             override fun onQueryTextChange(newText: String?): Boolean {
 
                 if (newText.isNullOrEmpty() or newText.isNullOrBlank()){
-                    binding.carousel.visibility = View.VISIBLE
+                    binding.carousel.show()
                 }else{
-                    binding.carousel.visibility = View.GONE
+                    binding.carousel.hide()
                     Adapter.filter.filter(newText)
                 }
 

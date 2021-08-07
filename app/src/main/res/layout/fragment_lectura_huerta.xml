@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -9,7 +8,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/md_blue_grey_100"
     tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment">
-
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -67,7 +65,7 @@
                 <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                     android:id="@+id/carousel"
                     android:layout_width="match_parent"
-                    android:layout_height="280dp"
+                    android:layout_height="250dp"
                     android:layout_marginTop="10dp"
                     android:visibility="visible"
                     app:autoPlay="true"
@@ -103,10 +101,7 @@
 
                     </LinearLayout>
 
-
                 </RelativeLayout>
-
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_postList"
@@ -119,6 +114,7 @@
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
+
         <RelativeLayout
             android:id="@+id/progressBarLecturaHuerta"
             android:layout_width="match_parent"
@@ -131,9 +127,6 @@
                 android:layout_centerInParent="true" />
 
         </RelativeLayout>
-
-
-
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/extended_fab"
@@ -153,8 +146,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </LinearLayout>
