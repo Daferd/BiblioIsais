@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/layout/fragment_bibliotecas.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detalles_post.xml" value="0.33" />
         <entry key="app/src/main/res/layout/lectura_huerta_row.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/pdf_item.xml" value="0.1" />
       </map>
     </option>
   </component>
