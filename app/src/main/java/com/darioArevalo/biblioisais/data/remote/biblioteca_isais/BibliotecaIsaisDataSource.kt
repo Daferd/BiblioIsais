@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.data.remote.products
+package com.darioArevalo.biblioisais.data.remote.biblioteca_isais
 
 import android.content.Context
 import android.content.Intent
@@ -8,11 +8,9 @@ import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.ImageServer
 import com.darioArevalo.biblioisais.data.model.PdfServer
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.tasks.await
-import java.io.File
 
-class ProductsDataSource {
+class BibliotecaIsaisDataSource {
     companion object{
         val CREATE_FiLE = 1
     }

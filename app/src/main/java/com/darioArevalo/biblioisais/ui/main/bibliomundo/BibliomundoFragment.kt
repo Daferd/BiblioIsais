@@ -5,7 +5,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -16,21 +15,21 @@ import com.darioArevalo.biblioisais.core.hide
 import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.databinding.FragmentBibliomundoBinding
 import com.darioArevalo.biblioisais.data.model.LibraryServer
-import com.darioArevalo.biblioisais.data.remote.libraries.LibrariesDataSource
-import com.darioArevalo.biblioisais.domain.Libraries.LibrariesRepoImpl
-import com.darioArevalo.biblioisais.presentation.libraries.LibrariesViewModel
-import com.darioArevalo.biblioisais.presentation.libraries.LibrariesViewModelFactory
-import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.LibrariesAdapterAux
+import com.darioArevalo.biblioisais.data.remote.bibliomundo.BibliomundoDataSource
+import com.darioArevalo.biblioisais.domain.bibliomundo.BibliomundoRepoImpl
+import com.darioArevalo.biblioisais.presentation.bibliomundo.BibliomundoViewModel
+import com.darioArevalo.biblioisais.presentation.bibliomundo.BibliomundoViewModelFactory
+import com.darioArevalo.biblioisais.ui.main.bibliomundo.adapters.BibliomundoAdapter
 
 
-class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAdapterAux.OnLibraryClickListener {
+class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), BibliomundoAdapter.OnLibraryClickListener {
 
     //private lateinit var homeViewModel: HomeViewModel
     private lateinit var concatAdapter : ConcatAdapter
     private lateinit var binding: FragmentBibliomundoBinding
-    private val viewModel by viewModels<LibrariesViewModel>{LibrariesViewModelFactory(
-        LibrariesRepoImpl(
-            LibrariesDataSource()
+    private val viewModel by viewModels<BibliomundoViewModel>{BibliomundoViewModelFactory(
+        BibliomundoRepoImpl(
+            BibliomundoDataSource()
         )
     )}
 
@@ -47,7 +46,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
                     viewModel.fetchNationalLibraries().observe(viewLifecycleOwner, { nationalResults ->
                         when(nationalResults){
                             is Result.Success ->{
-                                binding.nationalLibrariesRecyclerView.adapter=LibrariesAdapterAux(nationalResults.data,this@BibliomundoFragment)
+                                binding.nationalLibrariesRecyclerView.adapter=BibliomundoAdapter(nationalResults.data,this@BibliomundoFragment)
                             }
                             is Result.Failure -> {
                                 Toast.makeText(
@@ -62,7 +61,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
                     viewModel.fetchInternationalLibraries().observe(viewLifecycleOwner, { internationalResults ->
                         when(internationalResults){
                             is Result.Success ->{
-                                binding.internationalLibrariesRecyclerView.adapter=LibrariesAdapterAux(internationalResults.data,this@BibliomundoFragment)
+                                binding.internationalLibrariesRecyclerView.adapter=BibliomundoAdapter(internationalResults.data,this@BibliomundoFragment)
                             }
                             is Result.Failure -> {
                                 Toast.makeText(
@@ -80,7 +79,7 @@ class BibliomundoFragment : Fragment(R.layout.fragment_bibliomundo), LibrariesAd
                     binding.localLibrariesTextView.show()
                     binding.nationalLibrariesTextView.show()
                     binding.internationalLibrariesTextView.show()
-                    binding.localLibrariesRecyclerView.adapter = LibrariesAdapterAux(localResult.data,this@BibliomundoFragment)
+                    binding.localLibrariesRecyclerView.adapter = BibliomundoAdapter(localResult.data,this@BibliomundoFragment)
                 }
                 is Result.Failure -> {
                     //binding.progressBar.hide()

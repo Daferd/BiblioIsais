@@ -1,4 +1,4 @@
-package com.darioArevalo.biblioisais.ui.main.bibliotecas.adapters
+package com.darioArevalo.biblioisais.ui.main.biblioteca_isais.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -1,9 +1,9 @@
-package com.darioArevalo.biblioisais.domain.Libraries
+package com.darioArevalo.biblioisais.domain.bibliomundo
 
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.LibraryServer
 
-interface LibrariesRepo {
+interface BibliomundoRepo {
 
     suspend fun getLocalLibraries():Result<List<LibraryServer>>
     suspend fun getNationalLibraries():Result<List<LibraryServer>>

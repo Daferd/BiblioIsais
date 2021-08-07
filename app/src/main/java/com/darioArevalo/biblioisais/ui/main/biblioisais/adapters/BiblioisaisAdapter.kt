@@ -10,9 +10,9 @@ import com.darioArevalo.biblioisais.core.BaseViewHolder
 import com.darioArevalo.biblioisais.data.model.CourseServer
 import com.darioArevalo.biblioisais.databinding.CoursesItemBinding
 
-class CoursesAdapter(
+class BiblioisaisAdapter(
         private val episodesList: List<CourseServer>,
-        private val itemClickListener: CoursesAdapter.OnEpisodesClickListener
+        private val itemClickListener: BiblioisaisAdapter.OnEpisodesClickListener
         ):RecyclerView.Adapter<BaseViewHolder<*>>() {
 
     interface OnEpisodesClickListener{

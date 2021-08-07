@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.darioArevalo.biblioisais.core.Result
-import com.darioArevalo.biblioisais.domain.products.ProductsRepo
 import com.darioArevalo.biblioisais.domain.profile.ProfileRepo
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
