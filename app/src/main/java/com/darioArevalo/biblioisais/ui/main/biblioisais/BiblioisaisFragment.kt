@@ -94,6 +94,7 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                 }
 
                 is Result.Success -> {
+                    //borrar
                     binding.progressBar.hide()
                     binding.certificateInOwnLawTextView.show()
                     binding.certificateOnEconomiesAndOrchardsTextView.show()
