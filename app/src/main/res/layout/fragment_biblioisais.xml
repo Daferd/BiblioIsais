@@ -29,9 +29,9 @@
             android:id="@+id/descriptionOwnLawTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="Conoce la concepción sobre Justicia Propia, Legislación Especial Indígena, Derecho Mayor y en especial las rutas propias - planes de protección indígenas contra las violencias de género y abuso sexual."
             android:justificationMode="inter_word"
+            android:padding="4dp"
+            android:text="@string/description_own_law"
             android:textColor="@color/md_grey_800"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -52,8 +52,8 @@
             android:id="@+id/progress_bar"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="gone"
-            android:layout_marginTop="300dp">
+            android:layout_marginTop="300dp"
+            android:visibility="gone">
 
             <ProgressBar
                 android:layout_width="wrap_content"
@@ -76,16 +76,16 @@
             android:id="@+id/descriptionEconomiesAndOrchardsTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Conoce los conceptos de Economía, soberanía alimentaria, las economías alternativas, el Buen Vivir, los sistemas económicos, visiones alternativas internacionales y llamados a la acción sustentable."
             android:justificationMode="inter_word"
-            android:visibility="visible"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/md_grey_800"
             android:padding="4dp"
+            android:text="@string/description_economies_and_orchards"
+            android:textColor="@color/md_grey_800"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible"
             app:readMoreColor="@color/md_blue_300"
             app:readMoreMaxLine="2"
-            app:readMoreText="...Leer mas"/>
+            app:readMoreText="...Leer mas" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cursos2_recycler_view"
@@ -110,16 +110,16 @@
             android:id="@+id/descriptionOtherCoursesTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Conoce el uso de plataformas virtuales, optimizacion en uso de teléfonos inteligentes, mejor uso de opciones digitales para educación, lectura y desarrollo personal."
             android:justificationMode="inter_word"
-            android:visibility="visible"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:textColor="@color/md_grey_800"
             android:padding="4dp"
+            android:text="@string/description_other"
+            android:textColor="@color/md_grey_800"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:visibility="visible"
             app:readMoreColor="@color/md_blue_300"
             app:readMoreMaxLine="2"
-            app:readMoreText="...Leer mas"/>
+            app:readMoreText="...Leer mas" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/otherCoursesRecyclerView"
@@ -145,10 +145,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:textSize="16sp"
-            android:textColor="@color/md_grey_800"
             android:justificationMode="inter_word"
-            android:text="Para acceso, modalidad y certificación de cursos solicitar cita al WhatsApp 57 3216562260"
+            android:text="@string/description_educative_offer"
+            android:textColor="@color/md_grey_800"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:visibility="visible" />
 

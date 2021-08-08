@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.therapy.TherapyFragment"
+    android:background="@color/md_grey_100"
     android:fillViewport="true"
-    android:background="@color/md_grey_100">
+    android:orientation="vertical"
+    tools:context=".ui.main.therapy.TherapyFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,9 +19,9 @@
             android:id="@+id/psychologyCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
+            android:layout_marginTop="12dp"
             app:cardCornerRadius="8dp"
-            android:layout_marginTop="12dp">
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -32,35 +32,29 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:scaleType="centerInside"
                     android:src="@drawable/psicologia"
-                    android:scaleType="centerInside"/>
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Psicología"
-                    android:textSize="32sp"
-                    android:textColor="@color/black" />
-
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Prestación de servicios de terapia psicológica y tele-consulta."
-                    android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>-->
+                    android:text="@string/psychology"
+                    android:textColor="@color/black"
+                    android:textSize="32sp" />
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/psychology_information"
-                    android:justificationMode="inter_word"
-                    android:textSize="16sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/md_grey_700"
+                    android:justificationMode="inter_word"
                     android:padding="4dp"
+                    android:text="@string/psychology_information"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="16sp"
                     app:readMoreColor="@color/md_blue_300"
                     app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas"/>
+                    app:readMoreText="...Leer mas" />
 
             </LinearLayout>
 
@@ -70,9 +64,9 @@
             android:id="@+id/spiritualCardView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="8dp"
-            android:layout_marginTop="16dp">
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -83,35 +77,29 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/espiritual"
-                    android:scaleType="fitXY"/>
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Terapia Espiritual"
-                    android:textSize="32sp"
-                    android:textColor="@color/black"/>
-
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Prestación de servicios de Hampi Kamayuq por tele-consulta."
-                    android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>-->
+                    android:text="@string/spiritual_therapy"
+                    android:textColor="@color/black"
+                    android:textSize="32sp" />
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/spiritual_information"
-                    android:justificationMode="inter_word"
-                    android:textSize="16sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/md_grey_700"
+                    android:justificationMode="inter_word"
                     android:padding="4dp"
+                    android:text="@string/spiritual_information"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="16sp"
                     app:readMoreColor="@color/md_blue_300"
                     app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas"/>
+                    app:readMoreText="...Leer mas" />
 
             </LinearLayout>
 
@@ -121,9 +109,9 @@
             android:id="@+id/medicineCardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="8dp"
-            android:layout_marginTop="16dp">
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,35 +122,29 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:scaleType="centerInside"
                     android:src="@drawable/medicina"
-                    android:scaleType="centerInside"/>
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Medicina"
-                    android:textSize="32sp"
-                    android:textColor="@color/black"/>
-
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Prestación de servicios de tele consulta en medicina."
-                    android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>-->
+                    android:text="@string/medicine"
+                    android:textColor="@color/black"
+                    android:textSize="32sp" />
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/medicine_information"
-                    android:justificationMode="inter_word"
-                    android:textSize="16sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/md_grey_700"
+                    android:justificationMode="inter_word"
                     android:padding="4dp"
+                    android:text="@string/medicine_information"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="16sp"
                     app:readMoreColor="@color/md_blue_300"
                     app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas"/>
+                    app:readMoreText="...Leer mas" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
@@ -171,9 +153,9 @@
             android:id="@+id/businessCardview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="8dp"
+            android:layout_marginTop="16dp"
             app:cardCornerRadius="8dp"
-            android:layout_marginTop="16dp">
+            app:cardElevation="8dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -184,35 +166,29 @@
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/negocios"
-                    android:scaleType="fitXY"/>
+                    tools:ignore="ContentDescription" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Planes de Negocios"
-                    android:textSize="32sp"
-                    android:textColor="@color/black"/>
-
-                <!--<TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Prestación de servicios de tele consulta en medicina."
-                    android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>-->
+                    android:text="@string/business_plans"
+                    android:textColor="@color/black"
+                    android:textSize="32sp" />
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/business_information"
-                    android:justificationMode="inter_word"
-                    android:textSize="16sp"
                     android:layout_marginTop="4dp"
-                    android:textColor="@color/md_grey_700"
+                    android:justificationMode="inter_word"
                     android:padding="4dp"
+                    android:text="@string/business_information"
+                    android:textColor="@color/md_grey_700"
+                    android:textSize="16sp"
                     app:readMoreColor="@color/md_blue_300"
                     app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas"/>
+                    app:readMoreText="...Leer mas" />
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>

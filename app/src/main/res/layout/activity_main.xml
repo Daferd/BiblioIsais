@@ -14,13 +14,13 @@
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         android:background="@color/md_blue_grey_50"
+        app:itemIconTint="@color/items_color"
+        app:itemTextColor="@color/md_blue_500"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/nav_host_fragment"
-        app:menu="@menu/bottom_nav_menu"
-        app:itemIconTint="@color/items_color"
-        app:itemTextColor="@color/md_blue_500"/>
+        app:menu="@menu/bottom_nav_menu" />
 
     <!--nav_host_fragment-->
     <fragment

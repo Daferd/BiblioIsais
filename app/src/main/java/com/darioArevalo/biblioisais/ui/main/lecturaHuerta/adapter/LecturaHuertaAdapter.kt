@@ -18,7 +18,6 @@ import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
-//List<PostServer>
 class LecturaHuertaAdapter(private val postList:ArrayList<PostServer>, private val itemOnClickListener:OnPostClickListener):RecyclerView.Adapter<BaseViewHolder<*>>(),Filterable {
 
     private val main_list = postList
