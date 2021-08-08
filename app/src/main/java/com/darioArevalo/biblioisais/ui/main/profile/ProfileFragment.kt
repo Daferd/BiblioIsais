@@ -172,7 +172,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     }
 
-    private fun uploadPicture(imageBitmap: Bitmap){
+    private fun     uploadPicture(imageBitmap: Bitmap){
             val alertDialog = AlertDialog.Builder(requireContext()).setTitle("Guardando foto...").create()
         imageBitmap.let {
             viewModel.updatePictureProfile(imageBitmap = it).observe(viewLifecycleOwner,{   result ->
