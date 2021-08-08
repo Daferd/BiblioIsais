@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarAlwaysDrawVerticalTrack="true"
-    tools:context=".ui.main.biblioteca_isais.BibliotecasFragment">
+    tools:context=".ui.main.biblioteca_isais.BibliotecaIsaisFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,9 +16,10 @@
         <org.imaginativeworld.whynotimagecarousel.ImageCarousel
             android:id="@+id/carousel"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="230dp"
             app:autoPlay="true"
-            app:autoPlayDelay="4000" />
+            app:autoPlayDelay="4000"
+            app:imageScaleType="fitXY"/>
 
         <RelativeLayout
             android:id="@+id/progress_bar"

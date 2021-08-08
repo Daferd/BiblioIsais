@@ -64,11 +64,12 @@
                 <org.imaginativeworld.whynotimagecarousel.ImageCarousel
                     android:id="@+id/carousel"
                     android:layout_width="match_parent"
-                    android:layout_height="250dp"
+                    android:layout_height="200dp"
                     android:layout_marginTop="10dp"
                     android:visibility="visible"
                     app:autoPlay="true"
-                    app:autoPlayDelay="4000" />
+                    app:autoPlayDelay="4000"
+                    app:imageScaleType="fitXY"/>
 
                 <RelativeLayout
                     android:id="@+id/empty_container_LecturaHuerta"
