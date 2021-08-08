@@ -4,6 +4,7 @@ import java.io.Serializable
 
 data class CourseServer (
     val name : String = "",
+    val nameCourse : String = "",
     val author: String = "",
     val courseImage : String = "",
     val courseUrl : String = ""

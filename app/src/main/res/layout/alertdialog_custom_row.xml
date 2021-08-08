@@ -1,52 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    android:orientation="vertical"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="110dp"
-        android:padding="5dp"
         android:background="@color/blue_alert_dialog"
-        android:text="AGREGA UNA FOTO"
-        android:textSize="35dp"
-        android:textColor="@color/blue_text_alert_dialog"
+        android:fontFamily="sans-serif-condensed-light"
         android:gravity="center"
-        android:textStyle="normal|bold"
-        android:fontFamily="sans-serif-condensed-light"/>
+        android:padding="5dp"
+        android:text="@string/add_photo"
+        android:textColor="@color/md_blue_500"
+        android:textSize="35sp"
+        android:textStyle="normal|bold" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#DEDEDE"/>
+        android:background="#DEDEDE" />
+
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
         <ImageView
             android:id="@+id/ImgVw_CancelCustomAlertDialog"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_cancel_24"
-            android:layout_height="50dp"/>
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/ImgVw_UploadCustomAlertDialog"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_cloud_upload_24"
-            android:layout_height="50dp"/>
+            tools:ignore="ContentDescription" />
 
         <ImageView
             android:id="@+id/ImgVw_TakePhotoCustomAlertDialog"
-            android:layout_weight="1"
             android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
             android:src="@drawable/ic_baseline_linked_camera_24"
-            android:layout_height="50dp"/>
+            tools:ignore="ContentDescription" />
 
     </LinearLayout>
-
 
 </LinearLayout>

@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+
+    <item
+        android:id="@+id/navigation_biblioisais"
+        android:icon="@drawable/ic_naranja"
+        android:title="@string/cursos" />
+
+    <item
+        android:id="@+id/navigation_therapy"
+        android:icon="@drawable/ic_contact_phone"
+        android:title="@string/services" />
+
+    <item
+        android:id="@+id/navigation_lecturaHuerta"
+        android:icon="@drawable/ic_educative_book"
+        android:title="@string/orchardReading" />
+
     <item
         android:id="@+id/navigation_bibliomundo"
         android:icon="@drawable/ic_old_library"
         android:title="@string/bibliomundo" />
 
     <item
-        android:id="@+id/navigation_biblioisais"
-        android:icon="@drawable/ic_naranja"
-        android:title="@string/biblioisais" />
-
-    <item
-        android:id="@+id/navigation_therapy"
-        android:icon="@drawable/ic_book1"
-        android:title="Terapia" />
-
-    <item
-        android:id="@+id/navigation_lecturaHuerta"
-        android:icon="@drawable/ic_educative_book"
-        android:title="LecturaHuerta"/>
-
-    <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_person"
-        android:title="Perfil"/>
+        android:title="@string/profile" />
 
 </menu>

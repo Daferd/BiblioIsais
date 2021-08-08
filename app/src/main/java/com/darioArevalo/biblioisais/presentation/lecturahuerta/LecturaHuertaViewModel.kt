@@ -19,6 +19,15 @@ class LecturaHuertaViewModel(private val repo: LecturaHuertaRepo):ViewModel() {
         }
     }
 
+    fun fetchIsaisImages() = liveData(Dispatchers.IO){
+        emit(Result.Loading())
+        try {
+            emit(repo.getIsaisImages())
+        }catch (e: Exception){
+            emit(Result.Failure(e))
+        }
+    }
+
     fun setearNewPost(autor:String,contenido:String,titulo:String,date:String,bitmap:Bitmap){
         repo.setPost(autor,contenido,titulo,date,bitmap)
     }

@@ -84,8 +84,8 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
     //cardview
     implementation "androidx.cardview:cardview:1.0.0"
-
-
+    //Texto expandible
+    implementation 'kr.co.prnd:readmore-textview:1.0.0'
 
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

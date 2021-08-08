@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/md_grey_100"
     android:fillViewport="true">
 
     <LinearLayout
@@ -16,8 +17,8 @@
         tools:context=".ui.miperfil.PerfilFragment">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="136dp"
-            android:layout_height="136dp" >
+            android:layout_width="140dp"
+            android:layout_height="136dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image_view"
@@ -38,7 +39,8 @@
                 android:layout_height="32dp"
                 android:src="@drawable/ic_camera"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="ContentDescription" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -56,25 +58,37 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/title_name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre"
-                    android:textStyle="bold"
-                    android:textSize="24sp" />
+                    android:text="@string/name"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/name_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="Dario"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp"
+                    tools:text="Dario" />
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <RelativeLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/email_card_view"
@@ -89,22 +103,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/title_email_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Correo Electronico"
-                    android:textStyle="bold"
-                    android:textSize="24sp" />
+                    android:text="@string/email"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/email_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="daferd19@gmail.com"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp"
+                    tools:text="daferd19@gmail.com" />
 
 
             </LinearLayout>
@@ -123,22 +137,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="4dp">
+                android:padding="8dp">
 
                 <TextView
                     android:id="@+id/title_password_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Contraseña"
-                    android:textStyle="bold"
-                    android:textSize="24sp" />
+                    android:text="@string/password"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/password_text_view"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="********"
-                    android:textSize="24sp"/>
+                    android:textSize="24sp"
+                    tools:text="********" />
 
 
             </LinearLayout>
@@ -149,7 +163,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Log out" />
+            android:text="@string/log_out" />
 
     </LinearLayout>
 

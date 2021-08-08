@@ -46,7 +46,6 @@ class LibrariesAdapter(
         override fun bind(item: LibraryServer) {
             binding.nombreBibliotecaTextView.text=item.name
             binding.paisBibliotecaTextView.text = item.country
-            binding.urlTextView.text = item.pageUrl
             Glide.with(context).load(item.imageUrl).centerCrop().into(binding.bibliotecaImageView)
         }
 

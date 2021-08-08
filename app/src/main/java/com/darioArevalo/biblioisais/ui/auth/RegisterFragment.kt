@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -57,8 +58,8 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context,"Actualiza tu foto de perfil",Toast.LENGTH_LONG).show()
-                    findNavController().navigate(R.id.action_registerFragment_to_navigation_profile)
+                    Toast.makeText(context,"Verifica el registro en tu cuenta de correo",Toast.LENGTH_LONG).show()
+                    findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 is Result.Failure -> {
                     binding.progressBar.visibility = View.GONE
@@ -92,9 +93,14 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             return true
         }
 
+        if(password.length < 6){
+            binding.editTextPassword.error = "La contraseña debe contener minimo 6 caracteres"
+            return true
+        }
+
         if (password != confirmPassword) {
-            binding.editTextPassword.error = "Password does not match"
-            binding.editTextConfirmPassword.error = "Password does not match"
+            binding.editTextPassword.error = "Las contraseñas no coinciden"
+            binding.editTextConfirmPassword.error = "Las contraseñas no coinciden"
             return true
         }
         return false

@@ -8,4 +8,6 @@ class AuthRepoImpl(private val dataSource:AuthDataSource):AuthRepo {
         dataSource.singIn(email,password)
     override suspend fun singUp(email: String, password: String, username: String, form: Boolean): FirebaseUser? =
         dataSource.singUp(email,password,username,form)
+
+    override suspend fun recoverPassword(email: String) = dataSource.recoverPassword(email)
 }

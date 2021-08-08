@@ -4,17 +4,22 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.liveData
 import com.darioArevalo.biblioisais.core.Result
-import com.darioArevalo.biblioisais.domain.auth.AuthRepo
 import com.darioArevalo.biblioisais.domain.form.FormRepo
-import com.darioArevalo.biblioisais.presentation.auth.AuthViewModel
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 
 class FormViewModel(private val repo: FormRepo): ViewModel() {
-    fun sendForm(username: String, email: String, age: String, numberPhone: String ) = liveData(Dispatchers.IO){
+    fun sendForm(
+        username: String,
+        email: String,
+        date: String,
+        numberPhone: String,
+        organization: String,
+        gender: String
+    ) = liveData(Dispatchers.IO){
         emit(Result.Loading())
         try {
-            emit(Result.Success(repo.sendForm(username,email,age,numberPhone)))
+            emit(Result.Success(repo.sendForm(username,email,date,numberPhone,organization,gender)))
         }catch (e: Exception){
             emit(Result.Failure(e))
         }

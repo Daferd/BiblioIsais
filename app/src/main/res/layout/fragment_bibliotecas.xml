@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    tools:context=".ui.main.bibliotecas.BibliotecasFragment">
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".ui.main.biblioteca_isais.BibliotecaIsaisFragment">
 
-    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-        android:id="@+id/carousel"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:autoPlay="true"
-        app:autoPlayDelay="4000"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/pdf_recycler_view"
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/pdf_item"
-        android:orientation="horizontal"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        android:layout_gravity="start"
+        android:orientation="vertical">
 
+        <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+            android:id="@+id/carousel"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            app:autoPlay="true"
+            app:autoPlayDelay="4000"
+            app:imageScaleType="fitXY"/>
 
-    <Button
-        android:id="@+id/pdf_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center"
-        android:text="PDF"
-        />
+        <RelativeLayout
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="150dp"
+            android:visibility="gone">
 
-</LinearLayout>
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+        </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/pdf_recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/pdf_item" />
+    </LinearLayout>
+
+</ScrollView>

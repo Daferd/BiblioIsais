@@ -1,26 +1,27 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
-import android.content.ContentResolver
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
-import android.net.Uri //revisar
+import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Scroller
 import android.widget.Toast
-import androidx.core.content.contentValuesOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.darioArevalo.biblioisais.R
+import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.remote.lecturahuerta.LecturaHuertaDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentAgregarTemaBinding
 import com.darioArevalo.biblioisais.domain.lecturahuerta.LecturaHuertaRepoImpl
@@ -35,21 +36,30 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
 
     private lateinit var binding: FragmentAgregarTemaBinding
     private lateinit var bitmapGlobal : Bitmap
+    private lateinit var emptybitmap: Bitmap
     private  val REQUEST_IMAGE_CAPTURE = 1
     private val viewModel by viewModels<LecturaHuertaViewModel> {
         LecturaHuertaViewModelFactory(LecturaHuertaRepoImpl(LecturaHuertaDataSource()))
     }
 
+    @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAgregarTemaBinding.bind(view)
+
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.orange)
+        emptybitmap = Bitmap.createBitmap(bitmap.width, bitmap.height, bitmap.config)
+        bitmapGlobal = emptybitmap
 
         binding.cameraImageViewAddPhotoPost.setOnClickListener {
             showCustomAlert()
         }
         binding.cameraDeletePhotoPost.setOnClickListener {
             binding.imgVwPhotoPost.setImageResource(R.drawable.ic_baseline_insert_photo_500)
+            bitmapGlobal = emptybitmap
         }
+
+
 
         val dateNow = Calendar.getInstance().time
         val sdf = SimpleDateFormat("dd/M/yyyy hh:mm")
@@ -86,24 +96,34 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
     private fun newPost(date:String){
         binding.editTextContenido.setScroller(Scroller(context))
         binding.editTextBTN.setOnClickListener {
+
+
             val autor = "Autor x"//binding.editTextAutor.text.toString().trim()
             val contenido = binding.editTextContenido.text.toString().trim()
             val titulo = binding.editTextTitulo.text.toString().trim()
 
-            if (TextUtils.isEmpty(contenido) || TextUtils.isEmpty(titulo)){
+
+            if (TextUtils.isEmpty(contenido) || TextUtils.isEmpty(titulo) ){
                 Toast.makeText(context,"Por Favor Llene Los Espacios",Toast.LENGTH_SHORT).show()
-
             }else{
+                try {
+
+                    if( bitmapGlobal.sameAs(emptybitmap)){
+                        Toast.makeText(context,"Agrega Una Foto",Toast.LENGTH_SHORT).show()
+                    }else{
+                        viewModel.setearNewPost(autor,contenido,titulo,date,bitmapGlobal)
+                        binding.editTextContenido.setText("")
+                        binding.editTextTitulo.setText("")
+                        Toast.makeText(context,"Has Comentado",Toast.LENGTH_SHORT).show()
+                        findNavController().navigate(R.id.action_agregarTemaFragment_to_navigation_lecturaHuerta)
+                    }
 
 
-                viewModel.setearNewPost(autor,contenido,titulo,date,bitmapGlobal)
-                binding.editTextContenido.setText("")
-                binding.editTextTitulo.setText("")
-                Toast.makeText(context,"Has Comentado",Toast.LENGTH_SHORT).show()
-                findNavController().navigate(R.id.action_agregarTemaFragment_to_navigation_lecturaHuerta)
+                }catch (e:Exception){
+                    e.printStackTrace()
+                    Toast.makeText(context,"Agrega una Foto",Toast.LENGTH_SHORT).show()
+                }
             }
-
-
         }
     }
 
@@ -112,7 +132,7 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
         try {
             startActivityForResult(takePictureIntent,REQUEST_IMAGE_CAPTURE)
         }catch (e:ActivityNotFoundException){
-
+            e.printStackTrace()
         }
     }
 
@@ -123,7 +143,6 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
             val imageBitmap= data?.extras?.get("data") as Bitmap
             binding.imgVwPhotoPost.setImageBitmap(imageBitmap)
             bitmapGlobal = imageBitmap
-
         }
 
         if(requestCode == IMAGE_CHOOSE && resultCode == Activity.RESULT_OK){
@@ -132,10 +151,18 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
 
             try {
                 bitmapGlobal = MediaStore.Images.Media.getBitmap(context?.contentResolver,imgBitmap)
-                binding.imgVwPhotoPost.setImageBitmap(bitmapGlobal)
+                Log.d("tamano_foto",bitmapGlobal.width.toString())
+                if (bitmapGlobal.width < 4096 && bitmapGlobal.height < 4096){
+                    binding.imgVwPhotoPost.setImageBitmap(bitmapGlobal)
 
+                }else{
+                    binding.imgVwPhotoPost.setImageResource(R.drawable.ic_baseline_insert_photo_500)
+                    bitmapGlobal = emptybitmap
+                    Toast.makeText(context,"La Foto Excede 4096px ",Toast.LENGTH_SHORT).show()
+                }
             }catch (e: IOException) {
                 e.printStackTrace()
+                Toast.makeText(context,"La Foto Excede 4096px ",Toast.LENGTH_SHORT).show()
             }
         }
     }
@@ -152,7 +179,7 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
         val btUploadPhoto = dialogView.findViewById<ImageView>(R.id.ImgVw_UploadCustomAlertDialog)
         btUploadPhoto.setOnClickListener {
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                if (activity?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE)   == PackageManager.PERMISSION_DENIED){
+                if (activity?.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED){
                     val permission = arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE)
                     requestPermissions(permission,PERMISSION_CODE)
                 }else{
@@ -175,11 +202,9 @@ class AgregarTemaFragment : Fragment(R.layout.fragment_agregar_tema) {
 
     }
 
-
-
     companion object {
-        private val IMAGE_CHOOSE = 1000;
-        private val PERMISSION_CODE = 1001;
+        private const val IMAGE_CHOOSE = 1000;
+        private const val PERMISSION_CODE = 1001;
     }
 
 }

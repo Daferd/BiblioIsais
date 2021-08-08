@@ -1,17 +1,68 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BiblioIsais</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
-    <string name="nombre">Nombre</string>
     <string name="pais">País:</string>
     <string name="ciudad">Colombia</string>
     <string name="bibliomundo">BiblioMundo</string>
-    <string name="biblioisais">BiblioIsais</string>
+    <string name="cursos">Cursos</string>
     <string name="biblioteca">Biblioteca</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="hint_titulo">Titulo</string>
     <string name="hint_contenido">Contenido</string>
+    <string name="name">Nombre y Apellido</string>
+    <string name="email">Correo electrónico</string>
+    <string name="registro">Registro</string>
+    <string name="password">Contraseña</string>
+    <string name="confirm_password">Confirmar contraseña</string>
+    <string name="signup">Registrarse</string>
+    <string name="signin">Iniciar sesión</string>
+    <string name="not_have_an_account_sign_up">¿No tienes una cuenta? Registrate</string>
+    <string name="log_out">Cerrar sesión</string>
+    <string name="date_of_birth">Fecha de nacimiento</string>
+    <string name="phone_number">Telefono</string>
+    <string name="send">Enviar</string>
+    <string name="services">Servicios</string>
+    <string name="orchardReading">LecturaHuerta</string>
+    <string name="profile">Perfil</string>
+    <string name="local_libraries">Bibliotecas Locales</string>
+    <string name="national_libraries">Bibliotecas Nacionales</string>
+    <string name="international_libraries">Bibliotecas Internacionales</string>
+    <string name="certificate_in_own_law">Diplomado en Derecho Propio</string>
+    <string name="certificate_on_economies_and_orchards">Diplomado sobre Economías y Huertas</string>
+    <string name="psychology_information">Prestamos los servicios de terapia - consulta psicológica y en especial PERITAJES en Psicología Jurídica, con profesionales registrados en el Colegio Colombiano de Psicología. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="spiritual_information">Prestamos los servicios de terapia - consulta espiritual, basados en la Cosmovisión Andina y pueblos originarios del Abya Yala, con profesionales acreditados como HAMPIKAMAYUQ del Instituto Pachayachachiq de la republica del Perú. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="medicine_information">Prestamos los servicios de consulta medica por Medicina General, con atención personalizada y servicio prestado por profesionales registrados en el Ministerio de Salud de Colombia. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. Visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="digital_literacy">Alfabetización Digital</string>
+    <string name="ethnicity_organization">Etnia/Organización</string>
+    <string name="gender">Genero</string>
+    <string name="name_app">BIBLIO ISAIS</string>
+    <string name="did_you_forget_your_password">¿Olvidaste tu contraseña?</string>
+    <string name="cancel">Cancelar</string>
+    <string name="accept">Aceptar</string>
+    <string name="business_information">Prestamos los servicios de consultoría - asesoría empresarial en planes de negocios, contabilidad, inversiones, formalización, dirección y planeación, con profesionales acreditados en disciplinas económicas, administrativas y contables. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="educative_offer">Oferta Educativa</string>
+    <string name="post">Publicar</string>
+    <string name="description_own_law">Conoce la concepción sobre Justicia Propia, Legislación Especial Indígena, Derecho Mayor y en especial las rutas propias - planes de protección indígenas contra las violencias de género y abuso sexual.</string>
+    <string name="description_economies_and_orchards">Conoce los conceptos de Economía, soberanía alimentaria, las economías alternativas, el Buen Vivir, los sistemas económicos, visiones alternativas internacionales y llamados a la acción sustentable.</string>
+    <string name="description_other">Conoce el uso de plataformas virtuales, optimizacion en uso de teléfonos inteligentes, mejor uso de opciones digitales para educación, lectura y desarrollo personal.</string>
+    <string name="description_educative_offer">Para acceso, modalidad y certificación de cursos solicitar cita al WhatsApp 57 3216562260</string>
+    <string name="add_topic">AGREGA UN TEMA</string>
+    <string name="post_comment">Publica comentario</string>
+    <string name="there_are_no_comments">Aún no se ha publicado ningún comentario</string>
+    <string name="no_posts">Aún no se ha publicado ningún post, crea el primero con la opción nuevo tema</string>
+    <string name="new_topic">Nuevo tema</string>
+    <string name="psychology">Psicología</string>
+    <string name="spiritual_therapy">Terapia Espiritual</string>
+    <string name="medicine">Medicina</string>
+    <string name="posting">Publicando . . .</string>
+    <string name="add_photo">AGREGA UNA FOTO</string>
+    <string name="author" tools:ignore="Typos">Autor:</string>
+    <string name="more" tools:ignore="TypographyEllipsis">...Leer más</string>
+    <string name="country">País:</string>
+    <string name="search_title">Search Title</string>
+    <string name="business_plans">Planes de Negocios</string>
+    <string name="descripcion_post_lecturaHuerta">En este espacio puedes subir imágenes de especies animales, vegetales y minerales, también paisajes de tu territorio. Ponle el nombre, lugar y fecha. Comparte y comenta. Lo hacemos porque nos importa la naturaleza, la Pachamama y el Buen Vivir. ¡¡Cuida tu mundo!!</string>
 </resources>

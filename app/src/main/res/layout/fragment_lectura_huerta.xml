@@ -1,94 +1,193 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/fondotexturanaranja"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment"
-    android:orientation="vertical">
+    android:background="@color/md_blue_grey_100"
+    android:orientation="vertical"
+    tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment">
 
-    <org.imaginativeworld.whynotimagecarousel.ImageCarousel
-        android:id="@+id/carousel"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
-        android:layout_marginTop="10dp"
-        app:autoPlay="true"
-        app:autoPlayDelay="4000" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:layout_marginBottom="3dp"
-        android:orientation="vertical">
-
+        android:layout_height="match_parent">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mcv_search_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="45dp"
             android:layout_marginHorizontal="@dimen/margin_normal"
             android:layout_marginVertical="@dimen/margin_small"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:cardCornerRadius="@dimen/search_view_radius">
+            app:cardCornerRadius="@dimen/cardview_default_radius"
+            app:layout_constraintBottom_toTopOf="@+id/view_shape"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <SearchView
                 android:id="@+id/searchView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
                 android:imeOptions="actionDone|flagNoExtractUi"
                 android:queryBackground="@color/transparent"
-                android:queryHint="Search Article"
-                android:searchHintIcon="@drawable/ic_baseline_search_500"
+                android:queryHint="Buscar"
+                android:searchHintIcon="@drawable/ic_baseline_search_24"
                 android:searchIcon="@drawable/ic_baseline_search_500" />
 
         </com.google.android.material.card.MaterialCardView>
-    </LinearLayout>
 
-    <RelativeLayout
-        android:id="@+id/progressBarLecturaHuerta"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ProgressBar
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-
-    </RelativeLayout>
-    <LinearLayout
-        android:layout_marginTop="260dp"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_postList"
+        <View
+            android:id="@+id/view_shape"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="1dp"
+            android:background="#DEDEDE"
+            app:layout_constraintBottom_toTopOf="@+id/scroll_view"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mcv_search_view" />
 
-    </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_shape">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/extended_fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="16dp"
-        android:fontFamily="sans-serif-condensed"
-        android:src="@drawable/ic_baseline_add_500"
-        android:text="Nuevo tema"
-        android:textColor="#536DFE"
-        android:textStyle="bold"
-        android:textSize="20dp"
-        app:backgroundTint="#00083A"
-        app:icon="@drawable/ic_baseline_add_500"
-        app:iconTint="#536DFE" />
+                <org.imaginativeworld.whynotimagecarousel.ImageCarousel
+                    android:id="@+id/carousel"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:visibility="visible"
+                    app:autoPlay="true"
+                    app:autoPlayDelay="4000"
+                    app:imageScaleType="fitXY"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/descripcionCardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:backgroundTint="@color/md_blue_grey_100"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:justificationMode="inter_word"
+                        android:padding="4dp"
+                        android:text="@string/descripcion_post_lecturaHuerta"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:readMoreColor="@color/md_blue_300"
+                        app:readMoreMaxLine="3"
+                        app:readMoreText="@string/more" />
+
+                </androidx.cardview.widget.CardView>
 
 
-</FrameLayout>
+                <RelativeLayout
+                    android:id="@+id/empty_container_LecturaHuerta"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="8dp"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_baseline_error_outline_24"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:text="@string/no_posts"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_postList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:backgroundTint="@color/md_blue_grey_100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <RelativeLayout
+            android:id="@+id/progressBarLecturaHuerta"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/extended_fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|right"
+            android:layout_margin="16dp"
+            android:fontFamily="sans-serif-condensed"
+            android:src="@drawable/ic_baseline_add_500"
+            android:text="@string/new_topic"
+            android:textColor="@color/md_orange_50"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:backgroundTint="@color/orange_700"
+            app:icon="@drawable/ic_baseline_add_500"
+            app:iconTint="@color/md_orange_50"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.splash.SplashFragment"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".ui.main.splash.SplashFragment">
 
     <ImageView
         android:layout_width="170dp"
         android:layout_height="170dp"
-        android:background="@drawable/orange"/>
+        android:background="@drawable/orange"
+        tools:ignore="ContentDescription" />
 
 </LinearLayout>
