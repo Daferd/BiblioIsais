@@ -111,6 +111,15 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp" />
 
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:backgroundTint="@color/md_blue_grey_100"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>

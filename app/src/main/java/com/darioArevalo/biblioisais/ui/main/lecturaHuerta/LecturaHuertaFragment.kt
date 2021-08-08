@@ -130,7 +130,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         }
 
         binding.searchView.imeOptions =EditorInfo.IME_ACTION_DONE
-        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object:SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 binding.carousel.hide()
                 if (query.isNullOrEmpty() or query.isNullOrBlank()){
