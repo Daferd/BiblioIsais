@@ -3,11 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/round_corners_bottom.xml" value="0.10520833333333333" />
+        <entry key="app/src/main/res/drawable/shadow_button_layer.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/layout/fragment_agregar_tema.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bibliomundo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bibliotecas.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detalles_post.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_lectura_huerta.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/lectura_huerta_row.xml" value="0.33" />
         <entry key="app/src/main/res/layout/pdf_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/post_item.xml" value="0.1203125" />

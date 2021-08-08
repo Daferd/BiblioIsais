@@ -46,6 +46,7 @@ class BibliotecaIsaisDataSource {
     suspend fun getIsaisImages(): Result<List<ImageServer>>{
         val imageList = mutableListOf<ImageServer>()
         val querySnapshot = FirebaseFirestore.getInstance().collection("libraryIsaisImages").get().await()
+        imageList.clear()
         for(image in querySnapshot){
             image.toObject(ImageServer::class.java)?.let { fbImage -> imageList.add(fbImage) }
         }
