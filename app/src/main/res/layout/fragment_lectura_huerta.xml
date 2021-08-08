@@ -100,9 +100,7 @@
                         android:textStyle="bold"
                         app:readMoreColor="@color/md_blue_300"
                         app:readMoreMaxLine="3"
-                        app:readMoreText="...Leer mas" />
-
-
+                        app:readMoreText="@string/more" />
 
                 </androidx.cardview.widget.CardView>
 
@@ -147,7 +145,6 @@
                     android:layout_marginBottom="16dp"
                     app:reverseLayout="true"
                     app:stackFromEnd="true" />
-
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
