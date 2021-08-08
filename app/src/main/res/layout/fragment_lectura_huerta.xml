@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -70,6 +71,41 @@
                     app:autoPlay="true"
                     app:autoPlayDelay="4000"
                     app:imageScaleType="fitXY"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/descripcionCardview"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:backgroundTint="@color/md_blue_grey_100"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="2dp"
+                        android:layout_marginBottom="2dp"
+                        android:justificationMode="inter_word"
+                        android:padding="4dp"
+                        android:text="@string/descripcion_post_lecturaHuerta"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:readMoreColor="@color/md_blue_300"
+                        app:readMoreMaxLine="3"
+                        app:readMoreText="...Leer mas" />
+
+
+
+                </androidx.cardview.widget.CardView>
+
 
                 <RelativeLayout
                     android:id="@+id/empty_container_LecturaHuerta"
