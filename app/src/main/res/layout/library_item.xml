@@ -2,13 +2,13 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_biblioteca_card_view"
     android:layout_width="280dp"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
-    app:cardElevation="8dp"
-    android:id="@+id/item_biblioteca_card_view"
+    android:backgroundTint="@color/md_grey_100"
     app:cardCornerRadius="8dp"
-    android:backgroundTint="@color/md_grey_100">
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -50,7 +50,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="2dp"
             android:layout_marginBottom="8dp"
-            android:text="País:"
+            android:text="@string/country"
             android:textColor="@color/md_grey_800"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"

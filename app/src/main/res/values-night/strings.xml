@@ -29,4 +29,21 @@
     <string name="accept">Aceptar</string>
     <string name="business_information">Prestamos los servicios de consultoría - asesoría empresarial en planes de negocios, contabilidad, inversiones, formalización, dirección y planeación, con profesionales acreditados en disciplinas económicas, administrativas y contables. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
     <string name="educative_offer">Oferta Educativa</string>
+    <string name="post">Publicar</string>
+    <string name="description_own_law">Conoce la concepción sobre Justicia Propia, Legislación Especial Indígena, Derecho Mayor y en especial las rutas propias - planes de protección indígenas contra las violencias de género y abuso sexual.</string>
+    <string name="description_economies_and_orchards">Conoce los conceptos de Economía, soberanía alimentaria, las economías alternativas, el Buen Vivir, los sistemas económicos, visiones alternativas internacionales y llamados a la acción sustentable.</string>
+    <string name="description_other">Conoce el uso de plataformas virtuales, optimizacion en uso de teléfonos inteligentes, mejor uso de opciones digitales para educación, lectura y desarrollo personal.</string>
+    <string name="description_educative_offer">Para acceso, modalidad y certificación de cursos solicitar cita al WhatsApp 57 3216562260</string>
+    <string name="add_topic">AGREGA UN TEMA</string>
+    <string name="post_comment">Publica comentario</string>
+    <string name="there_are_no_comments">Aún no se creo ningun comentario</string>
+    <string name="new_topic">Nuevo tema</string>
+    <string name="psychology">Psicología</string>
+    <string name="spiritual_therapy">Terapia Espiritual</string>
+    <string name="medicine">Medicina</string>
+    <string name="posting">Publicando . . .</string>
+    <string name="add_photo">AGREGA UNA FOTO</string>
+    <string name="author">Autor:</string>
+    <string name="country">País:</string>
+    <string name="business_plans">Planes de Negocios</string>
 </resources>

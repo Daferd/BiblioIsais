@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/background_details"
+    android:orientation="vertical"
     tools:context=".ui.main.lecturaHuerta.AgregarTemaFragment">
-
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,24 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:padding="5dp"
                 android:background="@color/orange_ligth_edtxt"
-                android:text="AGREGA UN TEMA"
-                android:textSize="35dp"
-                android:textColor="@color/orange_color_txt"
+                android:fontFamily="sans-serif-condensed-light"
                 android:gravity="center"
-                android:textStyle="normal|bold"
-                android:fontFamily="sans-serif-condensed-light"/>
-
-
+                android:padding="5dp"
+                android:text="@string/add_topic"
+                android:textColor="@color/orange_color_txt"
+                android:textSize="35sp"
+                android:textStyle="normal|bold" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_margin="2dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp">
 
                 <com.github.chrisbanes.photoview.PhotoView
                     android:id="@+id/imgVw_photoPost"
@@ -56,7 +53,8 @@
                     android:layout_height="70dp"
                     android:src="@drawable/ic_baseline_add_a_photo_24"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:ignore="ContentDescription" />
 
                 <ImageView
                     android:id="@+id/camera_delete_photoPost"
@@ -64,42 +62,41 @@
                     android:layout_height="70dp"
                     android:src="@drawable/ic_baseline_delete_24"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="ContentDescription" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTitulo"
-                    android:hint="@string/hint_titulo"
-                    android:layout_gravity="bottom"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
-                    android:ems="1"
-                    android:textSize="16dp"
-                    android:paddingTop="15dp"
+                    android:layout_gravity="bottom"
                     android:background="@color/orange_ligth_edtxt"
                     android:elegantTextHeight="true"
-                    android:inputType="textCapWords"/>
+                    android:ems="1"
+                    android:hint="@string/hint_titulo"
+                    android:inputType="textCapWords"
+                    android:paddingTop="15dp"
+                    android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_gravity="start|top"
-                android:layout_marginTop="5dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_gravity="start|top"
+                android:layout_marginTop="5dp">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextContenido"
-                    android:textSize="16dp"
-                    android:layout_gravity="start|top"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
+                    android:layout_gravity="start|top"
                     android:background="@color/orange_ligth_edtxt"
                     android:elegantTextHeight="true"
                     android:ems="1"
@@ -107,33 +104,27 @@
                     android:inputType="textMultiLine"
                     android:paddingTop="15dp"
                     android:scrollbarAlwaysDrawVerticalTrack="true"
-                    android:scrollbars="vertical" />
+                    android:scrollbars="vertical"
+                    android:textSize="16sp" />
 
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:fontFamily="sans-serif-condensed"
-                android:textStyle="bold"
-                android:textColor="@color/background_details"
-                android:textSize="35dp"
-                android:padding="2dp"
-                android:layout_margin="20dp"
-                android:layout_gravity="center"
                 android:id="@+id/editTextBTN"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_margin="20dp"
                 android:background="@drawable/shadow_button_layer"
-                android:text="Publicar" />
-
-
+                android:fontFamily="sans-serif-condensed"
+                android:padding="2dp"
+                android:text="@string/post"
+                android:textColor="@color/background_details"
+                android:textSize="32sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-
-
-
     </androidx.core.widget.NestedScrollView>
-
-
 
 </LinearLayout>

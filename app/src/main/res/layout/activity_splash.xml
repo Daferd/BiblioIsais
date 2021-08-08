@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.splash.SplashActivity"
-    android:gravity="center">
+    android:gravity="center"
+    tools:context=".ui.main.splash.SplashActivity">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="248dp"
         android:layout_height="206dp"
         app:srcCompat="@drawable/logo_biblioisais"
+        tools:ignore="ContentDescription"
         tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="187dp"
-        tools:ignore="ContentDescription" />
+        tools:layout_editor_absoluteY="187dp" />
 </LinearLayout>

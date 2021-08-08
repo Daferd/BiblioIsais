@@ -2,11 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_biblioteca_card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:elevation="6dp"
-    android:id="@+id/item_biblioteca_card_view"
     app:cardCornerRadius="8dp">
 
     <LinearLayout
@@ -21,7 +21,8 @@
             android:layout_gravity="start"
             android:layout_marginBottom="2dp"
             android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_picture_as_pdf_60"/>
+            android:src="@drawable/ic_baseline_picture_as_pdf_60"
+            tools:ignore="ContentDescription" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -33,8 +34,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginEnd="8dp"
                 android:layout_marginTop="4dp"
+                android:layout_marginEnd="8dp"
                 android:ellipsize="end"
                 android:gravity="start"
                 android:maxLines="3"
@@ -52,7 +53,7 @@
                 android:layout_marginBottom="8dp"
                 android:gravity="start"
                 android:maxLines="2"
-                android:text="Autor"/>
+                tools:text="Autor" />
 
         </LinearLayout>
 

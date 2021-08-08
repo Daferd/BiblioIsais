@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/md_blue_grey_100"
+    android:orientation="vertical"
     tools:context=".ui.main.lecturaHuerta.LecturaHuertaFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,9 +19,9 @@
             android:layout_marginHorizontal="@dimen/margin_normal"
             android:layout_marginVertical="@dimen/margin_small"
             app:cardCornerRadius="@dimen/cardview_default_radius"
+            app:layout_constraintBottom_toTopOf="@+id/view_shape"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/view_shape"
             app:layout_constraintTop_toTopOf="parent">
 
             <SearchView
@@ -73,10 +72,10 @@
 
                 <RelativeLayout
                     android:id="@+id/empty_container_LecturaHuerta"
-                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="8dp">
+                    android:padding="8dp"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -87,17 +86,18 @@
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
+                            android:layout_gravity="center"
                             android:src="@drawable/ic_baseline_error_outline_24"
-                            android:layout_gravity="center"/>
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
                             android:gravity="center"
-                            android:textStyle="bold"
+                            android:text="@string/no_posts"
                             android:textSize="20sp"
-                            android:text="Aún no se creo ningun post, crea el primero con la opcion Add photo"
-                            android:layout_centerInParent="true"/>
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -106,10 +106,10 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_postList"
                     android:layout_width="match_parent"
-                    app:reverseLayout="true"
-                    app:stackFromEnd="true"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp" />
+                    android:layout_marginBottom="16dp"
+                    app:reverseLayout="true"
+                    app:stackFromEnd="true" />
 
 
                 <com.google.android.material.card.MaterialCardView
@@ -118,8 +118,7 @@
                     android:backgroundTint="@color/md_blue_grey_100"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    />
+                    app:layout_constraintStart_toStartOf="parent" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -145,9 +144,9 @@
             android:layout_margin="16dp"
             android:fontFamily="sans-serif-condensed"
             android:src="@drawable/ic_baseline_add_500"
-            android:text="Nuevo tema"
+            android:text="@string/new_topic"
             android:textColor="@color/md_orange_50"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:backgroundTint="@color/orange_700"
             app:icon="@drawable/ic_baseline_add_500"
