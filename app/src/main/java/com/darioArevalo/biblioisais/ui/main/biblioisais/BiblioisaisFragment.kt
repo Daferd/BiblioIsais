@@ -146,6 +146,5 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
             }
             startActivity(webIntent)
         }
-
     }
 }
