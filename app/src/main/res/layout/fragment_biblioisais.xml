@@ -38,7 +38,7 @@
             android:visibility="visible"
             app:readMoreColor="@color/md_blue_300"
             app:readMoreMaxLine="2"
-            app:readMoreText="...Leer mas" />
+            app:readMoreText="@string/more" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cursos1_recycler_view"
@@ -85,7 +85,7 @@
             android:visibility="visible"
             app:readMoreColor="@color/md_blue_300"
             app:readMoreMaxLine="2"
-            app:readMoreText="...Leer mas" />
+            app:readMoreText="@string/more" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/cursos2_recycler_view"
@@ -119,7 +119,7 @@
             android:visibility="visible"
             app:readMoreColor="@color/md_blue_300"
             app:readMoreMaxLine="2"
-            app:readMoreText="...Leer mas" />
+            app:readMoreText="@string/more" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/otherCoursesRecyclerView"

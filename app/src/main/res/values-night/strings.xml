@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <string name="bibliomundo">BiblioMundo</string>
     <string name="cursos">Cursos</string>
@@ -36,14 +36,15 @@
     <string name="description_educative_offer">Para acceso, modalidad y certificación de cursos solicitar cita al WhatsApp 57 3216562260</string>
     <string name="add_topic">AGREGA UN TEMA</string>
     <string name="post_comment">Publica comentario</string>
-    <string name="there_are_no_comments">Aún no se creo ningun comentario</string>
+    <string name="there_are_no_comments">Aún no se ha publicado ningún comentario</string>
     <string name="new_topic">Nuevo tema</string>
     <string name="psychology">Psicología</string>
     <string name="spiritual_therapy">Terapia Espiritual</string>
     <string name="medicine">Medicina</string>
     <string name="posting">Publicando . . .</string>
     <string name="add_photo">AGREGA UNA FOTO</string>
-    <string name="author">Autor:</string>
+    <string name="author" tools:ignore="Typos">Autor:</string>
     <string name="country">País:</string>
     <string name="business_plans">Planes de Negocios</string>
+    <string name="no_posts">Aún no se ha publicado ningún post, crea el primero con la opción nuevo tema</string>
 </resources>

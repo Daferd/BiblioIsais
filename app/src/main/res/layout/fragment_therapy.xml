@@ -59,7 +59,7 @@
                         android:textSize="16sp"
                         app:readMoreColor="@color/md_blue_300"
                         app:readMoreMaxLine="4"
-                        app:readMoreText="...Leer mas" />
+                        app:readMoreText="@string/more" />
 
                 </LinearLayout>
 
@@ -105,7 +105,7 @@
                         android:textSize="16sp"
                         app:readMoreColor="@color/md_blue_300"
                         app:readMoreMaxLine="4"
-                        app:readMoreText="...Leer mas" />
+                        app:readMoreText="@string/more" />
 
                 </LinearLayout>
 
@@ -151,7 +151,7 @@
                         android:textSize="16sp"
                         app:readMoreColor="@color/md_blue_300"
                         app:readMoreMaxLine="4"
-                        app:readMoreText="...Leer mas" />
+                        app:readMoreText="@string/more" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -196,7 +196,7 @@
                         android:textSize="16sp"
                         app:readMoreColor="@color/md_blue_300"
                         app:readMoreMaxLine="4"
-                        app:readMoreText="...Leer mas" />
+                        app:readMoreText="@string/more" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
