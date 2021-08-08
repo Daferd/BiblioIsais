@@ -71,10 +71,12 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
                     Log.d("Livedata","Loading...")
                     binding.progressBarLecturaHuerta.show()
                     binding.carousel.hide()
+                    binding.descripcionCardview.hide()
                 }
                 is Result.Success->{
                     binding.progressBarLecturaHuerta.hide()
                     binding.carousel.show()
+                    binding.descripcionCardview.show()
                     Log.d("Livedata","${result.data}")
 
                     if(result.data.isEmpty()){
