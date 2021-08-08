@@ -57,11 +57,6 @@ class DetallesPostFragment : Fragment() {
 
         AdapterComment = commentAdapter(ArrayList())
 
-        //recyclerView?.adapter = AdapterComment
-        //AdapterComment.notifyDataSetChanged()
-
-        // Inflate the layout for this fragment
-
         return rootview
     }
 

@@ -10,7 +10,6 @@ import java.util.*
 data class PostServer(
     val profile_picture: String = "",
     val User_Id:String = "",
-   // @ServerTimestamp
     val post_image: String = "",
     val autor: String = "",
     val contenido: String =  "",

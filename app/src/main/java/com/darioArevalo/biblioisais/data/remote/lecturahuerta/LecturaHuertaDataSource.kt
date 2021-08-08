@@ -98,7 +98,8 @@ class LecturaHuertaDataSource {
                     "titulo" to titulo,
                     "created_at" to time_created,//FieldValue.serverTimestamp(),
                     "post_image" to downloadTask,
-                    "post_Id" to post_Id
+                    "post_Id" to post_Id,
+                    "profile_picture" to photo_user
                 )
                 querySnapshot.document(post_Id)
                     .set(postHashMap)
@@ -151,42 +152,14 @@ class LecturaHuertaDataSource {
 
     suspend fun getIsaisImages(): Result<List<ImageServer>>{
         val imageList = mutableListOf<ImageServer>()
-
         val querySnapshot = FirebaseFirestore.getInstance().collection("isaisImages").get().await()
         for(image in querySnapshot.documents){
             image.toObject(ImageServer::class.java)?.let { fbImage -> imageList.add(fbImage) }
         }
         return Result.Success(imageList)
     }
-
-
-
     companion object {
         private lateinit var downloadTask : String
         private lateinit var uuid: UUID
     }
-
-
-
 }
-
-
-
-
-
-
-
-
-
-/*
-val user = FirebaseAuth.getInstance().currentUser
-        var userID = ""
-        user?.let {
-            userID = user.uid
-            val db = FirebaseFirestore.getInstance()
-            db.collection("users").document(userID).get().await()
-        }
-*
-*
-*
-* */
