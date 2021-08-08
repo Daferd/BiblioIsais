@@ -34,5 +34,14 @@ class BiblioisaisDataSource {
         return Result.Success(episodeList)
     }
 
+    suspend fun getCourse4(): Result<List<CourseServer>> {
+        val episodeList = mutableListOf<CourseServer>()
+        val querySnapshot = FirebaseFirestore.getInstance().collection("educativeOffer").get().await()
+        for(post in querySnapshot){
+            post.toObject(CourseServer::class.java).let { fbCourse->episodeList.add(fbCourse) }
+        }
+        return Result.Success(episodeList)
+    }
+
 
 }

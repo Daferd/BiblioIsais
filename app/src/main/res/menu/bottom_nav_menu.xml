@@ -5,7 +5,7 @@
     <item
         android:id="@+id/navigation_biblioisais"
         android:icon="@drawable/ic_naranja"
-        android:title="@string/biblioisais" />
+        android:title="@string/cursos" />
 
     <item
         android:id="@+id/navigation_therapy"

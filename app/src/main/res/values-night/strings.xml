@@ -2,7 +2,7 @@
 <resources>
 
     <string name="bibliomundo">BiblioMundo</string>
-    <string name="biblioisais">BiblioIsais</string>
+    <string name="cursos">Cursos</string>
     <string name="biblioteca">Biblioteca</string>
     <string name="name">Nombre</string>
     <string name="signup">Registrarse</string>
@@ -28,4 +28,5 @@
     <string name="cancel">Cancelar</string>
     <string name="accept">Aceptar</string>
     <string name="business_information">Prestamos los servicios de consultoría - asesoría empresarial en planes de negocios, contabilidad, inversiones, formalización, dirección y planeación, con profesionales acreditados en disciplinas económicas, administrativas y contables. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="educative_offer">Oferta Educativa</string>
 </resources>

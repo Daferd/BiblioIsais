@@ -32,6 +32,14 @@ class BiblioisaisViewModel(private val repo: BiblioisaisRepo): ViewModel() {
             emit(Result.Failure(e))
         }
     }
+    fun fetchEpisodiesCourse4() = liveData(Dispatchers.IO){
+        emit(Result.Loading())
+        try {
+            emit(repo.getCourse4())
+        } catch (e: Exception){
+            emit(Result.Failure(e))
+        }
+    }
 
 }
 class BiblioisaisViewModelFactory(private val repo: BiblioisaisRepo): ViewModelProvider.Factory {
