@@ -83,5 +83,36 @@
             android:orientation="horizontal"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/courses_item" />
+
+        <TextView
+            android:id="@+id/educativeOfferTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/educative_offer"
+            android:textColor="@color/md_blue_700"
+            android:textSize="24sp"
+            android:textStyle="bold|italic"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/descriptionEducativeOfferTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:textSize="16sp"
+            android:textColor="@color/md_grey_800"
+            android:text="Para acceso, modalidad y certificación de cursos solicitar cita al WhatsApp 57 3216562260"
+            android:textStyle="bold"
+            android:visibility="visible" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/educativeOfferRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/courses_item" />
     </LinearLayout>
 </androidx.core.widget.NestedScrollView>

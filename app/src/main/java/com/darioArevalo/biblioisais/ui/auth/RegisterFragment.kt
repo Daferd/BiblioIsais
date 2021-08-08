@@ -93,6 +93,11 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             return true
         }
 
+        if(password.length < 6){
+            binding.editTextPassword.error = "La contraseña debe contener minimo 6 caracteres"
+            return true
+        }
+
         if (password != confirmPassword) {
             binding.editTextPassword.error = "Las contraseñas no coinciden"
             binding.editTextConfirmPassword.error = "Las contraseñas no coinciden"

@@ -6,7 +6,7 @@
     <string name="pais">País:</string>
     <string name="ciudad">Colombia</string>
     <string name="bibliomundo">BiblioMundo</string>
-    <string name="biblioisais">BiblioIsais</string>
+    <string name="cursos">Cursos</string>
     <string name="biblioteca">Biblioteca</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -25,7 +25,7 @@
     <string name="date_of_birth">Fecha de nacimiento</string>
     <string name="phone_number">Telefono</string>
     <string name="send">Enviar</string>
-    <string name="therapy">Terapia</string>
+    <string name="services">Servicios</string>
     <string name="orchardReading">LecturaHuerta</string>
     <string name="profile">Perfil</string>
     <string name="local_libraries">Bibliotecas Locales</string>
@@ -33,9 +33,9 @@
     <string name="international_libraries">Bibliotecas Internacionales</string>
     <string name="certificate_in_own_law">Diplomado en Derecho Propio</string>
     <string name="certificate_on_economies_and_orchards">Diplomado sobre Economías y Huertas</string>
-    <string name="psychology_information">Todos los tratamientos psicológicos que prestamos, se realizan con independencia de los distintos enfoques de la disciplina. Buscamos un objetivo común: mejorar el bienestar de las personas consultantes, para conseguir que los problemas de la vida se conviertan en retos, soluciones, alternativas u oportunidades y no en amenazas. Estamos para lograr los momentos de mejor estar, salud mental, mejor vivir y poder obtener hechos sucesivos de felicidad y tranquilidad y no de sufrimiento. Puedes agendar tu CITA PSICOLÓGICA al teléfono (57) 3156562260 donde se te darán las indicaciones de fecha, hora y costo de tu teleconsulta o terapia.</string>
-    <string name="spiritual_information">Todos los tratamientos terapéuticos que prestamos, se realizan con base a la cosmovisión ancestral de nuestros pueblos originarios, especialmente andinos. Buscamos un objetivo común: mejorar el bienestar de las personas consultantes, para conseguir que los problemas de la vida se conviertan en estados de Buen Vivir y de armonía espiritual. Se aplican diferentes técnicas y formas de sanación - armonización basados en la ciencia milenaria de los Hampikamayuq. Puedes agendar tu CITA ESPIRITUAL al teléfono (57) 3156562260 donde se te darán las indicaciones de fecha, hoira y costo de tu consulta o terapia.</string>
-    <string name="medicine_information">Prestamos los servicios de consulta externa a través de tele consulta, con médicos certificados y con experiencia. Buscamos un objetivo común: mejorar la salud de las personas consultantes. Estamos para lograr momentos de mejor vivir y ofrecer una consulta médica ágil ante las diversas dudas sobre temas de salud personal o familiar. Puedes agendar tu CITA MÉDICA al teléfono (57) 3156562260 donde se te darán las indicaciones de fecha, hora y costo de tu teleconsulta.</string>
+    <string name="psychology_information">Prestamos los servicios de terapia - consulta psicológica y en especial PERITAJES en Psicología Jurídica, con profesionales registrados en el Colegio Colombiano de Psicología. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="spiritual_information">Prestamos los servicios de terapia - consulta espiritual, basados en la Cosmovisión Andina y pueblos originarios del Abya Yala, con profesionales acreditados como HAMPIKAMAYUQ del Instituto Pachayachachiq de la republica del Perú. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="medicine_information">Prestamos los servicios de consulta medica por Medicina General, con atención personalizada y servicio prestado por profesionales registrados en el Ministerio de Salud de Colombia. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. Visita nuestra pagina en www.facebook.com/isaiscolombia</string>
     <string name="digital_literacy">Alfabetización Digital</string>
     <string name="ethnicity_organization">Etnia/Organización</string>
     <string name="gender">Genero</string>
@@ -43,4 +43,6 @@
     <string name="did_you_forget_your_password">¿Olvidaste tu contraseña?</string>
     <string name="cancel">Cancelar</string>
     <string name="accept">Aceptar</string>
+    <string name="business_information">Prestamos los servicios de consultoría - asesoría empresarial en planes de negocios, contabilidad, inversiones, formalización, dirección y planeación, con profesionales acreditados en disciplinas económicas, administrativas y contables. Puedes tomar tu cita en el Whatsapp 57 3216562260 donde atenderemos tu inquietud y programaremos tu cita a través de plataformas virtuales o de manera telefónica. También visita nuestra pagina en www.facebook.com/isaiscolombia</string>
+    <string name="educative_offer">Oferta Educativa</string>
 </resources>

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.core.BaseViewHolder
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.model.CourseServer
 import com.darioArevalo.biblioisais.databinding.CoursesItemBinding
 

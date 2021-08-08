@@ -52,6 +52,8 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.certificateInOwnLawTextView.hide()
                     binding.certificateOnEconomiesAndOrchardsTextView.hide()
                     binding.otherCoursesTextView.hide()
+                    binding.educativeOfferTextView.hide()
+                    binding.descriptionEducativeOfferTextView.hide()
                     viewModel.fetchEpisodesCourse2().observe(viewLifecycleOwner,{ courseResult->
                         when(courseResult){
                             is Result.Success -> {
@@ -73,6 +75,17 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                             }
                         }
                     })
+
+                    viewModel.fetchEpisodiesCourse4().observe(viewLifecycleOwner,{ courseResult->
+                        when(courseResult){
+                            is Result.Success -> {
+                                binding.educativeOfferRecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
+                            }
+                            is Result.Failure -> {
+                                Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    })
                 }
 
                 is Result.Success -> {
@@ -80,6 +93,8 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.certificateInOwnLawTextView.show()
                     binding.certificateOnEconomiesAndOrchardsTextView.show()
                     binding.otherCoursesTextView.show()
+                    binding.educativeOfferTextView.show()
+                    binding.descriptionEducativeOfferTextView.show()
 
                     binding.cursos1RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
@@ -113,7 +128,11 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                 }
             }
 
-        } else {
+        } else if(episode.nameCourse=="Oferta educativa"){
+            Toast.makeText(context,"Solicitar cita al WhatsApp 57 3216562260",Toast.LENGTH_LONG).show()
+        }
+
+        else {
             val webIntent : Intent = Uri.parse(episode.courseUrl).let { webpage ->
                 Intent(Intent.ACTION_VIEW,webpage)
             }

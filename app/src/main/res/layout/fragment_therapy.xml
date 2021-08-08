@@ -29,19 +29,25 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:src="@drawable/psicologia"
+                    android:scaleType="centerInside"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Terapia Psicologíca"
+                    android:text="Psicología"
                     android:textSize="32sp"
                     android:textColor="@color/black" />
 
-                <TextView
+                <!--<TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Prestación de servicios de terapia psicológica y tele-consulta."
                     android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>
+                    android:textColor="@color/md_grey_900"/>-->
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
@@ -53,25 +59,8 @@
                     android:textColor="@color/md_grey_700"
                     android:padding="4dp"
                     app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="5"
+                    app:readMoreMaxLine="4"
                     app:readMoreText="...Leer mas"/>
-
-
-                <!--<com.borjabravo.readmoretextview.ReadMoreTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/psychology_information"
-                    android:textColor="@color/md_grey_700"
-                    android:justificationMode="inter_word"
-                    android:textSize="16sp"
-                    app:trimExpandedText="Leer mas"
-                    app:trimCollapsedText="Leer menos"
-                    app:trimMode="trimModeLength"
-                    app:trimLength="200"
-                    app:colorClickableText="@color/md_blue_300"
-                    android:layout_marginTop="4dp"
-                    android:padding="5dp"
-                    tools:targetApi="o" />-->
 
             </LinearLayout>
 
@@ -91,6 +80,12 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:src="@drawable/espiritual"
+                    android:scaleType="fitXY"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,12 +93,12 @@
                     android:textSize="32sp"
                     android:textColor="@color/black"/>
 
-                <TextView
+                <!--<TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Prestación de servicios de Hampi Kamayuq por tele-consulta."
                     android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>
+                    android:textColor="@color/md_grey_900"/>-->
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
@@ -115,22 +110,8 @@
                     android:textColor="@color/md_grey_700"
                     android:padding="4dp"
                     app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="5"
+                    app:readMoreMaxLine="4"
                     app:readMoreText="...Leer mas"/>
-
-                <!--<com.borjabravo.readmoretextview.ReadMoreTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/spiritual_information"
-                    android:textColor="@color/md_grey_700"
-                    android:justificationMode="inter_word"
-                    android:textSize="16sp"
-                    app:trimExpandedText="Leer mas"
-                    app:trimCollapsedText="Leer menos"
-                    app:trimMode="trimModeLength"
-                    app:trimLength="200"
-                    app:colorClickableText="@color/md_blue_300"
-                    android:layout_marginTop="4dp"/>-->
 
             </LinearLayout>
 
@@ -150,19 +131,25 @@
                 android:orientation="vertical"
                 android:padding="8dp">
 
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:src="@drawable/medicina"
+                    android:scaleType="centerInside"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Telemedicina"
+                    android:text="Medicina"
                     android:textSize="32sp"
                     android:textColor="@color/black"/>
 
-                <TextView
+                <!--<TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Prestación de servicios de tele consulta en medicina."
                     android:textSize="16sp"
-                    android:textColor="@color/md_grey_900"/>
+                    android:textColor="@color/md_grey_900"/>-->
 
                 <kr.co.prnd.readmore.ReadMoreTextView
                     android:layout_width="match_parent"
@@ -174,22 +161,58 @@
                     android:textColor="@color/md_grey_700"
                     android:padding="4dp"
                     app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="5"
+                    app:readMoreMaxLine="4"
                     app:readMoreText="...Leer mas"/>
+            </LinearLayout>
 
-                <!--<com.borjabravo.readmoretextview.ReadMoreTextView
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/businessCardview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="8dp"
+            app:cardCornerRadius="8dp"
+            android:layout_marginTop="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:src="@drawable/negocios"
+                    android:scaleType="fitXY"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Planes de Negocios"
+                    android:textSize="32sp"
+                    android:textColor="@color/black"/>
+
+                <!--<TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/medicine_information"
-                    android:textColor="@color/md_grey_700"
+                    android:text="Prestación de servicios de tele consulta en medicina."
+                    android:textSize="16sp"
+                    android:textColor="@color/md_grey_900"/>-->
+
+                <kr.co.prnd.readmore.ReadMoreTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/business_information"
                     android:justificationMode="inter_word"
                     android:textSize="16sp"
-                    app:trimExpandedText="Leer mas"
-                    app:trimCollapsedText="Leer menos"
-                    app:trimMode="trimModeLength"
-                    app:trimLength="200"
-                    app:colorClickableText="@color/md_blue_300"
-                    android:layout_marginTop="4dp"/>-->
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/md_grey_700"
+                    android:padding="4dp"
+                    app:readMoreColor="@color/md_blue_300"
+                    app:readMoreMaxLine="4"
+                    app:readMoreText="...Leer mas"/>
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
