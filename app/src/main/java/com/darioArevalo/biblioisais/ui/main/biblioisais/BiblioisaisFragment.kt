@@ -53,7 +53,12 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.certificateOnEconomiesAndOrchardsTextView.hide()
                     binding.otherCoursesTextView.hide()
                     binding.educativeOfferTextView.hide()
+                    binding.descriptionOwnLawTextView.hide()
+                    binding.descriptionEconomiesAndOrchardsTextView.hide()
+                    binding.descriptionOtherCoursesTextView.hide()
                     binding.descriptionEducativeOfferTextView.hide()
+
+
                     viewModel.fetchEpisodesCourse2().observe(viewLifecycleOwner,{ courseResult->
                         when(courseResult){
                             is Result.Success -> {
@@ -94,6 +99,9 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.certificateOnEconomiesAndOrchardsTextView.show()
                     binding.otherCoursesTextView.show()
                     binding.educativeOfferTextView.show()
+                    binding.descriptionOwnLawTextView.show()
+                    binding.descriptionEconomiesAndOrchardsTextView.show()
+                    binding.descriptionOtherCoursesTextView.show()
                     binding.descriptionEducativeOfferTextView.show()
 
                     binding.cursos1RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
