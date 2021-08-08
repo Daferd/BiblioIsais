@@ -114,7 +114,7 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
             }
         })
     }
-
+ //borrar
     override fun onEpisodesClick(episode: CourseServer) {
         if(episode.nameCourse=="Diplomado en derecho propio"){
             val user = FirebaseAuth.getInstance().currentUser
