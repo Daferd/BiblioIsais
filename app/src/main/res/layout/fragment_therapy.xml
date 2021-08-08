@@ -1,198 +1,213 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/md_grey_100"
-    android:fillViewport="true"
     android:orientation="vertical"
     tools:context=".ui.main.therapy.TherapyFragment">
 
-    <LinearLayout
+    <ScrollView
+        android:fillViewport="true"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="wrap_content">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/psychologyCardView"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            android:orientation="vertical"
+            android:padding="16dp">
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/psychologyCardView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/psicologia"
-                    tools:ignore="ContentDescription" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/psychology"
-                    android:textColor="@color/black"
-                    android:textSize="32sp" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/psicologia"
+                        tools:ignore="ContentDescription" />
 
-                <kr.co.prnd.readmore.ReadMoreTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:justificationMode="inter_word"
-                    android:padding="4dp"
-                    android:text="@string/psychology_information"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp"
-                    app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/psychology"
+                        android:textColor="@color/black"
+                        android:textSize="32sp" />
 
-            </LinearLayout>
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:justificationMode="inter_word"
+                        android:padding="4dp"
+                        android:text="@string/psychology_information"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp"
+                        app:readMoreColor="@color/md_blue_300"
+                        app:readMoreMaxLine="4"
+                        app:readMoreText="...Leer mas" />
 
-        </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/spiritualCardView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/spiritualCardView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/espiritual"
-                    tools:ignore="ContentDescription" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/spiritual_therapy"
-                    android:textColor="@color/black"
-                    android:textSize="32sp" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/espiritual"
+                        tools:ignore="ContentDescription" />
 
-                <kr.co.prnd.readmore.ReadMoreTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:justificationMode="inter_word"
-                    android:padding="4dp"
-                    android:text="@string/spiritual_information"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp"
-                    app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/spiritual_therapy"
+                        android:textColor="@color/black"
+                        android:textSize="32sp" />
 
-            </LinearLayout>
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:justificationMode="inter_word"
+                        android:padding="4dp"
+                        android:text="@string/spiritual_information"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp"
+                        app:readMoreColor="@color/md_blue_300"
+                        app:readMoreMaxLine="4"
+                        app:readMoreText="...Leer mas" />
 
-        </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/medicineCardview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/medicineCardview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/medicina"
-                    tools:ignore="ContentDescription" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/medicine"
-                    android:textColor="@color/black"
-                    android:textSize="32sp" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/medicina"
+                        tools:ignore="ContentDescription" />
 
-                <kr.co.prnd.readmore.ReadMoreTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:justificationMode="inter_word"
-                    android:padding="4dp"
-                    android:text="@string/medicine_information"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp"
-                    app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/medicine"
+                        android:textColor="@color/black"
+                        android:textSize="32sp" />
 
-        </androidx.cardview.widget.CardView>
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:justificationMode="inter_word"
+                        android:padding="4dp"
+                        android:text="@string/medicine_information"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp"
+                        app:readMoreColor="@color/md_blue_300"
+                        app:readMoreMaxLine="4"
+                        app:readMoreText="...Leer mas" />
+                </LinearLayout>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/businessCardview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp">
+            </androidx.cardview.widget.CardView>
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/businessCardview"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="8dp">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="120dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/negocios"
-                    tools:ignore="ContentDescription" />
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/business_plans"
-                    android:textColor="@color/black"
-                    android:textSize="32sp" />
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/negocios"
+                        tools:ignore="ContentDescription" />
 
-                <kr.co.prnd.readmore.ReadMoreTextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:justificationMode="inter_word"
-                    android:padding="4dp"
-                    android:text="@string/business_information"
-                    android:textColor="@color/md_grey_700"
-                    android:textSize="16sp"
-                    app:readMoreColor="@color/md_blue_300"
-                    app:readMoreMaxLine="4"
-                    app:readMoreText="...Leer mas" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/business_plans"
+                        android:textColor="@color/black"
+                        android:textSize="32sp" />
 
-        </androidx.cardview.widget.CardView>
+                    <kr.co.prnd.readmore.ReadMoreTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:justificationMode="inter_word"
+                        android:padding="4dp"
+                        android:text="@string/business_information"
+                        android:textColor="@color/md_grey_700"
+                        android:textSize="16sp"
+                        app:readMoreColor="@color/md_blue_300"
+                        app:readMoreMaxLine="4"
+                        app:readMoreText="...Leer mas" />
+                </LinearLayout>
 
-    </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
-</androidx.core.widget.NestedScrollView>
+        </LinearLayout>
+
+
+
+
+
+    </ScrollView>
+
+
+</LinearLayout>
