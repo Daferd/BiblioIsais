@@ -17,7 +17,6 @@
         tools:ignore="ScopedStorage" />
 
     <application
-        android:hardwareAccelerated="false"
         android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@drawable/orange"
