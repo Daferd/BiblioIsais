@@ -24,7 +24,6 @@ class CommentPostDataSource {
 
         val databaseReference = database.child("comentarios_post/${keyPost}")//.get().await()
 
-
         databaseReference.addValueEventListener(object :ValueEventListener{
             override fun onDataChange(snapshot: DataSnapshot) {
                 commentPostList.clear()
@@ -47,25 +46,18 @@ class CommentPostDataSource {
             }
 
         })
-
-/*
+        /*
             for (comments in databaseReference.children){
            comments.getValue<CommentPost>().let {
                //Log.d("xxx","${it?.user_Id}")
                //it?.photo_url_user = getPhoto(it?.user_Id.toString())
                commentPostList.add(it!!)
             }
-
         }*/
         Log.d("size_list",commentPostList.size.toString())
 
-
         return Result.Success(commentPostList)
     }
-
-
-
-
 
    suspend fun suspend_get_comments(keyPost: String):Result<List<CommentPost>>{
        val commentPostList = mutableListOf<CommentPost>()
@@ -128,4 +120,5 @@ class CommentPostDataSource {
             )
         )
     }
+
 }

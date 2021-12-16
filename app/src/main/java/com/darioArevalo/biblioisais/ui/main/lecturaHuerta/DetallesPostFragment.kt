@@ -28,6 +28,7 @@ import com.darioArevalo.biblioisais.domain.lecturahuerta.CommentPostRepoImp
 import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewModel
 import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewModelFactory
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
+import com.google.firebase.auth.FirebaseAuth
 
 
 class DetallesPostFragment : Fragment() {
@@ -148,16 +149,26 @@ class DetallesPostFragment : Fragment() {
 
         var commentPost = ""
         binding.btnComment.setOnClickListener {
-            commentPost = binding.editTxtContent.text.toString()
-            val keyPost = post.post_Id
 
-            if (TextUtils.isEmpty(commentPost)){
-                Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
-            }else{
-                viewModel.addNewComment(commentPost,keyPost)
-                binding.editTxtContent.setText("")
-                Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
+            val user = FirebaseAuth.getInstance()
+            if(user.uid == null){
+                val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
+                findNavController().navigate(action)
+                Toast.makeText(context,"Registarte para comentar",Toast.LENGTH_SHORT).show()
+            } else {
+                commentPost = binding.editTxtContent.text.toString()
+                val keyPost = post.post_Id
+
+                if (TextUtils.isEmpty(commentPost)){
+                    Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
+                }else{
+                    viewModel.addNewComment(commentPost,keyPost)
+                    binding.editTxtContent.setText("")
+                    Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
+                }
             }
+
+
         }
 
         binding.photoViewDetalles.setOnClickListener {

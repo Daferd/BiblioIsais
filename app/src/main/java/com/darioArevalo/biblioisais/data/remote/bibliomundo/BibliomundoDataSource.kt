@@ -36,7 +36,6 @@ class BibliomundoDataSource {
         return Result.Success(libraryList)
     }
 
-
     /*suspend fun getLocalLibraries():List<LibraryServer>{
         val libraryList = mutableListOf<LibraryServer>()
 

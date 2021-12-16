@@ -11,8 +11,11 @@ import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.remote.auth.AuthDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentLoginBinding
 import com.darioArevalo.biblioisais.domain.auth.AuthRepoImpl
@@ -26,13 +29,14 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val viewModel by viewModels<AuthViewModel>{AuthViewModelFactory(AuthRepoImpl(AuthDataSource()))}
     //private lateinit var acyionbar : ActionBar
+    val args: LoginFragmentArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentLoginBinding.bind(view)
 
-        isUserLoggedIn()
+        //isUserLoggedIn()
         doLogin()
         goToSingUpPage()
         recoverPassword()
@@ -46,6 +50,32 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
     }
 
+    private fun isUserLoggedIn() {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        /*user?.let {
+            if (user.isEmailVerified){
+                findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
+            }
+        }*/
+        firebaseAuth.currentUser?.let {
+
+            findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
+        }
+    }
+    private fun doLogin() {
+        binding.btnSignin.setOnClickListener {
+            val email = binding.editTextEmail.text.toString().trim()
+            val password = binding.editTextPassword.text.toString().trim()
+            validateCredentials(email, password)
+            signIn(email, password)
+        }
+    }
+    private fun goToSingUpPage(){
+        binding.registerButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+    }
     private fun recoverPassword() {
 
         binding.txtOlvidaste.setOnClickListener {
@@ -77,35 +107,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     }
 
-    private fun isUserLoggedIn() {
-        val user = FirebaseAuth.getInstance().currentUser
-
-        user?.let {
-            if (user.isEmailVerified){
-                findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
-            }
-        }
-        /*firebaseAuth.currentUser?.let {
-
-            findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
-        }*/
-    }
-
-    private fun doLogin() {
-        binding.btnSignin.setOnClickListener {
-            val email = binding.editTextEmail.text.toString().trim()
-            val password = binding.editTextPassword.text.toString().trim()
-            validateCredentials(email, password)
-            signIn(email, password)
-        }
-    }
-
-    private fun goToSingUpPage(){
-        binding.txtSignup.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
-        }
-    }
-
     private fun validateCredentials(email: String, password: String) {
         if(email.isEmpty()){
             binding.editTextEmail.error = "E-mail is empty"
@@ -117,17 +118,35 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             return
         }
     }
-
     private fun signIn(email: String, password: String) {
         viewModel.signIn(email,password).observe(viewLifecycleOwner, Observer { result ->
             when (result) {
                 is Result.Loading -> {
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                     binding.btnSignin.isEnabled = false
                 }
                 is Result.Success -> {
-                    binding.progressBar.visibility = View.GONE
-                    if(!result.data?.isEmailVerified!!){
+                    binding.progressBar.hide()
+
+                    if(args.direccion == "agregarTema"){
+                        findNavController().navigate(R.id.action_loginFragment_to_agregarTemaFragment)
+                        Toast.makeText(
+                            requireContext(),
+                            "Welcome ${result.data?.displayName}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    if(args.direccion == "comentar"){
+                        findNavController().navigate(R.id.action_loginFragment_to_detallesPostFragment)
+                        Toast.makeText(
+                            requireContext(),
+                            "Welcome ${result.data?.displayName}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
+
+                    /*if(!result.data?.isEmailVerified!!){
                         Toast.makeText(context,"Correo electrónico no verificado",Toast.LENGTH_SHORT).show()
                         binding.btnSignin.isEnabled = true
                     }else{
@@ -137,7 +156,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             "Welcome ${result.data?.displayName}",
                             Toast.LENGTH_SHORT
                         ).show()
-                    }
+                    }*/
 
                 }
                 is Result.Failure -> {
@@ -152,7 +171,4 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         })
     }
-
-
-
 }

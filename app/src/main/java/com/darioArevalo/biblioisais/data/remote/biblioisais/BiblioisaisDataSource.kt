@@ -43,5 +43,4 @@ class BiblioisaisDataSource {
         return Result.Success(episodeList)
     }
 
-
 }

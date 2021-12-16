@@ -44,7 +44,6 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
-
         viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
             when(courseResult){
                 is Result.Loading -> {
