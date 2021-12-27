@@ -32,6 +32,7 @@ import com.darioArevalo.biblioisais.presentation.LecturaHuertaViewModelFactory
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.LecturaHuertaAdapter
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.auth.FirebaseAuth
 import io.grpc.internal.SharedResourceHolder
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
@@ -157,7 +158,15 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
         val fabButton = view.findViewById<ExtendedFloatingActionButton>(R.id.extended_fab)
         fabButton.setOnClickListener{
-            findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)
+            val user = FirebaseAuth.getInstance()
+            if(user.uid == null){
+                val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("agregarTema")
+                findNavController().navigate(action)
+                Toast.makeText(context,"Usuario no registrado",Toast.LENGTH_SHORT).show()
+            } else {
+                findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)
+            }
+
         }
     }
 

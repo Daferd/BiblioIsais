@@ -48,8 +48,6 @@ class LecturaHuertaDataSource {
 
         }*/
 
-
-
         for(post in querySnapshot.documents){
             post.toObject(PostServer::class.java)?.let { postList.add(it) }
             Log.d("Query Tag", "${post.id} => ${post.data}")}

@@ -20,7 +20,7 @@ class AuthDataSource {
         val authResult = FirebaseAuth.getInstance().createUserWithEmailAndPassword(email,password).await()
         authResult.user?.let { user ->
 
-            user.sendEmailVerification()
+            //user.sendEmailVerification()
 
             val profileDates = UserProfileChangeRequest.Builder()
                 .setDisplayName(username)
@@ -40,7 +40,7 @@ class AuthDataSource {
         return authResult.user
     }
 
-    suspend fun recoverPassword(email: String){
+    fun recoverPassword(email: String){
 
         val auth = FirebaseAuth.getInstance()
 

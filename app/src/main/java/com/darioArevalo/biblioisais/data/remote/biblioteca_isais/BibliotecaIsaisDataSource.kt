@@ -15,7 +15,6 @@ class BibliotecaIsaisDataSource {
         val CREATE_FiLE = 1
     }
 
-
     suspend fun getPDFs(): Result<List<PdfServer>>{
         val pdfsList = mutableListOf<PdfServer>()
 
@@ -62,4 +61,5 @@ class BibliotecaIsaisDataSource {
         }
         return Result.Success(imageList)
     }
+
 }
