@@ -43,7 +43,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
-                activity?.finish()
+                //activity?.finish()
+                val fm = activity?.supportFragmentManager
+                fm?.popBackStack();
             }
         }
 
@@ -135,9 +137,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             "Welcome ${result.data?.displayName}",
                             Toast.LENGTH_SHORT
                         ).show()
-                    }
-
-                    if(args.direccion == "comentar"){
+                    } else {
                         findNavController().navigate(R.id.action_loginFragment_to_detallesPostFragment)
                         Toast.makeText(
                             requireContext(),
@@ -145,6 +145,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             Toast.LENGTH_SHORT
                         ).show()
                     }
+
+                    /*if(args.direccion == "comentar"){
+                        findNavController().navigate(R.id.action_loginFragment_to_detallesPostFragment)
+                        Toast.makeText(
+                            requireContext(),
+                            "Welcome ${result.data?.displayName}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }*/
 
                     /*if(!result.data?.isEmailVerified!!){
                         Toast.makeText(context,"Correo electrónico no verificado",Toast.LENGTH_SHORT).show()
