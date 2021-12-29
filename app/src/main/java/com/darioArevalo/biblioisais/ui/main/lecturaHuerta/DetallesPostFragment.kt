@@ -80,7 +80,7 @@ class DetallesPostFragment : Fragment() {
         Glide.with(requireContext()).load(post.profile_picture).fitCenter().into(binding.profilePhotoDetalles)
         Glide.with(requireContext()).load(post.post_image).fitCenter().into(binding.photoViewDetalles)
 
-            viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
+        viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
                 when(result){
                     is Result.Loading->{
                         Log.d("Livedata","Loading...")
@@ -152,8 +152,9 @@ class DetallesPostFragment : Fragment() {
 
             val user = FirebaseAuth.getInstance()
             if(user.uid == null){
-                val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
-                findNavController().navigate(action)
+                /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
+                findNavController().navigate(action)*/
+                    findNavController().navigate(R.id.action_detallesPostFragment_to_loginFragment)
                 Toast.makeText(context,"Registarte para comentar",Toast.LENGTH_SHORT).show()
             } else {
                 commentPost = binding.editTxtContent.text.toString()
@@ -168,6 +169,9 @@ class DetallesPostFragment : Fragment() {
                 }
             }
 
+
+        }
+        binding.editTxtContent.setOnClickListener {
 
         }
 

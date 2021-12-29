@@ -166,7 +166,6 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
             } else {
                 findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)
             }
-
         }
     }
 

@@ -208,6 +208,9 @@
         <action
             android:id="@+id/action_detallesPostFragment_to_imageviewFragment"
             app:destination="@id/imageviewFragment" />
+        <action
+            android:id="@+id/action_detallesPostFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageviewFragment"
