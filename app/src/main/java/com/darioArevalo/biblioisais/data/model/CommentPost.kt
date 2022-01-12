@@ -1,6 +1,9 @@
 package com.darioArevalo.biblioisais.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class CommentPost(
     val content: String = "",
     val create_at: Long? = null,
@@ -8,4 +11,4 @@ data class CommentPost(
     val post_Id: String = "",
     val user_Id: String = "",
     var photo_url_user: String = ""
-)
+): Parcelable

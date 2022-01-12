@@ -4,22 +4,46 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.14444444444444443" />
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/round_corners_bottom.xml" value="0.10520833333333333" />
         <entry key="app/src/main/res/drawable/shadow_button_layer.xml" value="0.10520833333333333" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/alerdialog_agregar_tema_row.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/alertdialog_custom_row.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/comment_edit_row.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/comment_row.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/courses_item.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/dropdown_item.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/form_toolbar.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/fragment_agregar_tema.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_agregar_tema_dialog.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/fragment_biblioisais.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/fragment_bibliomundo.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_bibliotecas.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detalles_post.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_form.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_imageview.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_lectura_huerta.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_newdata.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_register.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/fragment_splash.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_therapy.xml" value="0.16309412861137" />
+        <entry key="app/src/main/res/layout/international_libraries_row.xml" value="0.14719202898550723" />
+        <entry key="app/src/main/res/layout/isais_toolbar.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/lectura_huerta_row.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/library_item.xml" value="0.10260416666666666" />
+        <entry key="app/src/main/res/layout/local_libraries_row.xml" value="0.10260416666666666" />
+        <entry key="app/src/main/res/layout/national_libraries_row.xml" value="0.14719202898550723" />
         <entry key="app/src/main/res/layout/pdf_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/post_item.xml" value="0.1203125" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

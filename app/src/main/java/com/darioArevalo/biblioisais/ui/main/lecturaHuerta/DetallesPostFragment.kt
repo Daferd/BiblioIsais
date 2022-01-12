@@ -1,6 +1,7 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -19,6 +21,7 @@ import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.data.model.CommentPost
 import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
@@ -28,9 +31,12 @@ import com.darioArevalo.biblioisais.domain.lecturahuerta.CommentPostRepoImp
 import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewModel
 import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewModelFactory
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
+import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.auth.FirebaseAuth
+import kotlin.concurrent.fixedRateTimer
 
 
-class DetallesPostFragment : Fragment() {
+class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
 
     private lateinit var post : PostServer
     private lateinit var binding: FragmentDetallesPostBinding
@@ -54,8 +60,7 @@ class DetallesPostFragment : Fragment() {
     ): View? {
         val rootview = inflater.inflate(R.layout.fragment_detalles_post,container,false)
         val recyclerView = rootview?.findViewById<RecyclerView>(R.id.rv_postDetalles)
-
-        AdapterComment = commentAdapter(ArrayList())
+        AdapterComment = commentAdapter(ArrayList(),this)
 
         return rootview
     }
@@ -79,7 +84,7 @@ class DetallesPostFragment : Fragment() {
         Glide.with(requireContext()).load(post.profile_picture).fitCenter().into(binding.profilePhotoDetalles)
         Glide.with(requireContext()).load(post.post_image).fitCenter().into(binding.photoViewDetalles)
 
-            viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
+        viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
                 when(result){
                     is Result.Loading->{
                         Log.d("Livedata","Loading...")
@@ -98,7 +103,7 @@ class DetallesPostFragment : Fragment() {
                             binding.emptyContainer.visibility = View.GONE
                         }
 
-                        AdapterComment = commentAdapter(result.data)
+                        AdapterComment = commentAdapter(result.data,this)
                         binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
 
                     }
@@ -148,16 +153,30 @@ class DetallesPostFragment : Fragment() {
 
         var commentPost = ""
         binding.btnComment.setOnClickListener {
-            commentPost = binding.editTxtContent.text.toString()
-            val keyPost = post.post_Id
 
-            if (TextUtils.isEmpty(commentPost)){
-                Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
-            }else{
-                viewModel.addNewComment(commentPost,keyPost)
-                binding.editTxtContent.setText("")
-                Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
+            val user = FirebaseAuth.getInstance()
+            if(user.uid == null){
+                /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
+                findNavController().navigate(action)*/
+                    findNavController().navigate(R.id.action_detallesPostFragment_to_loginFragment)
+                Toast.makeText(context,"Registarte para comentar",Toast.LENGTH_SHORT).show()
+            } else {
+                commentPost = binding.editTxtContent.text.toString()
+                val keyPost = post.post_Id
+
+                if (TextUtils.isEmpty(commentPost)){
+                    Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
+                }else{
+                    viewModel.addNewComment(commentPost,keyPost)
+                    binding.editTxtContent.setText("")
+                    Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
+                }
             }
+
+
+        }
+        binding.editTxtContent.setOnClickListener {
+
         }
 
         binding.photoViewDetalles.setOnClickListener {
@@ -167,8 +186,22 @@ class DetallesPostFragment : Fragment() {
             findNavController().navigate(R.id.action_detallesPostFragment_to_imageviewFragment,bundle)
         }
 
-
     }
 
+    override fun onCommentClick(commentEditText: String) {
+        val bundle = Bundle()
+        val dialogFragment = EditarComentarioAlertDialog()
+        showDialogFragment(commentEditText)
+    }
+
+    private fun showDialogFragment(commentEditText:String){
+        val dialogView_edit = layoutInflater.inflate(R.layout.comment_edit_row,null)
+        val comment_to_edit = dialogView_edit.findViewById<TextInputEditText>(R.id.txt_setTxt_commentEdit)
+        comment_to_edit.setText(commentEditText)
+        val customDialog = AlertDialog.Builder(context)
+            .setView(dialogView_edit)
+            .show()
+    }
 
 }
+

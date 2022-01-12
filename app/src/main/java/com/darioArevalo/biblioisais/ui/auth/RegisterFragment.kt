@@ -10,11 +10,15 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.remote.auth.AuthDataSource
 import com.darioArevalo.biblioisais.databinding.FragmentRegisterBinding
 import com.darioArevalo.biblioisais.domain.auth.AuthRepoImpl
 import com.darioArevalo.biblioisais.presentation.auth.AuthViewModel
 import com.darioArevalo.biblioisais.presentation.auth.AuthViewModelFactory
+import java.util.regex.Matcher
+import java.util.regex.Pattern
 
 
 class RegisterFragment : Fragment(R.layout.fragment_register) {
@@ -53,16 +57,16 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         viewModel.signUp(email,password,username,form).observe(viewLifecycleOwner, Observer { result ->
             when(result){
                 is Result.Loading ->{
-                    binding.progressBar.visibility = View.VISIBLE
+                    binding.progressBar.show()
                     binding.btnSignup.isEnabled = false
                 }
                 is Result.Success -> {
                     binding.progressBar.visibility = View.GONE
-                    Toast.makeText(context,"Verifica el registro en tu cuenta de correo",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(context,"Verifica el registro en tu cuenta de correo",Toast.LENGTH_LONG).show()
                     findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
                 }
                 is Result.Failure -> {
-                    binding.progressBar.visibility = View.GONE
+                    binding.progressBar.hide()
                     binding.btnSignup.isEnabled = true
                     Toast.makeText(requireContext(),"Error: ${result.exception}",Toast.LENGTH_SHORT).show()
                 }
@@ -82,6 +86,10 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
         }
         if (email.isEmpty()) {
             binding.editTextEmail.error = "email is empty"
+            return true
+        }
+        if(!esCorreo(email)){
+            binding.editTextEmail.error = "El correo no es valido"
             return true
         }
         if (password.isEmpty()) {
@@ -104,5 +112,11 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             return true
         }
         return false
+    }
+
+    fun esCorreo(texto:String):Boolean{
+        val patroncito: Pattern =Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")
+        val comparador: Matcher =patroncito.matcher(texto)
+        return comparador.find()
     }
 }

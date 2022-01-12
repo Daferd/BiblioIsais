@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">BiblioIsais</string>
+    <string name="app_name">Biblio ISAIS</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
@@ -60,7 +60,7 @@
     <string name="posting">Publicando . . .</string>
     <string name="add_photo">AGREGA UNA FOTO</string>
     <string name="author" tools:ignore="Typos">Autor:</string>
-    <string name="more" tools:ignore="TypographyEllipsis">...Leer más</string>
+    <string name="more" tools:ignore="TypographyEllipsis">... Leer más</string>
     <string name="country">País:</string>
     <string name="search_title">Search Title</string>
     <string name="business_plans">Planes de Negocios</string>

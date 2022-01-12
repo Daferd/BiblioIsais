@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/navigation_biblioisais">
 
     <fragment
         android:id="@+id/navigation_biblioisais"
@@ -71,6 +71,9 @@
         <action
             android:id="@+id/action_navigation_lecturaHuerta_to_imageviewFragment"
             app:destination="@id/imageviewFragment" />
+        <action
+            android:id="@+id/action_navigation_lecturaHuerta_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -91,6 +94,17 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_rigth" />
+        <action
+            android:id="@+id/action_loginFragment_to_agregarTemaFragment"
+            app:destination="@id/agregarTemaFragment" />
+        <argument
+            android:name="direccion"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="no se" />
+        <action
+            android:id="@+id/action_loginFragment_to_detallesPostFragment"
+            app:destination="@id/detallesPostFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -194,6 +208,9 @@
         <action
             android:id="@+id/action_detallesPostFragment_to_imageviewFragment"
             app:destination="@id/imageviewFragment" />
+        <action
+            android:id="@+id/action_detallesPostFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageviewFragment"

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_filledTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="9dp"
+        android:hint="Comentario Actual">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txt_setTxt_commentEdit"
+            android:text="No comments"
+            android:layout_width="match_parent"
+            android:backgroundTint="@color/md_white_1000"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:padding="8dp"
+        android:layout_gravity="end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:padding="8dp"
+            android:id="@+id/delete_edit_comment"
+            android:src="@drawable/ic_baseline_delete_forever_24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+        <ImageView
+            android:padding="8dp"
+            android:id="@+id/check_edit_comment"
+            android:src="@drawable/ic_baseline_check_circle_24"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+
+    </LinearLayout>
+</LinearLayout>
+
