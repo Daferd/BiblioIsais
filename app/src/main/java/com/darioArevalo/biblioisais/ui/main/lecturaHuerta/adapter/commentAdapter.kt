@@ -1,9 +1,9 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -15,10 +15,14 @@ import com.darioArevalo.biblioisais.databinding.CommentRowBinding
 import java.util.*
 import kotlin.collections.ArrayList
 
-class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerView.Adapter<BaseViewHolder<*>>() {
+class commentAdapter(private val commentPostList: List<CommentPost>, private val itemOnClickListener:onCommentClickListener):RecyclerView.Adapter<BaseViewHolder<*>>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder<*> {
         val itemBinding = CommentRowBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return CommentPostViewHolder(itemBinding,parent.context)
+    }
+
+    interface onCommentClickListener{
+        fun onCommentClick(commentEditText: String)
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<*>, position: Int) {
@@ -47,6 +51,8 @@ class commentAdapter(private val commentPostList: List<CommentPost>):RecyclerVie
             binding.commentDate.text = created_at
             binding.commentUsername.text = item.autor
             binding.commentContent.text = item.content
+            //Dialog
+            binding.editCommentRvpost.setOnClickListener{ itemOnClickListener.onCommentClick(item.content)}
             Glide.with(context).load(item.photo_url_user).centerCrop().into(binding.commentUserImg)
         }
 
