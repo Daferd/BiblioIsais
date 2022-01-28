@@ -1,6 +1,5 @@
 package com.darioArevalo.biblioisais.ui.main.lecturaHuerta
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,8 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.Toast
-import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -20,8 +19,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
-import com.darioArevalo.biblioisais.core.hide
-import com.darioArevalo.biblioisais.data.model.CommentPost
 import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
@@ -33,7 +30,6 @@ import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewMo
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-import kotlin.concurrent.fixedRateTimer
 
 
 class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
@@ -50,6 +46,7 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
         requireArguments().let {
             post = it.getParcelable<PostServer>("post")!!
             Log.d("detalles","$post")
+
         }
     }
 
@@ -153,7 +150,6 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
 
         var commentPost = ""
         binding.btnComment.setOnClickListener {
-
             val user = FirebaseAuth.getInstance()
             if(user.uid == null){
                 /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
@@ -185,22 +181,42 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
             bundle.putParcelable("img_view_detalles",imagepass)
             findNavController().navigate(R.id.action_detallesPostFragment_to_imageviewFragment,bundle)
         }
-
     }
 
-    override fun onCommentClick(commentEditText: String) {
+    override fun onCommentClick(commentEditText: Array<String>) {
         val bundle = Bundle()
-        val dialogFragment = EditarComentarioAlertDialog()
+        //val dialogFragment = EditarComentarioAlertDialog()
         showDialogFragment(commentEditText)
     }
 
-    private fun showDialogFragment(commentEditText:String){
+    //edit comment.
+    private fun showDialogFragment(commentEditText:Array<String>){
         val dialogView_edit = layoutInflater.inflate(R.layout.comment_edit_row,null)
         val comment_to_edit = dialogView_edit.findViewById<TextInputEditText>(R.id.txt_setTxt_commentEdit)
-        comment_to_edit.setText(commentEditText)
+        val content_comment = commentEditText[0]
+        val key_id_comment = commentEditText[1]
+        val post_id = commentEditText[2]
+
+        comment_to_edit.setText(content_comment)
         val customDialog = AlertDialog.Builder(context)
             .setView(dialogView_edit)
             .show()
+
+        val accept_new_comment = dialogView_edit.findViewById<ImageView>(R.id.btnCheck_edit_comment)
+        accept_new_comment.setOnClickListener{
+            Log.d("message_edit",comment_to_edit.text.toString())
+            val editCommentByUser = comment_to_edit.text.toString()
+            viewModel.edit_comment(editCommentByUser,key_id_comment,post_id)
+            customDialog.dismiss()
+        }
+
+        val delete_comment = dialogView_edit.findViewById<ImageView>(R.id.btnDelete_edit_comment)
+        delete_comment.setOnClickListener{
+            Log.d("delete_comment","comment was delete")
+            viewModel.delete_comment_vm(key_id_comment, post_id)
+            customDialog.dismiss()
+        }
+
     }
 
 }
