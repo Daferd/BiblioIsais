@@ -17,7 +17,7 @@ import com.darioArevalo.biblioisais.databinding.FragmentLecturaHuertaBinding
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.LecturaHuertaAdapter
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
 import com.google.android.material.textfield.TextInputEditText
-
+/*
 class EditarComentarioAlertDialog: DialogFragment(), commentAdapter.onCommentClickListener{
     private lateinit var Adapter : commentAdapter
 
@@ -69,3 +69,4 @@ class EditarComentarioAlertDialog: DialogFragment(), commentAdapter.onCommentCli
 
 }
 
+*/

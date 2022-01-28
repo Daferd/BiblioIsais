@@ -31,14 +31,14 @@
 
         <ImageView
             android:padding="8dp"
-            android:id="@+id/delete_edit_comment"
+            android:id="@+id/btnDelete_edit_comment"
             android:src="@drawable/ic_baseline_delete_forever_24"
             android:layout_width="50dp"
             android:layout_height="50dp"/>
 
         <ImageView
             android:padding="8dp"
-            android:id="@+id/check_edit_comment"
+            android:id="@+id/btnCheck_edit_comment"
             android:src="@drawable/ic_baseline_check_circle_24"
             android:layout_width="50dp"
             android:layout_height="50dp"/>

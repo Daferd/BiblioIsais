@@ -10,5 +10,7 @@ data class CommentPost(
     val autor: String = "",
     val post_Id: String = "",
     val user_Id: String = "",
+    var validation: Boolean = false,
+    val key_id_comment: String = "",
     var photo_url_user: String = ""
 ): Parcelable
