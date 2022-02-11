@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@id/navigation_biblioisais">
+    app:startDestination="@id/biblioIsaisAuxFragment">
 
     <fragment
         android:id="@+id/navigation_biblioisais"
@@ -222,4 +222,8 @@
             android:defaultValue="no image"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/biblioIsaisAuxFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.biblioisais.BiblioIsaisAuxFragment"
+        android:label="BiblioIsaisAuxFragment" />
 </navigation>
