@@ -44,8 +44,9 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
-        viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner,{ courseResult->
-            when(courseResult){
+
+        viewModel.fetchEpisodesCourse1().observe(viewLifecycleOwner) { courseResult ->
+            when (courseResult) {
                 is Result.Loading -> {
                     binding.progressBar.show()
                     binding.certificateInOwnLawTextView.hide()
@@ -58,38 +59,53 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.descriptionEducativeOfferTextView.hide()
 
 
-                    viewModel.fetchEpisodesCourse2().observe(viewLifecycleOwner,{ courseResult->
-                        when(courseResult){
+                    viewModel.fetchEpisodesCourse2().observe(viewLifecycleOwner) { courseResult ->
+                        when (courseResult) {
                             is Result.Success -> {
-                                binding.cursos2RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
+                                binding.cursos2RecyclerView.adapter =
+                                    BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                             }
                             is Result.Failure -> {
-                                Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Hubo un error: ${courseResult.exception}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
-                    })
+                    }
 
-                    viewModel.fetchEpisodiesCourse3().observe(viewLifecycleOwner,{ courseResult->
-                        when(courseResult){
+                    viewModel.fetchEpisodiesCourse3().observe(viewLifecycleOwner) { courseResult ->
+                        when (courseResult) {
                             is Result.Success -> {
-                                binding.otherCoursesRecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
+                                binding.otherCoursesRecyclerView.adapter =
+                                    BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                             }
                             is Result.Failure -> {
-                                Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Hubo un error: ${courseResult.exception}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
-                    })
+                    }
 
-                    viewModel.fetchEpisodiesCourse4().observe(viewLifecycleOwner,{ courseResult->
-                        when(courseResult){
+                    viewModel.fetchEpisodiesCourse4().observe(viewLifecycleOwner) { courseResult ->
+                        when (courseResult) {
                             is Result.Success -> {
-                                binding.educativeOfferRecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
+                                binding.educativeOfferRecyclerView.adapter =
+                                    BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                             }
                             is Result.Failure -> {
-                                Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    context,
+                                    "Hubo un error: ${courseResult.exception}",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
-                    })
+                    }
                 }
 
                 is Result.Success -> {
@@ -103,15 +119,20 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                     binding.descriptionOtherCoursesTextView.show()
                     binding.descriptionEducativeOfferTextView.show()
 
-                    binding.cursos1RecyclerView.adapter = BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
+                    binding.cursos1RecyclerView.adapter =
+                        BiblioisaisAdapter(courseResult.data, this@BiblioisaisFragment)
                 }
 
                 is Result.Failure -> {
                     binding.progressBar.hide()
-                    Toast.makeText(context,"Hubo un error: ${courseResult.exception}",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        context,
+                        "Hubo un error: ${courseResult.exception}",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
-        })
+        }
     }
  //borrar
     override fun onEpisodesClick(episode: CourseServer) {

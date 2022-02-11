@@ -160,8 +160,9 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         fabButton.setOnClickListener{
             val user = FirebaseAuth.getInstance()
             if(user.uid == null){
-                val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("agregarTema")
-                findNavController().navigate(action)
+                /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("agregarTema")
+                findNavController().navigate(action)*/
+                    findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_loginFragment)
                 Toast.makeText(context,"Usuario no registrado",Toast.LENGTH_SHORT).show()
             } else {
                 findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)

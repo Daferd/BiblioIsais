@@ -4,6 +4,14 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.1" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/drawable/background_text.xml" value="0.1015" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/drawable/main_backgroud.xml" value="0.1365" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/drawable/round_corners_bottom.xml" value="0.1015" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/drawable/shadow_button_layer.xml" value="0.1015" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/courses_item.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_biblioisais.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_profile.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/option_courses.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/round_corners_bottom.xml" value="0.10520833333333333" />

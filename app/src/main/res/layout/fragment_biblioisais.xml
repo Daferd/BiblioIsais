@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_orange_50"
+    android:background="@drawable/main_backgroud"
     android:orientation="vertical"
     android:padding="8dp"
     tools:context=".ui.main.biblioisais.BiblioisaisFragment">
