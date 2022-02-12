@@ -325,4 +325,9 @@
     <color name="md_blue_grey_900">#263238</color>
 
 
+    <!--New Themes -->
+    <color name="orange_bar">#FFA32F0B</color>
+    <color name="orange_light_bar_deep">#E64A19</color>
+
+
 </resources>
