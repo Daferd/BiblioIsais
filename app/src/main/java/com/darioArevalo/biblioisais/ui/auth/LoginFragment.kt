@@ -41,6 +41,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         goToSingUpPage()
         recoverPassword()
 
+        //error de navegacio
+
         /*val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 //activity?.finish()
