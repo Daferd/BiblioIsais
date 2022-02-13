@@ -100,15 +100,15 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         })
 
 
-        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
-            when(result){
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is Result.Loading -> {
 
                 }
                 is Result.Success -> {
                     imageList.clear()
-                    for (image in result.data){
-                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    for (image in result.data) {
+                        imageList.add(CarouselItem(image.imageUrl, image.review))
                     }
                     binding.carousel.addData(imageList)
                 }
@@ -116,7 +116,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
                 }
             }
-        })
+        }
 
         binding.carousel.onItemClickListener = object : OnItemClickListener {
             override fun onClick(position: Int, carouselItem: CarouselItem) {
@@ -160,9 +160,9 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         fabButton.setOnClickListener{
             val user = FirebaseAuth.getInstance()
             if(user.uid == null){
-                /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("agregarTema")
-                findNavController().navigate(action)*/
-                    findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_loginFragment)
+                val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("agregarTema")
+                findNavController().navigate(action)
+                    //findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_loginFragment)
                 Toast.makeText(context,"Usuario no registrado",Toast.LENGTH_SHORT).show()
             } else {
                 findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)

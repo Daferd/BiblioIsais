@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@drawable/main_backgroud"
+    android:orientation="vertical"
     tools:context=".ui.main.biblioisais.BiblioisaisFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="600dp"
         android:orientation="vertical"
-        android:background="@color/transparent">
+        android:padding="40dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="280dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:elevation="8dp"
-            app:cardCornerRadius="4dp">
+            android:elevation="16dp"
+            app:cardCornerRadius="6dp">
 
 
             <ImageView
@@ -42,7 +41,7 @@
                     android:text="@string/certificate_in_own_law"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"/>
             </LinearLayout>
 
 
@@ -50,7 +49,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="280dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:elevation="8dp"
@@ -60,7 +59,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/instituto"
+                android:src="@drawable/economia"
                 android:scaleType="fitXY"
                 tools:ignore="ContentDescription" />
 
@@ -73,10 +72,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/certificate_in_own_law"
+                    android:text="@string/certificate_on_economies_and_orchards"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"
+                    android:gravity="center"/>
             </LinearLayout>
 
 
@@ -84,7 +84,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="280dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:elevation="8dp"
@@ -94,7 +94,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/instituto"
+                android:src="@drawable/oportunidad"
                 android:scaleType="fitXY"
                 tools:ignore="ContentDescription" />
 
@@ -107,10 +107,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/certificate_in_own_law"
+                    android:text="@string/digital_literacy"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"/>
             </LinearLayout>
 
 
@@ -118,7 +118,7 @@
 
         <androidx.cardview.widget.CardView
             android:layout_width="280dp"
-            android:layout_height="120dp"
+            android:layout_height="140dp"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
             android:elevation="8dp"
@@ -128,7 +128,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/instituto"
+                android:src="@drawable/oferta"
                 android:scaleType="fitXY"
                 tools:ignore="ContentDescription" />
 
@@ -141,10 +141,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/certificate_in_own_law"
+                    android:text="@string/educative_offer"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="16sp"/>
+                    android:textSize="18sp"/>
             </LinearLayout>
 
 

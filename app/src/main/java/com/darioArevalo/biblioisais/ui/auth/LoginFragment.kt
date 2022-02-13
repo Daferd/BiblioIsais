@@ -41,7 +41,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         goToSingUpPage()
         recoverPassword()
 
-        val callback = object : OnBackPressedCallback(true){
+        /*val callback = object : OnBackPressedCallback(true){
             override fun handleOnBackPressed() {
                 //activity?.finish()
                 val fm = activity?.supportFragmentManager
@@ -49,7 +49,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             }
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)*/
     }
 
     private fun isUserLoggedIn() {
