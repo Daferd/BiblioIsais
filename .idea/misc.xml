@@ -12,7 +12,9 @@
         <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/courses_item.xml" value="0.18518518518518517" />
         <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_biblio_isais_aux.xml" value="0.25" />
         <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_biblioisais.xml" value="0.18518518518518517" />
-        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_profile.xml" value="0.18518518518518517" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_detalles_post.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_login.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/Users/dafer/AndroidStudioProjects/BiblioIsais/app/src/main/res/layout/option_courses.xml" value="0.33" />
         <entry key="app/src/main/res/drawable/ic_baseline_check_circle_24.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/drawable/ic_baseline_delete_forever_24.xml" value="0.33" />

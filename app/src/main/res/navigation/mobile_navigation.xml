@@ -137,6 +137,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_imageviewFragment"
             app:destination="@id/imageviewFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_biblioisais"
+            app:destination="@id/navigation_biblioisais" />
     </fragment>
     <fragment
         android:id="@+id/FormFragment"

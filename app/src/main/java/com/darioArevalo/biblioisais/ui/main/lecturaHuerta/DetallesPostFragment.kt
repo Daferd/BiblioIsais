@@ -150,29 +150,26 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
 
         var commentPost = ""
         binding.btnComment.setOnClickListener {
+            commentPost = binding.editTxtContent.text.toString()
+            val keyPost = post.post_Id
+
+            if (TextUtils.isEmpty(commentPost)){
+                Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
+            }else{
+                viewModel.addNewComment(commentPost,keyPost)
+                binding.editTxtContent.setText("")
+                Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        binding.editTxtContent.setOnClickListener {
             val user = FirebaseAuth.getInstance()
             if(user.uid == null){
                 /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
                 findNavController().navigate(action)*/
-                    findNavController().navigate(R.id.action_detallesPostFragment_to_loginFragment)
+                findNavController().navigate(R.id.action_detallesPostFragment_to_loginFragment)
                 Toast.makeText(context,"Registarte para comentar",Toast.LENGTH_SHORT).show()
-            } else {
-                commentPost = binding.editTxtContent.text.toString()
-                val keyPost = post.post_Id
-
-                if (TextUtils.isEmpty(commentPost)){
-                    Toast.makeText(context,"Tienes Espacios Vacios",Toast.LENGTH_SHORT).show()
-                }else{
-                    viewModel.addNewComment(commentPost,keyPost)
-                    binding.editTxtContent.setText("")
-                    Toast.makeText(this.context,"Has comentado",Toast.LENGTH_SHORT).show()
-                }
             }
-
-
-        }
-        binding.editTxtContent.setOnClickListener {
-
         }
 
         binding.photoViewDetalles.setOnClickListener {
