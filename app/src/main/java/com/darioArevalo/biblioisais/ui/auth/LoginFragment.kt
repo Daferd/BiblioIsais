@@ -17,15 +17,15 @@ import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.core.hide
 import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.remote.auth.AuthDataSource
-import com.darioArevalo.biblioisais.databinding.FragmentLoginBinding
+import com.darioArevalo.biblioisais.databinding.FragmentLogin2Binding
 import com.darioArevalo.biblioisais.domain.auth.AuthRepoImpl
 import com.darioArevalo.biblioisais.presentation.auth.AuthViewModel
 import com.darioArevalo.biblioisais.presentation.auth.AuthViewModelFactory
 import com.google.firebase.auth.FirebaseAuth
 
-class LoginFragment : Fragment(R.layout.fragment_login) {
+class LoginFragment : Fragment(R.layout.fragment_login_2) {
 
-    private lateinit var binding: FragmentLoginBinding
+    private lateinit var binding: FragmentLogin2Binding
     private val firebaseAuth by lazy { FirebaseAuth.getInstance() }
     private val viewModel by viewModels<AuthViewModel>{AuthViewModelFactory(AuthRepoImpl(AuthDataSource()))}
     //private lateinit var acyionbar : ActionBar
@@ -34,7 +34,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentLoginBinding.bind(view)
+        binding = FragmentLogin2Binding.bind(view)
 
         //isUserLoggedIn()
         doLogin()
@@ -45,11 +45,11 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             override fun handleOnBackPressed() {
                 //activity?.finish()
                 val fm = activity?.supportFragmentManager
-                fm?.popBackStack();
+                fm?.popBackStack(); // Revisar...
             }
         }
 
-        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback)
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,callback) //Revisar...
     }
 
     private fun isUserLoggedIn() {
