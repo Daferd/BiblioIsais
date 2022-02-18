@@ -136,7 +136,15 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
     }
  //borrar
     override fun onEpisodesClick(episode: CourseServer) {
-        if(episode.nameCourse=="Diplomado en derecho propio"){
+        if(episode.nameCourse=="Oferta educativa"){
+            Toast.makeText(context,"Solicitar cita al WhatsApp 57 3216562260",Toast.LENGTH_LONG).show()
+        } else {
+             val webIntent : Intent = Uri.parse(episode.courseUrl).let { webpage ->
+                 Intent(Intent.ACTION_VIEW,webpage)
+             }
+             startActivity(webIntent)
+        }
+        /*if(episode.nameCourse=="Diplomado en derecho propio"){
             val user = FirebaseAuth.getInstance().currentUser
             user?.let {
                 val db = FirebaseFirestore.getInstance()
@@ -165,6 +173,6 @@ class BiblioisaisFragment : Fragment(R.layout.fragment_biblioisais), Biblioisais
                 Intent(Intent.ACTION_VIEW,webpage)
             }
             startActivity(webIntent)
-        }
+        }*/
     }
 }
