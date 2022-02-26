@@ -13,7 +13,7 @@ import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.core.hide
 import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.remote.auth.AuthDataSource
-import com.darioArevalo.biblioisais.databinding.FragmentRegisterBinding
+import com.darioArevalo.biblioisais.databinding.FragmentRegister2Binding
 import com.darioArevalo.biblioisais.domain.auth.AuthRepoImpl
 import com.darioArevalo.biblioisais.presentation.auth.AuthViewModel
 import com.darioArevalo.biblioisais.presentation.auth.AuthViewModelFactory
@@ -21,8 +21,8 @@ import java.util.regex.Matcher
 import java.util.regex.Pattern
 
 
-class RegisterFragment : Fragment(R.layout.fragment_register) {
-    private lateinit var binding: FragmentRegisterBinding
+class RegisterFragment : Fragment(R.layout.fragment_register_2) {
+    private lateinit var binding: FragmentRegister2Binding
     private val viewModel by viewModels<AuthViewModel>{
         AuthViewModelFactory(
             AuthRepoImpl(
@@ -34,8 +34,15 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentRegisterBinding.bind(view)
+        binding = FragmentRegister2Binding.bind(view)
         singUp()
+        goToSingIn()
+    }
+
+    private fun goToSingIn(){
+        binding.btnSigninReg.setOnClickListener{
+            findNavController().navigate(R.id.action_registerFragment_to_loginFragment)
+        }
     }
 
     private fun singUp(){
@@ -46,9 +53,7 @@ class RegisterFragment : Fragment(R.layout.fragment_register) {
             val confirmPassword = binding.editTextConfirmPassword.text.toString().trim()
             val email = binding.editTextEmail.text.toString().trim()
             val form = false
-
             if (validateUserData(username,email,password,confirmPassword)) return@setOnClickListener
-
             createUser(email,password,username,form)
         }
     }
