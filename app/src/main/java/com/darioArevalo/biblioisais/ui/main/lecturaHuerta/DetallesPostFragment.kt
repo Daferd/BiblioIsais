@@ -11,7 +11,10 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +33,8 @@ import com.darioArevalo.biblioisais.presentation.lecturahuerta.CommentPostViewMo
 import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 
 class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
@@ -56,7 +61,7 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
         savedInstanceState: Bundle?
     ): View? {
         val rootview = inflater.inflate(R.layout.fragment_detalles_post,container,false)
-        val recyclerView = rootview?.findViewById<RecyclerView>(R.id.rv_postDetalles)
+        //val recyclerView = rootview?.findViewById<RecyclerView>(R.id.rv_postDetalles)
         AdapterComment = commentAdapter(ArrayList(),this)
 
         return rootview
@@ -81,7 +86,43 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
         Glide.with(requireContext()).load(post.profile_picture).fitCenter().into(binding.profilePhotoDetalles)
         Glide.with(requireContext()).load(post.post_image).fitCenter().into(binding.photoViewDetalles)
 
-        viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
+        viewModel.fetchPosts(post.post_Id)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getComments().collect { result ->
+                    when(result){
+                        is Result.Loading->{
+                            Log.d("Livedata","Loading...")
+                            binding.progressBarDetallesPost.visibility = View.VISIBLE
+
+
+                        }
+                        is Result.Success->{
+                            binding.progressBarDetallesPost.visibility = View.GONE
+                            Log.d("Livedata_comment","${result.data}")
+
+                            if (result.data.isEmpty()){
+                                binding.emptyContainer.visibility = View.VISIBLE
+                                return@collect
+                            }else{
+                                binding.emptyContainer.visibility = View.GONE
+                            }
+
+                            AdapterComment = commentAdapter(result.data,this@DetallesPostFragment)
+                            binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
+                        }
+
+                        is Result.Failure->{
+                            Log.d("livedata error","{${result.exception}}")
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+                /* viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
                 when(result){
                     is Result.Loading->{
                         Log.d("Livedata","Loading...")
@@ -102,7 +143,6 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
 
                         AdapterComment = commentAdapter(result.data,this)
                         binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
-
                     }
 
                     is Result.Failure->{
@@ -113,41 +153,7 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
             })
 
 
-/*
-            viewModel.fechtLatestComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
-                when(result){
-                    is Result.Loading->{
-                        Log.d("Livedata","Loading...")
-                        binding.progressBarDetallesPost.visibility = View.VISIBLE
-
-
-                    }
-                    is Result.Success->{
-                        binding.progressBarDetallesPost.visibility = View.GONE
-                        Log.d("Livedata_comment","${result.data}")
-
-                        //if (result.data.isEmpty()){
-                        //    binding.emptyContainer.visibility = View.VISIBLE
-                        //    return@Observer
-                        //}else{
-                        //    binding.emptyContainer.visibility = View.GONE
-                        //}
-
-
-                        AdapterComment.notifyDataSetChanged()
-                        AdapterComment = commentAdapter(result.data)
-                        binding.rvPostDetalles.adapter = AdapterComment//commentAdapter(result.data)
-
-                    }
-
-                    is Result.Failure->{
-                        Log.d("livedata error","{${result.exception}}")
-                    }
-                }
-
-            })
-*/
-
+        */
         var commentPost = ""
         binding.btnComment.setOnClickListener {
             val user = FirebaseAuth.getInstance()

@@ -26,7 +26,8 @@
         tools:ignore="AllowBackup">
 
         <activity android:name=".ui.main.splash.SplashActivity"
-            android:theme="@style/Theme.BiblioIsais.NoActionBar">
+            android:theme="@style/Theme.BiblioIsais.NoActionBar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
