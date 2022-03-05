@@ -1,66 +1,22 @@
 package com.darioArevalo.biblioisais.data.remote.lecturahuerta
 
-import android.net.sip.SipSession
 import android.util.Log
-import android.widget.Toast
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.CommentPost
-import com.darioArevalo.biblioisais.ui.main.lecturaHuerta.adapter.commentAdapter
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
-import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.tasks.await
+import org.intellij.lang.annotations.Flow
 import java.util.*
 import kotlin.collections.HashMap
 import kotlin.coroutines.coroutineContext
 
 class CommentPostDataSource {
-
-    fun  getLatestComments(keyPost:String): Result<List<CommentPost>> {
-        val commentPostList = mutableListOf<CommentPost>()
-        val database = FirebaseDatabase.getInstance().reference
-        database.keepSynced(true)
-
-        val databaseReference = database.child("comentarios_post/${keyPost}")//.get().await()
-
-        databaseReference.addValueEventListener(object :ValueEventListener{
-            override fun onDataChange(snapshot: DataSnapshot) {
-                commentPostList.clear()
-                for(comments in snapshot.children){
-                    comments.getValue<CommentPost>().let {
-                        commentPostList.add(it!!)
-                        Log.d("ValueEvent_res",it.content)
-
-
-                }
-             } // End if
-
-
-
-            } // End Function
-
-
-            override fun onCancelled(error: DatabaseError) {
-                Log.d("Error",error.toString())
-            }
-
-        })
-        /*
-            for (comments in databaseReference.children){
-           comments.getValue<CommentPost>().let {
-               //Log.d("xxx","${it?.user_Id}")
-               //it?.photo_url_user = getPhoto(it?.user_Id.toString())
-               commentPostList.add(it!!)
-            }
-        }*/
-        Log.d("size_list",commentPostList.size.toString())
-
-        return Result.Success(commentPostList)
-    }
 
     fun fun_edit_comment(content: String,key_id_comment:String,keyPost: String){
         Log.d("editado",content)
@@ -82,33 +38,55 @@ class CommentPostDataSource {
         }
     }
 
-    suspend fun suspend_get_comments(keyPost: String):Result<List<CommentPost>>{
+
+    suspend fun suspend_get_comments(keyPost: String): Result<List<CommentPost>>{
+        val commentPostList = mutableListOf<CommentPost>()
+        val user_uid = FirebaseAuth.getInstance().uid
+
+        val database = FirebaseDatabase.getInstance().reference
+        val databaseReference = database.child("comentarios_post").child(keyPost.toString())
+        databaseReference.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                commentPostList.clear()
+                for (postSnapshot in dataSnapshot.children) {
+                    val comments = postSnapshot.getValue(CommentPost::class.java)
+                    comments?.let {
+                        it.validation = user_uid == it.user_Id
+                        commentPostList.add(it)
+                        Log.d("comments", it.toString())
+                    }
+                }
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.d("error_datasource_co", "loadPost:onCancelled", databaseError.toException())
+                // ...
+            }
+        })
+
+        delay(2000)
+        Log.d("comments_database",commentPostList.toString())
+
+        return Result.Success(commentPostList)
+    }
+// not working here...
+    suspend fun suspend_get_comments2(keyPost: String): Result<List<CommentPost>>{
        val commentPostList = mutableListOf<CommentPost>()
        val database = FirebaseDatabase.getInstance().reference
 
-       database.keepSynced(true)
+      // database.keepSynced(true)
 
        val databaseReference = database.child("comentarios_post/${keyPost}").get().await()
         val user_uid = FirebaseAuth.getInstance().uid
         for (comments in databaseReference.children){
            comments.getValue<CommentPost>().let {
-               it?.validation = if (user_uid == it?.user_Id){
-
-                   Log.d("user_id_equal",user_uid.toString() + "-" + it?.user_Id)
-                   true
-               }else{
-                   Log.d("user_id_equal",user_uid.toString() + "-" + it?.user_Id)
-
-                   false
-
-               }
-               Log.d("validation",it?.validation.toString())
-
+               it?.validation = user_uid == it?.user_Id
                commentPostList.add(it!!)
            }
 
        }
-       Log.d("size_list",commentPostList.size.toString())
+        Log.d("comments_database",commentPostList.toString())
        return Result.Success(commentPostList)
    }
 
