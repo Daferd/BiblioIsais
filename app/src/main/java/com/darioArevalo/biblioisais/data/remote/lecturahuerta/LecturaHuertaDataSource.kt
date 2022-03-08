@@ -18,17 +18,50 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 import kotlinx.coroutines.tasks.await
 import java.io.ByteArrayOutputStream
 import java.util.*
 
 class LecturaHuertaDataSource {
 
-    suspend fun getLatesPosts(): Result<List<PostServer>> {
+    suspend fun getLatesPosts(): Flow<Result<MutableList<PostServer>>> = callbackFlow{
         val postList = mutableListOf<PostServer>()
-        val querySnapshot = FirebaseFirestore.getInstance().collection("postblog").get().await()
-/*
-        querySnapshot.addSnapshotListener{snapshot, e->
+        val querySnapshot = FirebaseFirestore.getInstance().collection("postblog")//.get().await()
+
+
+
+        val suscription = querySnapshot.addSnapshotListener { snapshot, e ->
+
+            /*
+            if (e != null) {
+                Log.w("FailedData", "Listen failed.", e)
+                return@addSnapshotListener
+            }*/
+
+            if (snapshot != null ) {
+                Log.d("CuerrentData", "Current data: ${snapshot.metadata.toString()}")
+                postList.clear()
+                for(post in snapshot.documents){
+                    post.toObject(PostServer::class.java)?.let { postList.add(it) }
+                    Log.d("Query Tag", "${post.id} => ${post.data}")}
+                    this.trySend(Result.Success(postList)).isSuccess
+
+            } else {
+                Log.d("NUllData", "Current data: null")
+            }
+        }
+       // delay(2000)
+        Log.d("Data_post",postList.toString())
+        awaitClose{suscription.remove()}
+
+
+
+        /*querySnapshot.addSnapshotListener{snapshot, e->
             if (e!=null){
                 Log.d("Error_dataFirestorage","Listen failed")
                 return@addSnapshotListener
@@ -48,12 +81,14 @@ class LecturaHuertaDataSource {
 
         }*/
 
+       // Log.d("post_datasource",postList.toString())
+
+        /*
         for(post in querySnapshot.documents){
             post.toObject(PostServer::class.java)?.let { postList.add(it) }
-            Log.d("Query Tag", "${post.id} => ${post.data}")}
+            Log.d("Query Tag", "${post.id} => ${post.data}")}*/
 
-        return Result.Success(postList)
-
+        //return Result.Success(postList)
     }
 
     fun setPost(autor:String, contenido:String, titulo:String, date: String, bitmap: Bitmap){

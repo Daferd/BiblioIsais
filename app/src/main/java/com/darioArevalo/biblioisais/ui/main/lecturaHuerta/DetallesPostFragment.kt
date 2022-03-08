@@ -22,6 +22,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.darioArevalo.biblioisais.R
 import com.darioArevalo.biblioisais.core.Result
+import com.darioArevalo.biblioisais.core.hide
+import com.darioArevalo.biblioisais.core.show
 import com.darioArevalo.biblioisais.data.model.ImageBundle
 import com.darioArevalo.biblioisais.data.model.PostServer
 import com.darioArevalo.biblioisais.data.model.TimeUtils
@@ -86,10 +88,11 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
         Glide.with(requireContext()).load(post.profile_picture).fitCenter().into(binding.profilePhotoDetalles)
         Glide.with(requireContext()).load(post.post_image).fitCenter().into(binding.photoViewDetalles)
 
-        viewModel.fetchPosts(post.post_Id)
+      //viewModel.fetchPosts(post.post_Id)
+        /*
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getComments().collect { result ->
+                viewModel.latestpost(post.post_Id).collect { result ->
                     when(result){
                         is Result.Loading->{
                             Log.d("Livedata","Loading...")
@@ -119,10 +122,11 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
                 }
             }
         }
+*/
 
 
 
-                /* viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
+                viewModel.fetchSuspendComments(post.post_Id).observe(viewLifecycleOwner, Observer { result->
                 when(result){
                     is Result.Loading->{
                         Log.d("Livedata","Loading...")
@@ -146,6 +150,9 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
                     }
 
                     is Result.Failure->{
+
+                        binding.progressBarDetallesPost.hide()
+                        binding.emptyContainer.show()
                         Log.d("livedata error","{${result.exception}}")
                     }
                 }
@@ -153,7 +160,7 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
             })
 
 
-        */
+
         var commentPost = ""
         binding.btnComment.setOnClickListener {
             val user = FirebaseAuth.getInstance()

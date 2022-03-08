@@ -11,7 +11,10 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -34,6 +37,10 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import io.grpc.internal.SharedResourceHolder
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import org.imaginativeworld.whynotimagecarousel.CarouselItem
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.OnItemClickListener
@@ -66,6 +73,50 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         binding.rvPostList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPostList.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
 
+
+
+/*
+        viewModel.fetchLatestPosts()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.getPost().collect{result->
+                    when(result){
+                        is Result.Loading->{
+                            Log.d("Livedata","Loading...")
+                            binding.progressBarLecturaHuerta.show()
+                            binding.carousel.hide()
+                            binding.descripcionCardview.hide()
+                        }
+                        is Result.Success->{
+                            binding.progressBarLecturaHuerta.hide()
+                            binding.carousel.show()
+                            binding.descripcionCardview.show()
+                            Log.d("Livedata","${result.data}")
+
+                            if(result.data.isEmpty()){
+                                binding.emptyContainerLecturaHuerta.show()
+                                return@collect
+                            }else{
+                                binding.emptyContainerLecturaHuerta.hide()
+                            }
+
+
+                            Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this@LecturaHuertaFragment)
+                            binding.rvPostList.adapter = Adapter
+                        }
+
+                        is Result.Failure->{
+                            binding.progressBarLecturaHuerta.hide()
+                            Log.d("livedata error","{${result.exception}}")
+                        }
+                    }
+                }
+            }
+        }
+
+*/
+        //Beggining
+
         viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result->
             when(result){
                 is Result.Loading->{
@@ -94,21 +145,26 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
                 is Result.Failure->{
                     binding.progressBarLecturaHuerta.hide()
-                    Log.d("livedata error","{${result.exception}}")
+                    binding.emptyContainerLecturaHuerta.show()
+
+                    Log.d("livedata_error","{${result.exception}}")
+
                 }
             }
         })
 
 
-        viewModel.fetchIsaisImages().observe(viewLifecycleOwner,{ result ->
-            when(result){
+        //End
+
+        viewModel.fetchIsaisImages().observe(viewLifecycleOwner) { result ->
+            when (result) {
                 is Result.Loading -> {
 
                 }
                 is Result.Success -> {
                     imageList.clear()
-                    for (image in result.data){
-                        imageList.add(CarouselItem(image.imageUrl,image.review))
+                    for (image in result.data) {
+                        imageList.add(CarouselItem(image.imageUrl, image.review))
                     }
                     binding.carousel.addData(imageList)
                 }
@@ -116,7 +172,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
 
                 }
             }
-        })
+        }
 
         binding.carousel.onItemClickListener = object : OnItemClickListener {
             override fun onClick(position: Int, carouselItem: CarouselItem) {

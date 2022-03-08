@@ -20,7 +20,7 @@ import kotlin.collections.ArrayList
 
 class LecturaHuertaAdapter(private val postList:ArrayList<PostServer>, private val itemOnClickListener:OnPostClickListener):RecyclerView.Adapter<BaseViewHolder<*>>(),Filterable {
 
-    private val main_list = postList
+    private var main_list = postList
     private val searchList = ArrayList<PostServer>(postList)
 
     interface OnPostClickListener{

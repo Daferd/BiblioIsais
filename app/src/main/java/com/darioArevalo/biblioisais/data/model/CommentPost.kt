@@ -6,8 +6,8 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class CommentPost(
     val content: String = "",
-    val create_at: Long? = null,
-    val autor: String = "",
+    var create_at: Long? = null,
+    var autor: String = "",
     val post_Id: String = "",
     val user_Id: String = "",
     var validation: Boolean = false,

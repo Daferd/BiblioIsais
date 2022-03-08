@@ -1,6 +1,7 @@
 package com.darioArevalo.biblioisais.data.remote.lecturahuerta
 
 import android.util.Log
+import androidx.annotation.Nullable
 import com.darioArevalo.biblioisais.core.Result
 import com.darioArevalo.biblioisais.data.model.CommentPost
 import com.google.firebase.Timestamp
@@ -9,12 +10,14 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.tasks.await
-import org.intellij.lang.annotations.Flow
-import java.util.*
+import kotlinx.coroutines.flow.Flow
+
 import kotlin.collections.HashMap
-import kotlin.coroutines.coroutineContext
 
 class CommentPostDataSource {
 
@@ -39,6 +42,64 @@ class CommentPostDataSource {
     }
 
 
+    suspend fun getComments(keyPost: String): Flow<Result<List<CommentPost>>> = callbackFlow{
+
+        Log.d("Entradata",keyPost)
+        val comment_list = mutableListOf<CommentPost>()
+        val user_uid = FirebaseAuth.getInstance().uid
+
+        val database = FirebaseDatabase.getInstance().reference
+        val databaseReference = database.child("comentarios_post").child(keyPost)
+        databaseReference.get()
+        val suscription =  object : ValueEventListener{
+
+            override fun onDataChange( snapshot: DataSnapshot) {
+                //Log.d("chidrn",snapshot.childrenCount.toString())
+                comment_list.clear()
+                if (snapshot.childrenCount.toInt() != 0){
+                    Log.d("existe","existe")
+                for(comment in snapshot.children){
+
+                    val comment_unique = comment.getValue(CommentPost::class.java)
+                    comment_unique?.let {
+                        it.validation = user_uid == it.user_Id
+                        comment_list.add(it)
+                        offer(Result.Success(comment_list))
+                        }
+
+
+                    }
+
+                }else{
+
+                        offer(Result.Failure(Exception("Bad request")))
+
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.d("error_data",error.toString())
+            }
+
+
+
+        }
+        databaseReference.addValueEventListener(suscription)
+
+        Log.d("CommentsPost",comment_list.toString())
+
+
+
+        awaitClose{databaseReference.removeEventListener(suscription)}
+
+
+
+    }
+
+
+    //out or work... dont used it
     suspend fun suspend_get_comments(keyPost: String): Result<List<CommentPost>>{
         val commentPostList = mutableListOf<CommentPost>()
         val user_uid = FirebaseAuth.getInstance().uid

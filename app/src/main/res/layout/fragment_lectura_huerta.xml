@@ -143,6 +143,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
+                    tools:listitem="@layout/lectura_huerta_row"
                     app:reverseLayout="true"
                     app:stackFromEnd="true" />
 
