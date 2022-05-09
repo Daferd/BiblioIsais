@@ -11,6 +11,7 @@ import com.darioArevalo.biblioisais.databinding.FragmentTherapyBinding
 
 class TherapyFragment : Fragment(R.layout.fragment_therapy) {
 
+
     private lateinit var binding: FragmentTherapyBinding
 
 
