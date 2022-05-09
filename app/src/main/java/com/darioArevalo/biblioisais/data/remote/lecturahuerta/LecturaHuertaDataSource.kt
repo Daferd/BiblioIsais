@@ -33,8 +33,6 @@ class LecturaHuertaDataSource {
         val postList = mutableListOf<PostServer>()
         val querySnapshot = FirebaseFirestore.getInstance().collection("postblog")//.get().await()
 
-
-
         val suscription = querySnapshot.addSnapshotListener { snapshot, e ->
 
             /*
