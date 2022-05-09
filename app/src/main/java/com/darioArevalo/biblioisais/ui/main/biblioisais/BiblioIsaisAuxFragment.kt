@@ -17,7 +17,7 @@ class BiblioIsaisAuxFragment : Fragment(R.layout.fragment_biblio_isais_aux) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentBiblioIsaisAuxBinding.bind(view)
-
+        //mncxz
 
     }
 }
