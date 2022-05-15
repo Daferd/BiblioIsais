@@ -73,50 +73,6 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
         binding.rvPostList.layoutManager = LinearLayoutManager(requireContext())
         binding.rvPostList.addItemDecoration(DividerItemDecoration(requireContext(),DividerItemDecoration.VERTICAL))
 
-
-
-/*
-        viewModel.fetchLatestPosts()
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.getPost().collect{result->
-                    when(result){
-                        is Result.Loading->{
-                            Log.d("Livedata","Loading...")
-                            binding.progressBarLecturaHuerta.show()
-                            binding.carousel.hide()
-                            binding.descripcionCardview.hide()
-                        }
-                        is Result.Success->{
-                            binding.progressBarLecturaHuerta.hide()
-                            binding.carousel.show()
-                            binding.descripcionCardview.show()
-                            Log.d("Livedata","${result.data}")
-
-                            if(result.data.isEmpty()){
-                                binding.emptyContainerLecturaHuerta.show()
-                                return@collect
-                            }else{
-                                binding.emptyContainerLecturaHuerta.hide()
-                            }
-
-
-                            Adapter = LecturaHuertaAdapter(result.data as ArrayList<PostServer>,this@LecturaHuertaFragment)
-                            binding.rvPostList.adapter = Adapter
-                        }
-
-                        is Result.Failure->{
-                            binding.progressBarLecturaHuerta.hide()
-                            Log.d("livedata error","{${result.exception}}")
-                        }
-                    }
-                }
-            }
-        }
-
-*/
-        //Beggining
-
         viewModel.fetchLatestPosts().observe(viewLifecycleOwner, Observer { result->
             when(result){
                 is Result.Loading->{
@@ -153,8 +109,6 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
             }
         })
 
-
-        //End
 
         viewModel.fetchIsaisImages().observe(viewLifecycleOwner) { result ->
             when (result) {
@@ -218,6 +172,7 @@ class LecturaHuertaFragment : Fragment(), LecturaHuertaAdapter.OnPostClickListen
             if(user.uid == null){
                 val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("agregarTema")
                 findNavController().navigate(action)
+                    //findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_loginFragment)
                 Toast.makeText(context,"Usuario no registrado",Toast.LENGTH_SHORT).show()
             } else {
                 findNavController().navigate(R.id.action_navigation_lecturaHuerta_to_agregarTemaFragment)

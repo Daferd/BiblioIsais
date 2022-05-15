@@ -167,7 +167,7 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
             if(user.uid == null){
                 /*val action = LecturaHuertaFragmentDirections.actionNavigationLecturaHuertaToLoginFragment("comentar")
                 findNavController().navigate(action)*/
-                    findNavController().navigate(R.id.action_detallesPostFragment_to_loginFragment)
+                findNavController().navigate(R.id.action_detallesPostFragment_to_loginFragment)
                 Toast.makeText(context,"Registarte para comentar",Toast.LENGTH_SHORT).show()
             } else {
                 commentPost = binding.editTxtContent.text.toString()
@@ -182,8 +182,8 @@ class DetallesPostFragment : Fragment(),commentAdapter.onCommentClickListener {
                 }
             }
 
-
         }
+
         binding.editTxtContent.setOnClickListener {
 
         }

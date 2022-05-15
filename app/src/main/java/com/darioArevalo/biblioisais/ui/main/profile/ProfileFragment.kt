@@ -48,67 +48,88 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
         binding = FragmentProfileBinding.bind(view)
 
-        viewModel.fetchUser().observe(viewLifecycleOwner,{  result->
-            when(result){
-                is Result.Loading -> {
-                    binding.progressBar.show()
-                    binding.profileImageView.hide()
-                    binding.cameraImageView.hide()
-                    binding.emailCardView.hide()
-                    binding.nameCardView.hide()
-                    binding.passwordCardView.hide()
-                    binding.logOutButton.hide()
+        val user = FirebaseAuth.getInstance()
 
-                }
+        if(user.uid != null){
+            viewModel.fetchUser().observe(viewLifecycleOwner) { result ->
+                when (result) {
+                    is Result.Loading -> {
+                        binding.progressBar.show()
+                        binding.profileImageView.hide()
+                        binding.cameraImageView.hide()
+                        binding.emailCardView.hide()
+                        binding.nameCardView.hide()
+                        binding.passwordCardView.hide()
+                        binding.logOutButton.hide()
 
-                is Result.Success -> {
-                    binding.progressBar.hide()
-                    binding.profileImageView.show()
-                    binding.cameraImageView.show()
-                    binding.emailCardView.show()
-                    binding.nameCardView.show()
-                    binding.passwordCardView.show()
-                    binding.logOutButton.show()
-                    binding.nameTextView.text = result.data.username
-                    binding.emailTextView.text = result.data.email
-                    binding.passwordTextView.text = "******"
-                    Glide.with(this).load(result.data.photo_url).centerCrop().into(binding.profileImageView)
-                    data = result.data
-                }
-                is Result.Failure -> {
+                    }
 
+                    is Result.Success -> {
+                        binding.progressBar.hide()
+                        binding.profileImageView.show()
+                        binding.cameraImageView.show()
+                        binding.emailCardView.show()
+                        binding.nameCardView.show()
+                        binding.passwordCardView.show()
+                        binding.logOutButton.show()
+                        binding.nameTextView.text = result.data.username
+                        binding.emailTextView.text = result.data.email
+                        binding.passwordTextView.text = "******"
+                        Glide.with(this).load(result.data.photo_url).centerCrop()
+                            .into(binding.profileImageView)
+                        data = result.data
+                    }
+                    is Result.Failure -> {
+
+                    }
                 }
             }
-        })
 
-        binding.cameraImageView.setOnClickListener {
-            uploadImage()
+            binding.cameraImageView.setOnClickListener {
+                uploadImage()
+            }
+
+            binding.logOutButton.setOnClickListener {
+                FirebaseAuth.getInstance().signOut()
+                findNavController().navigate(R.id.action_navigation_profile_to_navigation_biblioisais)
+            }
+
+            binding.nameCardView.setOnClickListener {
+                val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,1)
+                findNavController().navigate(action)
+            }
+            binding.emailCardView.setOnClickListener {
+                val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,2)
+                findNavController().navigate(action)
+            }
+            binding.passwordCardView.setOnClickListener {
+                val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,3)
+                findNavController().navigate(action)
+            }
+            binding.profileImageView.setOnClickListener {
+                val bundle = Bundle()
+                val imagepass = ImageBundle(bitmap_string = data.photo_url)
+                bundle.putParcelable("img_view_detalles",imagepass)
+                findNavController().navigate(R.id.action_navigation_profile_to_imageviewFragment,bundle)
+            }
+
+        } else {
+            /*binding.imageContainer.hide()
+            binding.cameraImageView.hide()
+            binding.nameCardView.hide()
+            binding.emailCardView.hide()
+            binding.passwordCardView.hide()*/
+
+            binding.passwordTextView.text = ""
+
+            binding.logOutButton.text = "Iniciar Sesión"
+            binding.logOutButton.setOnClickListener{
+                findNavController().navigate(R.id.action_navigation_profile_to_loginFragment)
+            }
+
         }
 
-        binding.logOutButton.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            findNavController().navigate(R.id.action_navigation_profile_to_loginFragment)
-        }
-        binding.nameCardView.setOnClickListener {
-            val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,1)
-            findNavController().navigate(action)
-        }
-        binding.emailCardView.setOnClickListener {
-            val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,2)
-            findNavController().navigate(action)
-        }
 
-        binding.passwordCardView.setOnClickListener {
-            val action = ProfileFragmentDirections.actionNavigationProfileToNewdataFragment(data,3)
-            findNavController().navigate(action)
-        }
-
-        binding.profileImageView.setOnClickListener {
-            val bundle = Bundle()
-            val imagepass = ImageBundle(bitmap_string = data.photo_url)
-            bundle.putParcelable("img_view_detalles",imagepass)
-            findNavController().navigate(R.id.action_navigation_profile_to_imageviewFragment,bundle)
-        }
 
     }
 
@@ -172,24 +193,24 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     }
 
-    private fun     uploadPicture(imageBitmap: Bitmap){
+    private fun uploadPicture(imageBitmap: Bitmap){
             val alertDialog = AlertDialog.Builder(requireContext()).setTitle("Guardando foto...").create()
         imageBitmap.let {
-            viewModel.updatePictureProfile(imageBitmap = it).observe(viewLifecycleOwner,{   result ->
-                when(result){
+            viewModel.updatePictureProfile(imageBitmap = it).observe(viewLifecycleOwner) { result ->
+                when (result) {
                     is Result.Loading -> {
                         alertDialog.show()
                     }
                     is Result.Success -> {
                         alertDialog.dismiss()
-                        Toast.makeText(context,"Foto guardada",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, "Foto guardada", Toast.LENGTH_SHORT).show()
                     }
                     is Result.Failure -> {
                         alertDialog.dismiss()
                     }
                 }
 
-            })
+            }
         }
 
     }

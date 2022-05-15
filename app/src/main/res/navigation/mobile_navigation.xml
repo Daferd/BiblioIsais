@@ -141,6 +141,9 @@
         <action
             android:id="@+id/action_navigation_profile_to_imageviewFragment"
             app:destination="@id/imageviewFragment" />
+        <action
+            android:id="@+id/action_navigation_profile_to_navigation_biblioisais"
+            app:destination="@id/navigation_biblioisais" />
     </fragment>
     <fragment
         android:id="@+id/FormFragment"
@@ -226,4 +229,9 @@
             android:defaultValue="no image"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/biblioIsaisAuxFragment"
+        android:name="com.darioArevalo.biblioisais.ui.main.biblioisais.BiblioIsaisAuxFragment"
+        android:label="BiblioIsaisAuxFragment"
+        tools:layout="@layout/fragment_biblio_isais_aux"/>
 </navigation>
