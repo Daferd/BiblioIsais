@@ -130,21 +130,7 @@ class LoginFragment : Fragment(R.layout.fragment_login_2) {
                 is Result.Success -> {
                     binding.progressBar.hide()
 
-                    if(args.direccion == "agregarTema"){
-                        findNavController().navigate(R.id.action_loginFragment_to_agregarTemaFragment)
-                        Toast.makeText(
-                            requireContext(),
-                            "Welcome ${result.data?.displayName}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
-                        findNavController().navigate(R.id.action_loginFragment_to_detallesPostFragment)
-                        Toast.makeText(
-                            requireContext(),
-                            "Welcome ${result.data?.displayName}",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    findNavController().navigate(R.id.action_loginFragment_to_navigation_biblioisais)
 
                     /*if(args.direccion == "comentar"){
                         findNavController().navigate(R.id.action_loginFragment_to_detallesPostFragment)
