@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="115dp"
-        android:layout_height="115dp"
-        android:layout_marginTop="13dp"
+        android:layout_width="146dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/logo_biblioisais"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="ContentDescription" />
@@ -22,8 +23,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_app"
-        android:textColor="@color/md_deep_orange_900"
-        android:textSize="18sp"
+        android:textColor="@color/md_orange_700"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,7 +90,7 @@
             android:paddingEnd="16dp"
             android:text="Registro"
             android:textColor="@android:color/white"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
 
@@ -101,9 +102,9 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
-            android:text="LOGIN"
-            android:textColor="@color/md_deep_orange_900"
-            android:textSize="20sp"
+            android:text="Iniciar\nSesión"
+            android:textColor="@color/md_blue_600"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
 
@@ -136,10 +137,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="6dp"
-                android:paddingStart="6dp"
+                android:paddingStart="10dp"
                 app:endIconTint="@color/black"
                 app:boxCornerRadiusTopStart="16dp"
-                android:paddingEnd="6dp">
+                android:paddingEnd="10dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextEmail"
@@ -158,8 +159,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginBottom="24dp"
-                android:paddingStart="6dp"
-                android:paddingEnd="6dp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
                 app:boxCornerRadiusBottomEnd="16dp"
                 app:passwordToggleEnabled="true">
 
@@ -185,7 +186,7 @@
         android:backgroundTint="#E64A19"
         android:text="@string/signin"
         android:textColor="@android:color/white"
-        android:textSize="20dp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/cardView2"
         app:layout_constraintEnd_toEndOf="@+id/cardView2"
@@ -258,10 +259,10 @@
 
     <com.google.android.gms.common.internal.SignInButtonImpl
         android:id="@+id/btn_google"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/icon_google_100"
+        android:background="@drawable/simbolo_de_google"
         app:layout_constraintBottom_toTopOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -17,7 +17,7 @@
     <style name="Theme.BiblioIsais.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/md_orange_500</item>
-        <item name="colorPrimaryVariant">@color/orange_bar</item>
+        <item name="colorPrimaryVariant">@color/md_orange_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/md_blue_500</item>
